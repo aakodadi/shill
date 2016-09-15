@@ -4,6 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>argument/argument.h</itemPath>
+      <itemPath>model/post.h</itemPath>
+      <itemPath>model/timestamp.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,6 +15,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>argument/argument.c</itemPath>
       <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -26,6 +30,7 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>README.md</itemPath>
+    <itemPath>config.json</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -38,16 +43,28 @@
       <compileType>
         <cTool>
           <standard>10</standard>
+          <warningLevel>3</warningLevel>
         </cTool>
         <linkerTool>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs libcurl`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs jansson`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
       <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="argument/argument.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="argument/argument.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config.json" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="model/post.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="model/timestamp.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -60,6 +77,7 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <standard>10</standard>
+          <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
@@ -70,10 +88,26 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>`pkg-config --libs libcurl`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs jansson`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="argument/argument.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="argument/argument.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config.json" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="model/post.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="model/timestamp.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

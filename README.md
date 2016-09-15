@@ -8,3 +8,11 @@ shill is the client-side (front-end).
 
 All source code in this project is available under the MIT License. See
 [LICENSE](LICENSE) for details.
+
+## Dependencies
+
++ [Jansson v2.8](http://www.digip.org/jansson/ "Jansson") a C library for 
+encoding, decoding and manipulating JSON data.
+
++ [libcurl v7.47.0](https://curl.haxx.se/libcurl/ "libcurl") a multiprotocol 
+file transfer library.

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/argument/argument.o \
 	${OBJECTDIR}/main.o
 
 
@@ -52,7 +53,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs libcurl`  
+LDLIBSOPTIONS=`pkg-config --libs libcurl` `pkg-config --libs jansson`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -62,10 +63,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/shill: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/shill ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/argument/argument.o: argument/argument.c 
+	${MKDIR} -p ${OBJECTDIR}/argument
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument.o argument/argument.c
+
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g `pkg-config --cflags libcurl` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
 
 # Subprojects
 .build-subprojects:
