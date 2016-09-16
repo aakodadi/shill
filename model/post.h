@@ -11,19 +11,20 @@
 #define POST_H
 
 #include "timestamp.h"
+#include "../type/string_type.h"
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    struct __post {
+    struct _post {
         unsigned long id;
-        _timestamp timestamp;
-        char* body;
+        timestamp t;
+        string body;
     };
     
-    typedef struct __post _post;
+    typedef struct _post post;
 
 #ifdef __cplusplus
 }

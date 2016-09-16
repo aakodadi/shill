@@ -3,8 +3,8 @@
 #include <curl/curl.h>
 #include <string.h>
 #include <jansson.h>
-#include "model/post.h"
 #include "argument/argument.h"
+#include "service/repository.h"
 
 int main(int argc, char** argv) {
     
@@ -19,27 +19,6 @@ int main(int argc, char** argv) {
      * reflected in arguments.
      */
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
-    
-    
-    CURL *curl;
-    CURLcode res;
-
-    curl = curl_easy_init();
-    if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://localhost:3000/posts/1");
-        /* example.com is redirected, so we tell libcurl to follow redirection */
-        //curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-        /* Perform the request, res will get the return code */
-        res = curl_easy_perform(curl);
-        /* Check for errors */
-        if (res != CURLE_OK)
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                curl_easy_strerror(res));
-
-        /* always cleanup */
-        curl_easy_cleanup(curl);
-    }
 
     char* text = "{ \"post\": { \"id\": \"0\", \"body\": \"body text\" } }";
     json_t *root;

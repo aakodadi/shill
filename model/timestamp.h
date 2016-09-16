@@ -16,12 +16,12 @@ extern "C" {
 #endif
 
 
-    struct __timestamp {
+    struct _timestamp {
         time_t created_at;
         time_t updated_at;
     };
     
-    typedef struct __timestamp _timestamp;
+    typedef struct _timestamp timestamp;
 
 
 #ifdef __cplusplus
