@@ -22,32 +22,52 @@ int clean_suite(void) {
     return 0;
 }
 
-void test_repository_request() {
-    const char* expected = "{\"id\":1,\"body\":\"test post body 2\",\"created_at\":\"2016-09-14T06:33:35.777Z\",\"updated_at\":\"2016-09-14T06:33:35.777Z\"}";
-    target t = post_target;
-    unsigned long id = 1;
-    string result = repository_request(t, id);
-    CU_ASSERT_STRING_EQUAL(result.s, expected);
-
+string _build_path_test_helper(target t, ...) {
+    string result;
+    va_list vl;
+    va_start(vl, t);
+    result = _build_path(t, vl);
+    va_end(vl);
+    return result;
 }
 
-void test_repository_request_collection() {
-    const char* expected = "[{\"id\":1,\"body\":\"test post body 2\",\"created_at\":\"2016-09-14T06:33:35.777Z\",\"updated_at\":\"2016-09-14T06:33:35.777Z\"},{\"id\":2,\"body\":\"test post body 1\",\"created_at\":\"2016-09-14T06:34:03.876Z\",\"updated_at\":\"2016-09-14T06:34:03.876Z\"}]";
-    collection_target t = posts_target;
-    string result = repository_request_collection(t);
-    CU_ASSERT_STRING_EQUAL(result.s, expected);
-}
 
-void test_request_posts() {
-    const char* expected = "[{\"id\":1,\"body\":\"test post body 2\",\"created_at\":\"2016-09-14T06:33:35.777Z\",\"updated_at\":\"2016-09-14T06:33:35.777Z\"},{\"id\":2,\"body\":\"test post body 1\",\"created_at\":\"2016-09-14T06:34:03.876Z\",\"updated_at\":\"2016-09-14T06:34:03.876Z\"}]";
-    string result = request_posts();
+
+void test_repository__build_post_path() {
+    const char* expected = "posts/100";
+    string result = _build_post_path(100);
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
-void test_request_post() {
-    const char* expected = "{\"id\":1,\"body\":\"test post body 2\",\"created_at\":\"2016-09-14T06:33:35.777Z\",\"updated_at\":\"2016-09-14T06:33:35.777Z\"}";
-    unsigned long id = 1;
-    string result = request_post(id);
+void test_repository__build_posts_path() {
+    const char* expected = "posts/";
+    string result = _build_posts_path();
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_path_posts() {
+    const char* expected = "posts/";
+    string result = _build_path_test_helper(TARGET_POSTS);
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_path_post() {
+    const char* expected = "posts/100";
+    string result = _build_path_test_helper(TARGET_POST, 100);
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_url() {
+    const char* expected = "http://localhost:3000/profile/someone";
+    string path = string_create("profile/someone");
+    string result = _build_url(path);
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__request() {
+    const char* expected = "<html><head><title>Links</title></head><body>0 </body></html>";
+    string url = string_create("http://httpbin.org/links/1/0");
+    string result = _request(url);
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
@@ -67,10 +87,13 @@ int main() {
 
     /* Add the tests to the suite */
     if (
-            (NULL == CU_add_test(pSuite, "test_repository_request", test_repository_request)) ||
-            (NULL == CU_add_test(pSuite, "test_repository_request_collection", test_repository_request_collection)) ||
-            (NULL == CU_add_test(pSuite, "test_request_post", test_request_post)) ||
-            (NULL == CU_add_test(pSuite, "test_request_posts", test_request_posts))
+            (NULL == CU_add_test(pSuite, "test_repository__build_posts_path", test_repository__build_posts_path)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_post_path", test_repository__build_post_path)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_path_posts", test_repository__build_path_posts)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_path_post", test_repository__build_path_post)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_url", test_repository__build_url)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__request", test_repository__request)) ||
+            (0)
             ) {
         CU_cleanup_registry();
         return CU_get_error();

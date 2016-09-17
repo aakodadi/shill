@@ -9,6 +9,7 @@
 #define REPOSITORY_H
 
 #include "../type/string_type.h"
+#include <stdarg.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,15 +23,11 @@ extern "C" {
      * passed.
      */
     enum _target {
-        post_target
-    };
-
-    enum _collection_target {
-        posts_target
+        TARGET_POST,
+        TARGET_POSTS
     };
 
     typedef enum _target target;
-    typedef enum _collection_target collection_target;
 
     /*
      * Temporary: use this as the base url
@@ -38,13 +35,17 @@ extern "C" {
      */
     extern const char* _base_url;
 
-    string repository_request(target t, unsigned long id);
-    string repository_request_collection(collection_target t);
-
-    string request_post(unsigned long id);
-    string request_posts();
+    string request(target t, ...);
+    
+    string _build_path(target t, va_list vl);
+    string _build_post_path(unsigned long id);
+    string _build_posts_path();
+    string _build_url(string path);
+    string _request(string url);
     
     size_t _curl_callback(void *ptr, size_t size, size_t nmemb, string* s);
+    
+    
 
 #ifdef __cplusplus
 }
