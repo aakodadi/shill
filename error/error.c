@@ -8,6 +8,7 @@
 const char* code_error_message = "\nCode error: Development error\n";
 const char* memory_error_message = "\nMemory error: Error while trying to allocate memory\n";
 const char* io_error_message = "\nIO error: Error while dealing with a file\n";
+const char* json_decode_error_message = "\nJson decode error: Error while parsing json\n";
 
 void error_handle(error e, int errnum, const char* info) {
     const char* msg;
@@ -20,6 +21,9 @@ void error_handle(error e, int errnum, const char* info) {
             break;
         case IO_ERROR:
             msg = io_error_message;
+            break;
+        case JSON_DECODE_ERROR:
+            msg = json_decode_error_message;
             break;
         default:
             error_handle(CODE_ERROR, 0, "Inexpected error type in error handling module, in error/error.c, error_handler(), this code block must never be executed");

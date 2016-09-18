@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/argument/argument.o \
+	${OBJECTDIR}/configuration/configuration.o \
 	${OBJECTDIR}/error/error.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/service/repository.o \
@@ -82,6 +83,11 @@ ${OBJECTDIR}/argument/argument.o: argument/argument.c
 	${MKDIR} -p ${OBJECTDIR}/argument
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument.o argument/argument.c
+
+${OBJECTDIR}/configuration/configuration.o: configuration/configuration.c 
+	${MKDIR} -p ${OBJECTDIR}/configuration
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/configuration/configuration.o configuration/configuration.c
 
 ${OBJECTDIR}/error/error.o: error/error.c 
 	${MKDIR} -p ${OBJECTDIR}/error
@@ -142,6 +148,19 @@ ${OBJECTDIR}/argument/argument_nomain.o: ${OBJECTDIR}/argument/argument.o argume
 	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument_nomain.o argument/argument.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/argument/argument.o ${OBJECTDIR}/argument/argument_nomain.o;\
+	fi
+
+${OBJECTDIR}/configuration/configuration_nomain.o: ${OBJECTDIR}/configuration/configuration.o configuration/configuration.c 
+	${MKDIR} -p ${OBJECTDIR}/configuration
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/configuration/configuration.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/configuration/configuration_nomain.o configuration/configuration.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/configuration/configuration.o ${OBJECTDIR}/configuration/configuration_nomain.o;\
 	fi
 
 ${OBJECTDIR}/error/error_nomain.o: ${OBJECTDIR}/error/error.o error/error.c 

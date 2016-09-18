@@ -5,11 +5,11 @@
 #include <jansson.h>
 #include "argument/argument.h"
 #include "service/repository.h"
+#include "configuration/configuration.h"
 
 int main(int argc, char** argv) {
     
     
-    shill_arguments arguments;
     /*
      * Default values.
      */
@@ -23,6 +23,10 @@ int main(int argc, char** argv) {
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
     printf("command: %s\n", arguments.commande);
+    
+    configuration_parse();
+    
+    printf("base-url: %s\n", configuration.base_url);
 
     char* text = "{ \"post\": { \"id\": \"0\", \"body\": \"body text\" } }";
     json_t *root;

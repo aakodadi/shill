@@ -20,11 +20,13 @@ extern "C" {
         CODE_ERROR,
         MEMORY_ERROR,
         IO_ERROR,
+        JSON_DECODE_ERROR,
     };
     
     const char* code_error_message;
     const char* memory_error_message;
     const char* io_error_message;
+    const char* json_decode_error_message;
 
     typedef enum _error error;
 

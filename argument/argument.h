@@ -46,6 +46,9 @@ extern "C" {
     
     /* Our argp parser. */
     static struct argp argp = {options, parse_opt, args_doc, doc, NULL, NULL, NULL};
+    
+    
+    shill_arguments arguments;
 
 
 #ifdef __cplusplus
