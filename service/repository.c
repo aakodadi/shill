@@ -10,7 +10,7 @@
 
 const char* _base_url = "http://localhost:3000/";
 
-string request(target t, ...) {
+string repository_request(target t, ...) {
     va_list vl;
     string path;
     string url;

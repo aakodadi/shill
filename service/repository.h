@@ -35,7 +35,7 @@ extern "C" {
      */
     extern const char* _base_url;
 
-    string request(target t, ...);
+    string repository_request(target t, ...);
     
     string _build_path(target t, va_list vl);
     string _build_post_path(unsigned long id);
