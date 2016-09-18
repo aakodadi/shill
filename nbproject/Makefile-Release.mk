@@ -47,11 +47,13 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1
 
 # Test Object Files
 TESTOBJECTFILES= \
+	${TESTDIR}/tests/configuration_cunit_test.o \
 	${TESTDIR}/tests/repository_cunit_test.o \
 	${TESTDIR}/tests/string_type_cunit_test.o
 
@@ -116,6 +118,10 @@ ${OBJECTDIR}/type/string_type.o: type/string_type.c
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/configuration_cunit_test.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lcunit 
+
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/repository_cunit_test.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcunit 
@@ -123,6 +129,12 @@ ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/repository_cunit_test.o ${OBJECTFILES:
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/string_type_cunit_test.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcunit 
+
+
+${TESTDIR}/tests/configuration_cunit_test.o: tests/configuration_cunit_test.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/configuration_cunit_test.o tests/configuration_cunit_test.c
 
 
 ${TESTDIR}/tests/repository_cunit_test.o: tests/repository_cunit_test.c 
@@ -219,6 +231,7 @@ ${OBJECTDIR}/type/string_type_nomain.o: ${OBJECTDIR}/type/string_type.o type/str
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	else  \
