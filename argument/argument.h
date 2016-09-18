@@ -20,7 +20,7 @@ extern "C" {
             "\nInteract with people right form your terminal\n";
 
     /* A description of the arguments we accept. */
-    static char args_doc[] = "";
+    static char args_doc[] = "<command>";
 
     /* Supported options. */
     static struct argp_option options[] = {
@@ -33,17 +33,19 @@ extern "C" {
     };
 
     /* Used by the main function to communicate with parse_opt. */
-    struct arguments {
+    struct _shill_arguments {
         int verbose;
         char *config;
+        char *commande;
     };
+    
+    typedef struct _shill_arguments shill_arguments;
     
     /* Parse a single option. */
     error_t parse_opt(int key, char *arg, struct argp_state *state);
     
     /* Our argp parser. */
     static struct argp argp = {options, parse_opt, args_doc, doc, NULL, NULL, NULL};
-    struct arguments arguments;
 
 
 #ifdef __cplusplus

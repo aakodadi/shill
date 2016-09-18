@@ -8,6 +8,8 @@
 
 int main(int argc, char** argv) {
     
+    
+    shill_arguments arguments;
     /*
      * Default values.
      */
@@ -19,6 +21,8 @@ int main(int argc, char** argv) {
      * reflected in arguments.
      */
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
+    
+    printf("command: %s\n", arguments.commande);
 
     char* text = "{ \"post\": { \"id\": \"0\", \"body\": \"body text\" } }";
     json_t *root;
@@ -33,7 +37,7 @@ int main(int argc, char** argv) {
     json_t *post = json_object_get(root, "post");
     json_t *body = json_object_get(post, "body");
     const char* body_text = json_string_value(body);
-    printf("%s", body_text);
+    printf("post body: %s\n", body_text);
 
 
     return (EXIT_SUCCESS);
