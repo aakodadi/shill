@@ -1,6 +1,8 @@
 #include "error.h"
 
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 const char* code_error_message = "\nCode error: Development error\n";
@@ -8,7 +10,7 @@ const char* memory_error_message = "\nMemory error: Error while trying to alloca
 const char* io_error_message = "\nIO error: Error while dealing with a file\n";
 
 void error_handle(error e, int errnum, const char* info) {
-    char* msg;
+    const char* msg;
     switch (e) {
         case CODE_ERROR:
             msg = code_error_message;
