@@ -30,6 +30,15 @@ void test_string_create() {
     CU_ASSERT_EQUAL(result.s[result.len], '\0');
 }
 
+void test_string_createf() {
+    string result = string_createf("test %s %d", "string", 1);
+    CU_ASSERT_EQUAL(result.len, 13);
+    CU_ASSERT_EQUAL(strlen(result.s), result.len);
+    CU_ASSERT_EQUAL(strlen(result.s), 13);
+    CU_ASSERT_STRING_EQUAL(result.s, "test string 1");
+    CU_ASSERT_EQUAL(result.s[result.len], '\0');
+}
+
 void test_string_create_with_empty_source() {
     const char* source = "";
     string result = string_create(source);
@@ -210,6 +219,7 @@ int main() {
 
     /* Add the tests to the suite */
     if ((NULL == CU_add_test(pSuite, "test_string_create", test_string_create)) ||
+            (NULL == CU_add_test(pSuite, "test_string_createf", test_string_createf)) ||
             (NULL == CU_add_test(pSuite, "test_string_create_with_empty_source", test_string_create_with_empty_source)) ||
             (NULL == CU_add_test(pSuite, "test_string_destroy", test_string_destroy)) ||
             (NULL == CU_add_test(pSuite, "test_string_n_create", test_string_n_create)) ||

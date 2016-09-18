@@ -21,6 +21,7 @@ extern "C" {
     
     string string_create(const char* source);
     string string_n_create(const char* source, unsigned long size);
+    string string_createf(const char* source, ...);
     unsigned long string_destroy(string* s);
     string string_cat(string s1, string s2);
     string string_catd(string* s1, string* s2);

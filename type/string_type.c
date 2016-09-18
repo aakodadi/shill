@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 #include "string_type.h"
 
@@ -20,6 +21,23 @@ string string_create(const char* source) {
     destination.s = malloc(len + 1);
     strncpy(destination.s, source, len + 1);
     destination.s[destination.len] = '\0';
+    return destination;
+}
+
+string string_createf(const char* source, ...) {
+    unsigned long len;
+    string destination;
+    va_list vl;
+    va_start(vl, source);
+    len = vsnprintf(NULL, 0, source, vl);
+    va_end(vl);
+    destination = string_create("");
+    free(destination.s);
+    destination.s = malloc(len + 1);
+    va_start(vl, source);
+    vsnprintf(destination.s, len + 1, source, vl);
+    va_end(vl);
+    destination.len = len;
     return destination;
 }
 
@@ -80,7 +98,7 @@ int string_cmp(string s1, string s2) {
 }
 
 string string_from_unsigned_long(unsigned long n) {
-    int len = snprintf(NULL, 0, "%lu", n);
+    unsigned long len = snprintf(NULL, 0, "%lu", n);
     string destination = string_create("");
     free(destination.s);
     destination.s = malloc(len + 1);
