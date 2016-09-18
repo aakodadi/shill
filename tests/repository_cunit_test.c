@@ -65,8 +65,8 @@ void test_repository__build_url() {
 }
 
 void test_repository__request() {
-    const char* expected = "<html><head><title>Links</title></head><body>0 </body></html>";
-    string url = string_create("http://httpbin.org/links/1/0");
+    const char* expected = "This file is part of testing procedure it is used to test the repository by getting it form github";
+    string url = string_create("https://raw.githubusercontent.com/akodakim/shill/master/tests/test_repository_sample_content");
     string result = _request(url);
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
