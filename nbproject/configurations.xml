@@ -51,6 +51,7 @@
     </logicalFolder>
     <itemPath>README.md</itemPath>
     <itemPath>config.json</itemPath>
+    <itemPath>tests/test_repository_sample_content</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -117,6 +118,11 @@
       <item path="tests/repository_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/string_type_cunit_test.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/test_repository_sample_content"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="type/string_type.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -196,6 +202,11 @@
       <item path="tests/repository_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/string_type_cunit_test.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/test_repository_sample_content"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="type/string_type.c" ex="false" tool="0" flavor2="0">
       </item>
