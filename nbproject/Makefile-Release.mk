@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/argument/argument.o \
+	${OBJECTDIR}/error/error.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/service/repository.o \
 	${OBJECTDIR}/type/string_type.o
@@ -81,6 +82,11 @@ ${OBJECTDIR}/argument/argument.o: argument/argument.c
 	${MKDIR} -p ${OBJECTDIR}/argument
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument.o argument/argument.c
+
+${OBJECTDIR}/error/error.o: error/error.c 
+	${MKDIR} -p ${OBJECTDIR}/error
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/error/error.o error/error.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
@@ -136,6 +142,19 @@ ${OBJECTDIR}/argument/argument_nomain.o: ${OBJECTDIR}/argument/argument.o argume
 	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument_nomain.o argument/argument.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/argument/argument.o ${OBJECTDIR}/argument/argument_nomain.o;\
+	fi
+
+${OBJECTDIR}/error/error_nomain.o: ${OBJECTDIR}/error/error.o error/error.c 
+	${MKDIR} -p ${OBJECTDIR}/error
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/error/error.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/error/error_nomain.o error/error.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/error/error.o ${OBJECTDIR}/error/error_nomain.o;\
 	fi
 
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c 
