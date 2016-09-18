@@ -22,6 +22,7 @@ void error_handle(error e, int errnum, const char* info) {
             msg = io_error_message;
             break;
         default:
+            error_handle(CODE_ERROR, 0, "Inexpected error type in error handling module, in error/error.c, error_handler(), this code block must never be executed");
             return;
     }
     fputs(msg, stderr);
