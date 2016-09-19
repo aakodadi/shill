@@ -60,6 +60,7 @@
     <itemPath>.travis.yml</itemPath>
     <itemPath>README.md</itemPath>
     <itemPath>config.json</itemPath>
+    <itemPath>shippable.yml</itemPath>
     <itemPath>tests/test_repository_sample_content</itemPath>
     <itemPath>tests/valid_config.json</itemPath>
   </logicalFolder>
@@ -138,6 +139,8 @@
       <item path="service/service.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="service/service.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="shippable.yml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/configuration_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -240,6 +243,8 @@
       <item path="service/service.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="service/service.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="shippable.yml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/configuration_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>

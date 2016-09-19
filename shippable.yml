@@ -1,0 +1,8 @@
+language: c
+compiler:
+    - gcc
+build:
+  ci:
+    - sudo apt-get update
+    - sudo apt-get install libcunit1 libcunit1-dev libcurl4-openssl-dev libjansson-dev
+    - make test
