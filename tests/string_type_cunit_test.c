@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../type/string_type.h"
+#include "../type/string.h"
 
 /*
  * CUnit Test Suite

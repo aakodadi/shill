@@ -26,7 +26,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>service/repository.c</itemPath>
       <itemPath>service/service.c</itemPath>
-      <itemPath>type/string_type.c</itemPath>
+      <itemPath>type/string.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -149,7 +149,7 @@
       </item>
       <item path="tests/valid_config.json" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="type/string_type.c" ex="false" tool="0" flavor2="0">
+      <item path="type/string.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="type/string_type.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -249,7 +249,7 @@
       </item>
       <item path="tests/valid_config.json" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="type/string_type.c" ex="false" tool="0" flavor2="0">
+      <item path="type/string.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="type/string_type.h" ex="false" tool="3" flavor2="0">
       </item>

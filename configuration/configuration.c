@@ -2,7 +2,7 @@
 #include <jansson.h>
 #include "../argument/argument.h"
 #include "../error/error.h"
-#include "../type/string_type.h"
+#include "../type/string.h"
 
 #include "configuration.h"
 

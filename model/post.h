@@ -11,7 +11,7 @@
 #define POST_H
 
 #include "timestamp.h"
-#include "../type/string_type.h"
+#include "../type/string.h"
 
 
 #ifdef __cplusplus

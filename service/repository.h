@@ -8,7 +8,7 @@
 #ifndef REPOSITORY_H
 #define REPOSITORY_H
 
-#include "../type/string_type.h"
+#include "../type/string.h"
 #include <stdarg.h>
 
 #ifdef __cplusplus

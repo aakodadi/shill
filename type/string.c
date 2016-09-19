@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include "string_type.h"
+#include "string.h"
 
 string string_create(const char* source) {
     unsigned long len;

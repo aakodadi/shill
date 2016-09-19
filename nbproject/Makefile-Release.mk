@@ -41,7 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/service/repository.o \
 	${OBJECTDIR}/service/service.o \
-	${OBJECTDIR}/type/string_type.o
+	${OBJECTDIR}/type/string.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -112,10 +112,10 @@ ${OBJECTDIR}/service/service.o: service/service.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/service/service.o service/service.c
 
-${OBJECTDIR}/type/string_type.o: type/string_type.c 
+${OBJECTDIR}/type/string.o: type/string.c 
 	${MKDIR} -p ${OBJECTDIR}/type
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/type/string_type.o type/string_type.c
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/type/string.o type/string.c
 
 # Subprojects
 .build-subprojects:
@@ -233,17 +233,17 @@ ${OBJECTDIR}/service/service_nomain.o: ${OBJECTDIR}/service/service.o service/se
 	    ${CP} ${OBJECTDIR}/service/service.o ${OBJECTDIR}/service/service_nomain.o;\
 	fi
 
-${OBJECTDIR}/type/string_type_nomain.o: ${OBJECTDIR}/type/string_type.o type/string_type.c 
+${OBJECTDIR}/type/string_nomain.o: ${OBJECTDIR}/type/string.o type/string.c 
 	${MKDIR} -p ${OBJECTDIR}/type
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/type/string_type.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/type/string.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/type/string_type_nomain.o type/string_type.c;\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/type/string_nomain.o type/string.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/type/string_type.o ${OBJECTDIR}/type/string_type_nomain.o;\
+	    ${CP} ${OBJECTDIR}/type/string.o ${OBJECTDIR}/type/string_nomain.o;\
 	fi
 
 # Run Test Targets
