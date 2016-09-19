@@ -2,7 +2,7 @@ sudo: false
 language: c
 compiler: gcc
 install:
-- if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+- export CC="gcc-5"
 addons:
   apt:
     sources:
