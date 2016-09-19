@@ -77,8 +77,9 @@ post* get_posts() {
         result[post_i].t.created_at = json_integer_value(json_created_at);
         result[post_i].t.updated_at = json_integer_value(json_updated_at);
     }
-    
+
     string_destroy(&row_result);
+    json_decref(json_root);
 
     return result;
 
@@ -137,8 +138,9 @@ post get_post(unsigned long id) {
         err_msg = string_createf("Cannot parse json content \n\"%s\".\n updated_at element is not a integer", row_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
-    
+
     string_destroy(&row_result);
+    json_decref(json_root);
 
     result.id = json_integer_value(json_id);
     result.body = string_create(json_string_value(json_body));
