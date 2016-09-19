@@ -6,6 +6,8 @@
 #include "argument/argument.h"
 #include "service/repository.h"
 #include "configuration/configuration.h"
+#include "service/service.h"
+#include "model/post.h"
 
 int main(int argc, char** argv) {
     
@@ -27,21 +29,13 @@ int main(int argc, char** argv) {
     configuration_parse();
     
     printf("base-url: %s\n", configuration.base_url);
-
-    char* text = "{ \"post\": { \"id\": \"0\", \"body\": \"body text\" } }";
-    json_t *root;
-    json_error_t error;
-    root = json_loads(text, 0, &error);
-
-    if (!root) {
-        fprintf(stderr, "error: on line %d: %s\n", error.line, error.text);
-        return 1;
-    }
     
-    json_t *post = json_object_get(root, "post");
-    json_t *body = json_object_get(post, "body");
-    const char* body_text = json_string_value(body);
-    printf("post body: %s\n", body_text);
+    post* posts;
+    posts = get_posts();
+    char buff[20];
+    strftime(buff, 20, "%Y-%m-%d %H:%M:%S", localtime(&posts[0].t.created_at));
+    
+    printf("post: id = %lu, body = %s, created_at = %s\n", posts[0].id, posts[0].body.s, buff);
 
 
     return (EXIT_SUCCESS);

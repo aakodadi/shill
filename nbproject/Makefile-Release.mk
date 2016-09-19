@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/error/error.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/service/repository.o \
+	${OBJECTDIR}/service/service.o \
 	${OBJECTDIR}/type/string_type.o
 
 # Test Directory
@@ -105,6 +106,11 @@ ${OBJECTDIR}/service/repository.o: service/repository.c
 	${MKDIR} -p ${OBJECTDIR}/service
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/service/repository.o service/repository.c
+
+${OBJECTDIR}/service/service.o: service/service.c 
+	${MKDIR} -p ${OBJECTDIR}/service
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/service/service.o service/service.c
 
 ${OBJECTDIR}/type/string_type.o: type/string_type.c 
 	${MKDIR} -p ${OBJECTDIR}/type
@@ -212,6 +218,19 @@ ${OBJECTDIR}/service/repository_nomain.o: ${OBJECTDIR}/service/repository.o serv
 	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/service/repository_nomain.o service/repository.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/service/repository.o ${OBJECTDIR}/service/repository_nomain.o;\
+	fi
+
+${OBJECTDIR}/service/service_nomain.o: ${OBJECTDIR}/service/service.o service/service.c 
+	${MKDIR} -p ${OBJECTDIR}/service
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/service/service.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/service/service_nomain.o service/service.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/service/service.o ${OBJECTDIR}/service/service_nomain.o;\
 	fi
 
 ${OBJECTDIR}/type/string_type_nomain.o: ${OBJECTDIR}/type/string_type.o type/string_type.c 
