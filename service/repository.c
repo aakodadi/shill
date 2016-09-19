@@ -5,10 +5,9 @@
 #include <stdarg.h>
 #include <assert.h>
 #include <curl/curl.h>
+#include "../configuration/configuration.h"
 
 #include "repository.h"
-
-const char* _base_url = "http://localhost:3000/";
 
 string repository_request(target t, ...) {
     va_list vl;
@@ -51,7 +50,7 @@ string _build_post_path(unsigned long id) {
 }
 
 string _build_url(string path) {
-    string base_url = string_create(_base_url);
+    string base_url = string_create(configuration.base_url);
     string url = string_cat(base_url, path);
     string_destroy(&base_url);
     return url;

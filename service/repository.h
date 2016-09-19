@@ -29,12 +29,6 @@ extern "C" {
 
     typedef enum _target target;
 
-    /*
-     * Temporary: use this as the base url
-     * TODO: get it from the configuration
-     */
-    extern const char* _base_url;
-
     string repository_request(target t, ...);
     
     string _build_path(target t, va_list vl);
