@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <errno.h>
 #include <assert.h>
 #include <curl/curl.h>
 #include "../configuration/configuration.h"
+#include "../error/error.h"
 
 #include "repository.h"
 
@@ -33,6 +35,7 @@ string _build_path(target t, va_list vl) {
         case TARGET_POSTS:
             return _build_posts_path();
         default:
+            error_handle(CODE_ERROR, 0, "In repository, unexpected target while building path, this code block must never get executed");
             break;
     }
 }
@@ -59,6 +62,9 @@ string _build_url(string path) {
 string _request(string url) {
     string data;
 
+    string err_msg;
+    int errnum;
+
     CURL *curl;
     CURLcode res;
 
@@ -72,9 +78,11 @@ string _request(string url) {
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
         /* Check for errors */
-        if (res != CURLE_OK)
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                curl_easy_strerror(res));
+        if (res != CURLE_OK) {
+            errnum = errno;
+            err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
+            error_handle(IO_ERROR, errnum, err_msg.s);
+        }
 
         /* always cleanup */
         curl_easy_cleanup(curl);

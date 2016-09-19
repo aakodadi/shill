@@ -5,10 +5,11 @@
 #include <stdlib.h>
 
 
-const char* code_error_message = "\nCode error: Development error\n";
+const char* code_error_message = "\nCode error: This error must never be thrown in production, if it's the case please contact the developer\n";
 const char* memory_error_message = "\nMemory error: Error while trying to allocate memory\n";
-const char* io_error_message = "\nIO error: Error while dealing with a file\n";
+const char* io_error_message = "\nIO error: Error while interacting with a file\n";
 const char* json_decode_error_message = "\nJson decode error: Error while parsing json\n";
+const char* server_error_message = "\nServer error: Error while requesting a server\n";
 
 void error_handle(error e, int errnum, const char* info) {
     const char* msg;
@@ -26,7 +27,7 @@ void error_handle(error e, int errnum, const char* info) {
             msg = json_decode_error_message;
             break;
         default:
-            error_handle(CODE_ERROR, 0, "Inexpected error type in error handling module, in error/error.c, error_handler(), this code block must never be executed");
+            error_handle(CODE_ERROR, 0, "Unexpected error type in error handling module, in error/error.c, error_handler(), this code block must never get executed");
             return;
     }
     fputs(msg, stderr);
