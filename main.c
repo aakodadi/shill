@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <curl/curl.h>
-#include <string.h>
-#include <jansson.h>
 #include "argument/argument.h"
 #include "configuration/configuration.h"
 #include "command/command.h"
