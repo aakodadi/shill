@@ -14,7 +14,7 @@ extern "C" {
 
     const char* command_list[4];
     
-    void execute();
+    void commande_execute();
 
 
 #ifdef __cplusplus

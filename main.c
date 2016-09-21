@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     
     printf("base-url: %s\n\n", configuration.base_url);
 
-    execute();
+    commande_execute();
 
     return (EXIT_SUCCESS);
 }

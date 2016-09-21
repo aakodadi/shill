@@ -6,7 +6,7 @@
 
 const char* command_list[4] = {"login", "post", "comment", ""};
 
-void execute() {
+void commande_execute() {
     post* result = get_posts();
     unsigned long post_i;
     char date[20];
