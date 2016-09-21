@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/argument/argument.o \
+	${OBJECTDIR}/command/command.o \
 	${OBJECTDIR}/configuration/configuration.o \
 	${OBJECTDIR}/error/error.o \
 	${OBJECTDIR}/main.o \
@@ -86,6 +87,11 @@ ${OBJECTDIR}/argument/argument.o: argument/argument.c
 	${MKDIR} -p ${OBJECTDIR}/argument
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument.o argument/argument.c
+
+${OBJECTDIR}/command/command.o: command/command.c 
+	${MKDIR} -p ${OBJECTDIR}/command
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/command/command.o command/command.c
 
 ${OBJECTDIR}/configuration/configuration.o: configuration/configuration.c 
 	${MKDIR} -p ${OBJECTDIR}/configuration
@@ -166,6 +172,19 @@ ${OBJECTDIR}/argument/argument_nomain.o: ${OBJECTDIR}/argument/argument.o argume
 	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/argument/argument_nomain.o argument/argument.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/argument/argument.o ${OBJECTDIR}/argument/argument_nomain.o;\
+	fi
+
+${OBJECTDIR}/command/command_nomain.o: ${OBJECTDIR}/command/command.o command/command.c 
+	${MKDIR} -p ${OBJECTDIR}/command
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/command/command.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/command/command_nomain.o command/command.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/command/command.o ${OBJECTDIR}/command/command_nomain.o;\
 	fi
 
 ${OBJECTDIR}/configuration/configuration_nomain.o: ${OBJECTDIR}/configuration/configuration.o configuration/configuration.c 
