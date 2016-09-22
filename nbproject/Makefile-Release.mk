@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/configuration/configuration.o \
 	${OBJECTDIR}/error/error.o \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/model/post_collection.o \
 	${OBJECTDIR}/service/repository.o \
 	${OBJECTDIR}/service/service.o \
 	${OBJECTDIR}/type/string.o
@@ -107,6 +108,11 @@ ${OBJECTDIR}/main.o: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+
+${OBJECTDIR}/model/post_collection.o: model/post_collection.c 
+	${MKDIR} -p ${OBJECTDIR}/model
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/model/post_collection.o model/post_collection.c
 
 ${OBJECTDIR}/service/repository.o: service/repository.c 
 	${MKDIR} -p ${OBJECTDIR}/service
@@ -224,6 +230,19 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
+	fi
+
+${OBJECTDIR}/model/post_collection_nomain.o: ${OBJECTDIR}/model/post_collection.o model/post_collection.c 
+	${MKDIR} -p ${OBJECTDIR}/model
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/model/post_collection.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/model/post_collection_nomain.o model/post_collection.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/model/post_collection.o ${OBJECTDIR}/model/post_collection_nomain.o;\
 	fi
 
 ${OBJECTDIR}/service/repository_nomain.o: ${OBJECTDIR}/service/repository.o service/repository.c 
