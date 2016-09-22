@@ -5,12 +5,11 @@
 
 #include "service.h"
 
-post* get_posts() {
+post_collection get_posts() {
     string err_msg;
     string row_result;
-    post* result;
+    post_collection result;
     unsigned long post_i;
-    unsigned long post_n;
     json_t *json_root, *json_post, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
     row_result = repository_request(TARGET_POSTS);
@@ -32,9 +31,9 @@ post* get_posts() {
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
-    post_n = json_array_size(json_root);
-    result = malloc(post_n * sizeof (post));
-    for (post_i = 0; post_i < post_n; post_i++) {
+    result.len = json_array_size(json_root);
+    result.p = malloc(result.len * sizeof (post));
+    for (post_i = 0; post_i < result.len; post_i++) {
         json_post = json_array_get(json_root, post_i);
 
         if (!json_is_object(json_post)) {
@@ -72,10 +71,10 @@ post* get_posts() {
             error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
         }
 
-        result[post_i].id = json_integer_value(json_id);
-        result[post_i].body = string_create(json_string_value(json_body));
-        result[post_i].t.created_at = json_integer_value(json_created_at);
-        result[post_i].t.updated_at = json_integer_value(json_updated_at);
+        result.p[post_i].id = json_integer_value(json_id);
+        result.p[post_i].body = string_create(json_string_value(json_body));
+        result.p[post_i].t.created_at = json_integer_value(json_created_at);
+        result.p[post_i].t.updated_at = json_integer_value(json_updated_at);
     }
 
     string_destroy(&row_result);

@@ -9,12 +9,13 @@
 #define SERVICE_H
 
 #include "../model/post.h"
+#include "../model/post_collection.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    post* get_posts();
+    post_collection get_posts();
     post get_post(unsigned long id);
 
 
