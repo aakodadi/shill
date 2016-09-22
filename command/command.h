@@ -11,10 +11,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
+    enum _command {
+        COMMAND_QUEUE,
+        COMMAND_POST,
+        COMMAND_COMMENT,
+        COMMAND_LOGIN,
+    };
+    
+    typedef enum _command command;
 
     const char* command_list[4];
     
     void commande_execute();
+    
+    command _command_get_form_argument();
+    void _queue();
 
 
 #ifdef __cplusplus
