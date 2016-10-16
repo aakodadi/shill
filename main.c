@@ -10,6 +10,8 @@ int main(int argc, char** argv) {
      */
     arguments.verbose = 0;
     arguments.config = "config.json";
+    arguments.commande = NULL;
+    arguments.username = NULL;
     
     /*
      * Parse our arguments; every option seen by parse_opt will be
