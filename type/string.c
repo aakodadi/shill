@@ -130,3 +130,16 @@ string string_from_unsigned_long(unsigned long n) {
     destination.len = len;
     return destination;
 }
+
+string string_gets(){
+    string destination = string_create("");
+    char c;
+    string tmp;
+    c = 'a';
+    while (c != '\n'){
+        c=getchar();
+        tmp = string_create(&c);
+        destination = string_catd(&destination, &tmp);
+    }
+    return string;
+}
