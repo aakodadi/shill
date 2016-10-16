@@ -26,6 +26,7 @@ extern "C" {
     static struct argp_option options[] = {
         {"verbose", 'v', 0, 0, "Produce verbose output (disabled by default)", 0},
         {"config", 'c', "FILE", 0, "Set configuration file (default config.json)", 1},
+        {"username", 'u', "USERNAME", 0, "Set username while logging in", 1},
         /*
             {0, 0, 0, 0, "The following options should be grouped together:", 1},
          */
@@ -37,6 +38,7 @@ extern "C" {
         int verbose;
         char *config;
         char *commande;
+        char *username;
     };
     
     typedef struct _shill_arguments shill_arguments;
