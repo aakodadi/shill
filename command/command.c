@@ -14,6 +14,15 @@ void commande_execute() {
         case COMMAND_QUEUE:
             _queue();
             break;
+        case COMMAND_POST:
+            _post();
+            break;
+        case COMMAND_LOGIN:
+            _login();
+            break;
+        case COMMAND_REGISTER:
+            _register();
+            break;
         default:
             error_handle(CODE_ERROR, 0, "Command unimplemented yet");
     }
@@ -22,6 +31,8 @@ void commande_execute() {
 command _command_get_form_argument() {
     if (strcmp("login", arguments.commande) == 0) {
         return COMMAND_LOGIN;
+    } else if (strcmp("register", arguments.commande) == 0) {
+        return COMMAND_REGISTER;
     } else if (strcmp("post", arguments.commande) == 0) {
         return COMMAND_POST;
     } else if (strcmp("comment", arguments.commande) == 0) {
@@ -50,4 +61,16 @@ void _queue() {
         string_destroy(&result.p[post_i].body);
     }
     free(result.p);
+}
+
+void _post(){
+    
+}
+
+void _login(){
+    
+}
+
+void _register(){
+    
 }
