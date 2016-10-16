@@ -20,8 +20,6 @@ extern "C" {
     };
     
     typedef enum _command command;
-
-    const char* command_list[4];
     
     void commande_execute();
     

@@ -8,8 +8,6 @@
 
 #include "command.h"
 
-const char* command_list[4] = {"login", "post", "comment", "queue"};
-
 void commande_execute() {
     command c = _command_get_form_argument();
     switch(c){
