@@ -14,6 +14,7 @@
       <itemPath>service/service.h</itemPath>
       <itemPath>type/string.h</itemPath>
       <itemPath>model/timestamp.h</itemPath>
+      <itemPath>model/user.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -144,6 +145,8 @@
       </item>
       <item path="model/timestamp.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="model/user.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="service/repository.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="service/repository.h" ex="false" tool="3" flavor2="0">
@@ -255,6 +258,8 @@
       <item path="model/post_collection.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="model/timestamp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="model/user.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="service/repository.c" ex="false" tool="0" flavor2="0">
       </item>
