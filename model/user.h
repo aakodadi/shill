@@ -22,6 +22,8 @@ extern "C" {
         string username;
         string email;
         string name;
+        string password;
+        string password_confirmation;
     };
 
     typedef struct _user user;
