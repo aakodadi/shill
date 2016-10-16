@@ -141,5 +141,5 @@ string string_gets(){
         tmp = string_create(&c);
         destination = string_catd(&destination, &tmp);
     }
-    return string;
+    return destination;
 }

@@ -5,6 +5,7 @@
 #include "../service/service.h"
 #include "../argument/argument.h"
 #include "../error/error.h"
+#include "../model/user.h"
 
 #include "command.h"
 
@@ -72,5 +73,15 @@ void _login(){
 }
 
 void _register(){
-    
+    user u;
+    printf("Username: ");
+    u.username = string_gets();
+    printf("Email: ");
+    u.email = string_gets();
+    printf("Name: ");
+    u.name = string_gets();
+    printf("Password: ");
+    u.password = string_gets();
+    printf("Password confirmation: ");
+    u.password_confirmation = string_gets();
 }
