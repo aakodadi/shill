@@ -131,15 +131,28 @@ string string_from_unsigned_long(unsigned long n) {
     return destination;
 }
 
-string string_gets(){
+string string_gets(unsigned long max_size){
     string destination = string_create("");
-    char c;
+    char c[STRING_CHUNK_SIZE];
     string tmp;
-    c = 'a';
-    while (c != '\n'){
-        c=getchar();
-        tmp = string_create(&c);
+    unsigned long size = STRING_CHUNK_SIZE < max_size ?
+        STRING_CHUNK_SIZE : max_size;
+    while (fgets(c, size, stdin)){
+        if(c[strlen(c)-1] == '\n'){
+            c[strlen(c)-1] = '\0';
+            tmp = string_create(c);
+            destination = string_catd(&destination, &tmp);
+            return destination;
+        }
+        tmp = string_create(c);
         destination = string_catd(&destination, &tmp);
+        printf("%s\n", destination.s);
+        max_size -= destination.len;
+        if(max_size == 0){
+            return destination;
+        }
+        size = STRING_CHUNK_SIZE < max_size ?
+            STRING_CHUNK_SIZE : max_size;
     }
     return destination;
 }

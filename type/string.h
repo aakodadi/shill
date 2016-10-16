@@ -8,6 +8,8 @@
 #ifndef STRING_TYPE_H
 #define STRING_TYPE_H
 
+#define STRING_CHUNK_SIZE 1024
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -29,7 +31,7 @@ extern "C" {
     string string_cpyd(string* source);
     int string_cmp(string s1, string s2);
     string string_from_unsigned_long(unsigned long n);
-    string string_gets();
+    string string_gets(unsigned long max_size);
 
 
 #ifdef __cplusplus
