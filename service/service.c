@@ -7,18 +7,18 @@
 
 post_collection get_posts() {
     string err_msg;
-    string row_result;
+    string raw_result;
     post_collection result;
     unsigned long post_i;
     json_t *json_root, *json_post, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
-    row_result = repository_get(TARGET_POSTS);
+    raw_result = repository_get(TARGET_POSTS);
 
-    json_root = json_loads(row_result.s, 0, &error);
+    json_root = json_loads(raw_result.s, 0, &error);
 
     if (!json_root) {
         err_msg = string_createf("Cannot parse json content \n\"%s\".\nError on line %d column %d : %s",
-                row_result.s,
+                raw_result.s,
                 error.line,
                 error.column,
                 error.text);
@@ -27,7 +27,7 @@ post_collection get_posts() {
 
     if (!json_is_array(json_root)) {
         json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\nRoot element is not a json array", row_result.s);
+        err_msg = string_createf("Cannot parse json content \n\"%s\".\nRoot element is not a json array", raw_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
@@ -38,7 +38,7 @@ post_collection get_posts() {
 
         if (!json_is_object(json_post)) {
             json_decref(json_root);
-            err_msg = string_createf("Cannot parse json content \n\"%s\".\nElements in root array are not json objects", row_result.s);
+            err_msg = string_createf("Cannot parse json content \n\"%s\".\nElements in root array are not json objects", raw_result.s);
             error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
         }
 
@@ -49,25 +49,25 @@ post_collection get_posts() {
 
         if (!json_is_integer(json_id)) {
             json_decref(json_root);
-            err_msg = string_createf("Cannot parse json content \n\"%s\".\n id element is not a integer", row_result.s);
+            err_msg = string_createf("Cannot parse json content \n\"%s\".\n id element is not a integer", raw_result.s);
             error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
         }
 
         if (!json_is_string(json_body)) {
             json_decref(json_root);
-            err_msg = string_createf("Cannot parse json content \n\"%s\".\n body element is not a string", row_result.s);
+            err_msg = string_createf("Cannot parse json content \n\"%s\".\n body element is not a string", raw_result.s);
             error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
         }
 
         if (!json_is_integer(json_created_at)) {
             json_decref(json_root);
-            err_msg = string_createf("Cannot parse json content \n\"%s\".\n created_at element is not a integer", row_result.s);
+            err_msg = string_createf("Cannot parse json content \n\"%s\".\n created_at element is not a integer", raw_result.s);
             error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
         }
 
         if (!json_is_integer(json_updated_at)) {
             json_decref(json_root);
-            err_msg = string_createf("Cannot parse json content \n\"%s\".\n updated_at element is not a integer", row_result.s);
+            err_msg = string_createf("Cannot parse json content \n\"%s\".\n updated_at element is not a integer", raw_result.s);
             error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
         }
 
@@ -77,7 +77,7 @@ post_collection get_posts() {
         result.p[post_i].t.updated_at = json_integer_value(json_updated_at);
     }
 
-    string_destroy(&row_result);
+    string_destroy(&raw_result);
     json_decref(json_root);
 
     return result;
@@ -86,17 +86,17 @@ post_collection get_posts() {
 
 post get_post(unsigned long id) {
     string err_msg;
-    string row_result;
+    string raw_result;
     post result;
     json_t *json_root, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
-    row_result = repository_get(TARGET_POST, id);
+    raw_result = repository_get(TARGET_POST, id);
 
-    json_root = json_loads(row_result.s, 0, &error);
+    json_root = json_loads(raw_result.s, 0, &error);
 
     if (!json_root) {
         err_msg = string_createf("Cannot parse json content \n\"%s\".\nError on line %d column %d : %s",
-                row_result.s,
+                raw_result.s,
                 error.line,
                 error.column,
                 error.text);
@@ -105,7 +105,7 @@ post get_post(unsigned long id) {
 
     if (!json_is_object(json_root)) {
         json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\nRoot element is not a json object", row_result.s);
+        err_msg = string_createf("Cannot parse json content \n\"%s\".\nRoot element is not a json object", raw_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
@@ -116,29 +116,29 @@ post get_post(unsigned long id) {
 
     if (!json_is_integer(json_id)) {
         json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\n id element is not a integer", row_result.s);
+        err_msg = string_createf("Cannot parse json content \n\"%s\".\n id element is not a integer", raw_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
     if (!json_is_string(json_body)) {
         json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\n body element is not a string", row_result.s);
+        err_msg = string_createf("Cannot parse json content \n\"%s\".\n body element is not a string", raw_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
     if (!json_is_integer(json_created_at)) {
         json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\n created_at element is not a integer", row_result.s);
+        err_msg = string_createf("Cannot parse json content \n\"%s\".\n created_at element is not a integer", raw_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
     if (!json_is_integer(json_updated_at)) {
         json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\n updated_at element is not a integer", row_result.s);
+        err_msg = string_createf("Cannot parse json content \n\"%s\".\n updated_at element is not a integer", raw_result.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
-    string_destroy(&row_result);
+    string_destroy(&raw_result);
     json_decref(json_root);
 
     result.id = json_integer_value(json_id);
