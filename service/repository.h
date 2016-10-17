@@ -33,6 +33,12 @@ extern "C" {
     typedef enum _target target;
 
     string repository_get(target t, ...);
+    /*
+     * the last argument to repository_post must be a string data
+     * containing the data to post
+     */
+    string repository_post(target t, ...);
+    string repository_delete(target t, ...);
     
     string _build_path(target t, va_list vl);
     string _build_post_path(unsigned long id);
@@ -42,6 +48,8 @@ extern "C" {
     string _build_logout_path();
     string _build_url(string path);
     string _get(string url);
+    string _delete(string url);
+    string _post(string url, string data);
     
     size_t _curl_callback(void *ptr, size_t size, size_t nmemb, string* s);
     

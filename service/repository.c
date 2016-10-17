@@ -20,7 +20,39 @@ string repository_get(target t, ...) {
     path = _build_path(t, vl);
     va_end(vl);
     url = _build_url(path);
-    result = _request(url);
+    result = _get(url);
+    string_destroy(&path);
+    string_destroy(&url);
+    return result;
+}
+
+string repository_post(target t, ...){
+    va_list vl;
+    string path;
+    string url;
+    string result;
+    string data;
+    va_start(vl, t);
+    path = _build_path(t, vl);
+    url = _build_url(path);
+    data = va_arg(vl, string);
+    result = _post(url, data);
+    va_end(vl);
+    string_destroy(&path);
+    string_destroy(&url);
+    return result;
+}
+
+string repository_delete(target t, ...){
+    va_list vl;
+    string path;
+    string url;
+    string result;
+    va_start(vl, t);
+    path = _build_path(t, vl);
+    va_end(vl);
+    url = _build_url(path);
+    result = _delete(url);
     string_destroy(&path);
     string_destroy(&url);
     return result;
@@ -81,7 +113,7 @@ string _build_url(string path) {
 }
 
 string _get(string url) {
-    string data;
+    string result;
 
     string err_msg;
     int errnum;
@@ -91,7 +123,7 @@ string _get(string url) {
 
     curl = curl_easy_init();
     if (curl) {
-        data = string_create("");
+        result = string_create("");
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
@@ -109,7 +141,73 @@ string _get(string url) {
         curl_easy_cleanup(curl);
     }
 
-    return data;
+    return result;
+}
+
+string _delete(string url){
+    string result;
+
+    string err_msg;
+    int errnum;
+
+    CURL *curl;
+    CURLcode res;
+
+    curl = curl_easy_init();
+    if (curl) {
+        result = string_create("");
+        curl_easy_setopt(curl, CURLOPT_URL, url.s);
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "delete");
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+
+        /* Perform the request, res will get the return code */
+        res = curl_easy_perform(curl);
+        /* Check for errors */
+        if (res != CURLE_OK) {
+            errnum = errno;
+            err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
+            error_handle(IO_ERROR, errnum, err_msg.s);
+        }
+
+        /* always cleanup */
+        curl_easy_cleanup(curl);
+    }
+
+    return result;
+}
+
+string _post(string url, string data){
+    string result;
+
+    string err_msg;
+    int errnum;
+
+    CURL *curl;
+    CURLcode res;
+
+    curl = curl_easy_init();
+    if (curl) {
+        result = string_create("");
+        curl_easy_setopt(curl, CURLOPT_URL, url.s);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.s);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+
+        /* Perform the request, res will get the return code */
+        res = curl_easy_perform(curl);
+        /* Check for errors */
+        if (res != CURLE_OK) {
+            errnum = errno;
+            err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
+            error_handle(IO_ERROR, errnum, err_msg.s);
+        }
+
+        /* always cleanup */
+        curl_easy_cleanup(curl);
+    }
+
+    return result;
 }
 
 size_t _curl_callback(void *ptr, size_t size, size_t nmemb, string* s) {
