@@ -179,6 +179,7 @@ string _delete(string url){
 
 string _post(string url, string data){
     string result;
+    struct curl_slist *headers = NULL;
 
     string err_msg;
     int errnum;
@@ -189,8 +190,11 @@ string _post(string url, string data){
     curl = curl_easy_init();
     if (curl) {
         result = string_create("");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.s);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, data.len);
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
 
