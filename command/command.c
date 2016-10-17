@@ -90,4 +90,10 @@ void _command_register() {
     u.password = string_gets(72);
     printf("Password confirmation: ");
     u.password_confirmation = string_gets(72);
+    service_register(u);
+    string_destroy(&u.username);
+    string_destroy(&u.email);
+    string_destroy(&u.name);
+    string_destroy(&u.password);
+    string_destroy(&u.password_confirmation);
 }
