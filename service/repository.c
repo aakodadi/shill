@@ -48,11 +48,14 @@ string repository_delete(target t, ...){
     string path;
     string url;
     string result;
+    string data;
     va_start(vl, t);
     path = _build_path(t, vl);
     va_end(vl);
     url = _build_url(path);
-    result = _delete(url);
+    data = va_arg(vl, string);
+    result = _delete(url, data);
+    va_end(vl);
     string_destroy(&path);
     string_destroy(&url);
     return result;
@@ -144,8 +147,9 @@ string _get(string url) {
     return result;
 }
 
-string _delete(string url){
+string _delete(string url, string data){
     string result;
+    struct curl_slist *headers = NULL;
 
     string err_msg;
     int errnum;
@@ -156,8 +160,12 @@ string _delete(string url){
     curl = curl_easy_init();
     if (curl) {
         result = string_create("");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
-        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "delete");
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.s);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, data.len);
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
 

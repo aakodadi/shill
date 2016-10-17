@@ -48,7 +48,7 @@ extern "C" {
     string _build_logout_path();
     string _build_url(string path);
     string _get(string url);
-    string _delete(string url);
+    string _delete(string url, string data);
     string _post(string url, string data);
     
     size_t _curl_callback(void *ptr, size_t size, size_t nmemb, string* s);
