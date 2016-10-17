@@ -151,12 +151,34 @@ post service_get_post(unsigned long id) {
 
 user service_register(user u) {
     string err_msg;
+    string post_data;
     string raw_result;
     user result;
     json_t *json_root, *json_id, *json_username, *json_email, *json_name,
-            *json_auth_token, *json_created_at, *json_updated_at;
+            *json_password, *json_password_confirmation,
+            *json_created_at, *json_updated_at, *json_user;
     json_error_t error;
-    raw_result = repository_post(TARGET_POST, u);
+    
+    json_username = json_pack("s", u.username.s);
+    json_email = json_pack("s", u.email.s);
+    json_name = json_pack("s", u.name.s);
+    json_password = json_pack("s", u.password.s);
+    json_password_confirmation = json_pack("s", u.password_confirmation.s);
+    json_root = json_object();
+    json_user = json_object();
+    json_object_set(json_user, "username", json_username);
+    json_object_set(json_user, "email", json_email);
+    json_object_set(json_user, "name", json_name);
+    json_object_set(json_user, "password", json_password);
+    json_object_set(json_user, "password_confirmation",
+            json_password_confirmation);
+    json_object_set(json_root, "user", json_user);
+    post_data = string_create(json_dumps(json_root, JSON_COMPACT));
+    json_decref(json_root);
+    printf("%s\n", post_data.s);
+    
+    raw_result = repository_post(TARGET_REGISTER, post_data);
+    string_destroy(&post_data);
 
     json_root = json_loads(raw_result.s, 0, &error);
 
@@ -179,7 +201,6 @@ user service_register(user u) {
     json_username = json_object_get(json_root, "username");
     json_email = json_object_get(json_root, "email");
     json_name = json_object_get(json_root, "name");
-    json_auth_token = json_object_get(json_root, "auth_token");
     json_created_at = json_object_get(json_root, "created_at");
     json_updated_at = json_object_get(json_root, "updated_at");
 
@@ -207,12 +228,6 @@ user service_register(user u) {
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
-    if (!json_is_string(json_auth_token)) {
-        json_decref(json_root);
-        err_msg = string_createf("Cannot parse json content \n\"%s\".\n auth_token element is not a string", raw_result.s);
-        error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
-    }
-
     if (!json_is_integer(json_created_at)) {
         json_decref(json_root);
         err_msg = string_createf("Cannot parse json content \n\"%s\".\n created_at element is not a integer", raw_result.s);
@@ -232,7 +247,6 @@ user service_register(user u) {
     result.username = string_create(json_string_value(json_username));
     result.email = string_create(json_string_value(json_email));
     result.name = string_create(json_string_value(json_name));
-    result.auth_token = string_create(json_string_value(json_auth_token));
     result.t.created_at = json_integer_value(json_created_at);
     result.t.updated_at = json_integer_value(json_updated_at);
     
