@@ -24,7 +24,10 @@ extern "C" {
      */
     enum _target {
         TARGET_POST,
-        TARGET_POSTS
+        TARGET_POSTS,
+        TARGET_REGISTER,
+        TARGET_LOGIN,
+        TARGET_LOGOUT,
     };
 
     typedef enum _target target;
@@ -34,6 +37,9 @@ extern "C" {
     string _build_path(target t, va_list vl);
     string _build_post_path(unsigned long id);
     string _build_posts_path();
+    string _build_register_path();
+    string _build_login_path();
+    string _build_logout_path();
     string _build_url(string path);
     string _request(string url);
     

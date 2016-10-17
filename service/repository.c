@@ -34,6 +34,12 @@ string _build_path(target t, va_list vl) {
             return _build_post_path(id);
         case TARGET_POSTS:
             return _build_posts_path();
+        case TARGET_REGISTER:
+            return _build_register_path();
+        case TARGET_LOGIN:
+            return _build_login_path();
+        case TARGET_LOGOUT:
+            return _build_logout_path();
         default:
             error_handle(CODE_ERROR, 0, "In repository, unexpected target while building path, this code block must never get executed");
             break;
@@ -49,6 +55,21 @@ string _build_post_path(unsigned long id) {
     string path = string_create("posts/");
     string tmp = string_from_unsigned_long(id);
     path = string_catd(&path, &tmp);
+    return path;
+}
+
+string _build_register_path(){
+    string path = string_create("users/");
+    return path;
+}
+
+string _build_login_path(){
+    string path = string_create("auth/");
+    return path;
+}
+
+string _build_logout_path(){
+    string path = string_create("auth/");
     return path;
 }
 
