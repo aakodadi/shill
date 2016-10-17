@@ -10,6 +10,7 @@
 #include <CUnit/Basic.h>
 #include "../service/repository.h"
 #include "../configuration/configuration.h"
+#include <jansson.h>
 
 /*
  * CUnit Test Suite
@@ -109,6 +110,32 @@ void test_repository__get() {
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
+void test_repository__post() {
+    const char* expected = "simple post data";
+    json_t *json_root, *json_data;
+    json_error_t error;
+    string data = string_create(expected);
+    string url = string_create("http://httpbin.org/post");
+    string result = _post(url, data);
+    json_root = json_loads(result.s, 0, &error);
+    json_data = json_object_get(json_root, "data");
+    CU_ASSERT(json_is_string(json_data));
+    CU_ASSERT_STRING_EQUAL(json_string_value(json_data), expected);
+}
+
+void test_repository__delete() {
+    const char* expected = "simple post data";
+    json_t *json_root, *json_data;
+    json_error_t error;
+    string data = string_create(expected);
+    string url = string_create("http://httpbin.org/delete");
+    string result = _delete(url, data);
+    json_root = json_loads(result.s, 0, &error);
+    json_data = json_object_get(json_root, "data");
+    CU_ASSERT(json_is_string(json_data));
+    CU_ASSERT_STRING_EQUAL(json_string_value(json_data), expected);
+}
+
 int main() {
     CU_pSuite pSuite = NULL;
 
@@ -137,6 +164,8 @@ int main() {
             (NULL == CU_add_test(pSuite, "test_repository__build_path_logout", test_repository__build_path_logout)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_url", test_repository__build_url)) ||
             (NULL == CU_add_test(pSuite, "test_repository__get", test_repository__get)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__post", test_repository__post)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__delete", test_repository__delete)) ||
             (0)
             ) {
         CU_cleanup_registry();
