@@ -94,7 +94,7 @@ int main() {
             (NULL == CU_add_test(pSuite, "test_repository__build_path_posts", test_repository__build_path_posts)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_path_post", test_repository__build_path_post)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_url", test_repository__build_url)) ||
-            (NULL == CU_add_test(pSuite, "test_repository__request", test_repository__get)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__get", test_repository__get)) ||
             (0)
             ) {
         CU_cleanup_registry();
