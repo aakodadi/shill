@@ -66,10 +66,10 @@ void test_repository__build_url() {
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
-void test_repository__request() {
+void test_repository__get() {
     const char* expected = "This file is part of testing procedure it is used to test the repository by getting it form github";
     string url = string_create("https://raw.githubusercontent.com/akodakim/shill/master/tests/test_repository_sample_content");
-    string result = _request(url);
+    string result = _get(url);
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
@@ -94,7 +94,7 @@ int main() {
             (NULL == CU_add_test(pSuite, "test_repository__build_path_posts", test_repository__build_path_posts)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_path_post", test_repository__build_path_post)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_url", test_repository__build_url)) ||
-            (NULL == CU_add_test(pSuite, "test_repository__request", test_repository__request)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__request", test_repository__get)) ||
             (0)
             ) {
         CU_cleanup_registry();
