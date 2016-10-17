@@ -46,6 +46,24 @@ void test_repository__build_posts_path() {
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
+void test_repository__build_register_path() {
+    const char* expected = "users/";
+    string result = _build_register_path();
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_login_path() {
+    const char* expected = "auth/";
+    string result = _build_login_path();
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_logout_path() {
+    const char* expected = "auth/";
+    string result = _build_logout_path();
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
 void test_repository__build_path_posts() {
     const char* expected = "posts/";
     string result = _build_path_test_helper(TARGET_POSTS);
@@ -55,6 +73,24 @@ void test_repository__build_path_posts() {
 void test_repository__build_path_post() {
     const char* expected = "posts/100";
     string result = _build_path_test_helper(TARGET_POST, 100);
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_path_register() {
+    const char* expected = "users/";
+    string result = _build_path_test_helper(TARGET_REGISTER, 100);
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_path_login() {
+    const char* expected = "auth/";
+    string result = _build_path_test_helper(TARGET_LOGIN, 100);
+    CU_ASSERT_STRING_EQUAL(result.s, expected);
+}
+
+void test_repository__build_path_logout() {
+    const char* expected = "auth/";
+    string result = _build_path_test_helper(TARGET_LOGOUT, 100);
     CU_ASSERT_STRING_EQUAL(result.s, expected);
 }
 
@@ -91,8 +127,14 @@ int main() {
     if (
             (NULL == CU_add_test(pSuite, "test_repository__build_posts_path", test_repository__build_posts_path)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_post_path", test_repository__build_post_path)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_register_path", test_repository__build_register_path)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_login_path", test_repository__build_login_path)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_logout_path", test_repository__build_logout_path)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_path_posts", test_repository__build_path_posts)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_path_post", test_repository__build_path_post)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_path_register", test_repository__build_path_register)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_path_login", test_repository__build_path_login)) ||
+            (NULL == CU_add_test(pSuite, "test_repository__build_path_logout", test_repository__build_path_logout)) ||
             (NULL == CU_add_test(pSuite, "test_repository__build_url", test_repository__build_url)) ||
             (NULL == CU_add_test(pSuite, "test_repository__get", test_repository__get)) ||
             (0)
