@@ -175,7 +175,6 @@ user service_register(user u) {
     json_object_set(json_root, "user", json_user);
     post_data = string_create(json_dumps(json_root, JSON_COMPACT));
     json_decref(json_root);
-    printf("%s\n", post_data.s);
     
     raw_result = repository_post(TARGET_REGISTER, post_data);
     string_destroy(&post_data);
