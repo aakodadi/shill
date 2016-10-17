@@ -32,7 +32,7 @@ extern "C" {
 
     typedef enum _target target;
 
-    string repository_request(target t, ...);
+    string repository_get(target t, ...);
     
     string _build_path(target t, va_list vl);
     string _build_post_path(unsigned long id);
@@ -41,7 +41,7 @@ extern "C" {
     string _build_login_path();
     string _build_logout_path();
     string _build_url(string path);
-    string _request(string url);
+    string _get(string url);
     
     size_t _curl_callback(void *ptr, size_t size, size_t nmemb, string* s);
     

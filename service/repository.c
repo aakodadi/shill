@@ -11,7 +11,7 @@
 
 #include "repository.h"
 
-string repository_request(target t, ...) {
+string repository_get(target t, ...) {
     va_list vl;
     string path;
     string url;
@@ -80,7 +80,7 @@ string _build_url(string path) {
     return url;
 }
 
-string _request(string url) {
+string _get(string url) {
     string data;
 
     string err_msg;
