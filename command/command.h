@@ -25,10 +25,10 @@ extern "C" {
     void commande_execute();
     
     command _command_get_form_argument();
-    void _queue();
-    void _post();
-    void _login();
-    void _register();
+    void _command_queue();
+    void _command_post();
+    void _command_login();
+    void _command_register();
 
 
 #ifdef __cplusplus

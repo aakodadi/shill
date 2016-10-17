@@ -11,18 +11,18 @@
 
 void commande_execute() {
     command c = _command_get_form_argument();
-    switch(c){
+    switch (c) {
         case COMMAND_QUEUE:
-            _queue();
+            _command_queue();
             break;
         case COMMAND_POST:
-            _post();
+            _command_post();
             break;
         case COMMAND_LOGIN:
-            _login();
+            _command_login();
             break;
         case COMMAND_REGISTER:
-            _register();
+            _command_register();
             break;
         default:
             error_handle(CODE_ERROR, 0, "Command unimplemented yet");
@@ -45,7 +45,7 @@ command _command_get_form_argument() {
     }
 }
 
-void _queue() {
+void _command_queue() {
     post_collection result = get_posts();
     unsigned long post_i;
     char date[20];
@@ -64,24 +64,30 @@ void _queue() {
     free(result.p);
 }
 
-void _post(){
-    
+void _command_post() {
+
 }
 
-void _login(){
-    
+void _command_login() {
+    user u;
+    if (arguments.username == NULL) {
+        printf("Username: ");
+        u.username = string_gets(50);
+    } else {
+        u.username = string_create(arguments.username);
+    }
 }
 
-void _register(){
+void _command_register() {
     user u;
     printf("Username: ");
-    u.username = string_gets();
+    u.username = string_gets(50);
     printf("Email: ");
-    u.email = string_gets();
+    u.email = string_gets(255);
     printf("Name: ");
-    u.name = string_gets();
+    u.name = string_gets(50);
     printf("Password: ");
-    u.password = string_gets();
+    u.password = string_gets(72);
     printf("Password confirmation: ");
-    u.password_confirmation = string_gets();
+    u.password_confirmation = string_gets(72);
 }
