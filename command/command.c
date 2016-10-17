@@ -46,7 +46,7 @@ command _command_get_form_argument() {
 }
 
 void _command_queue() {
-    post_collection result = get_posts();
+    post_collection result = service_get_posts();
     unsigned long post_i;
     char date[20];
     /*

@@ -5,7 +5,7 @@
 
 #include "service.h"
 
-post_collection get_posts() {
+post_collection service_get_posts() {
     string err_msg;
     string raw_result;
     post_collection result;
@@ -84,7 +84,7 @@ post_collection get_posts() {
 
 }
 
-post get_post(unsigned long id) {
+post service_get_post(unsigned long id) {
     string err_msg;
     string raw_result;
     post result;
