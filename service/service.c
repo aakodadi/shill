@@ -12,7 +12,7 @@ post_collection get_posts() {
     unsigned long post_i;
     json_t *json_root, *json_post, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
-    row_result = repository_request(TARGET_POSTS);
+    row_result = repository_get(TARGET_POSTS);
 
     json_root = json_loads(row_result.s, 0, &error);
 
@@ -90,7 +90,7 @@ post get_post(unsigned long id) {
     post result;
     json_t *json_root, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
-    row_result = repository_request(TARGET_POST, id);
+    row_result = repository_get(TARGET_POST, id);
 
     json_root = json_loads(row_result.s, 0, &error);
 
