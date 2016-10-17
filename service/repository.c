@@ -126,7 +126,7 @@ string _get(string url) {
         result = string_create("");
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -159,7 +159,7 @@ string _delete(string url){
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "delete");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -192,7 +192,7 @@ string _post(string url, string data){
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.s);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
