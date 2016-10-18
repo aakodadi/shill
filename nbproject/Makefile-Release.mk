@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/error/error.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/model/post_collection.o \
+	${OBJECTDIR}/model/user.o \
 	${OBJECTDIR}/service/repository.o \
 	${OBJECTDIR}/service/service.o \
 	${OBJECTDIR}/type/string.o
@@ -52,13 +53,15 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 TESTFILES= \
 	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f2 \
-	${TESTDIR}/TestFiles/f1
+	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f4
 
 # Test Object Files
 TESTOBJECTFILES= \
 	${TESTDIR}/tests/configuration_cunit_test.o \
 	${TESTDIR}/tests/repository_cunit_test.o \
-	${TESTDIR}/tests/string_type_cunit_test.o
+	${TESTDIR}/tests/string_type_cunit_test.o \
+	${TESTDIR}/tests/user_model_cunit_test.o
 
 # C Compiler Flags
 CFLAGS=
@@ -114,6 +117,11 @@ ${OBJECTDIR}/model/post_collection.o: model/post_collection.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/model/post_collection.o model/post_collection.c
 
+${OBJECTDIR}/model/user.o: model/user.c 
+	${MKDIR} -p ${OBJECTDIR}/model
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/model/user.o model/user.c
+
 ${OBJECTDIR}/service/repository.o: service/repository.c 
 	${MKDIR} -p ${OBJECTDIR}/service
 	${RM} "$@.d"
@@ -148,6 +156,10 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/string_type_cunit_test.o ${OBJECTFILES
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcunit 
 
+${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/user_model_cunit_test.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c}   -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS} -lcunit 
+
 
 ${TESTDIR}/tests/configuration_cunit_test.o: tests/configuration_cunit_test.c 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -165,6 +177,12 @@ ${TESTDIR}/tests/string_type_cunit_test.o: tests/string_type_cunit_test.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/string_type_cunit_test.o tests/string_type_cunit_test.c
+
+
+${TESTDIR}/tests/user_model_cunit_test.o: tests/user_model_cunit_test.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/user_model_cunit_test.o tests/user_model_cunit_test.c
 
 
 ${OBJECTDIR}/argument/argument_nomain.o: ${OBJECTDIR}/argument/argument.o argument/argument.c 
@@ -245,6 +263,19 @@ ${OBJECTDIR}/model/post_collection_nomain.o: ${OBJECTDIR}/model/post_collection.
 	    ${CP} ${OBJECTDIR}/model/post_collection.o ${OBJECTDIR}/model/post_collection_nomain.o;\
 	fi
 
+${OBJECTDIR}/model/user_nomain.o: ${OBJECTDIR}/model/user.o model/user.c 
+	${MKDIR} -p ${OBJECTDIR}/model
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/model/user.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/model/user_nomain.o model/user.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/model/user.o ${OBJECTDIR}/model/user_nomain.o;\
+	fi
+
 ${OBJECTDIR}/service/repository_nomain.o: ${OBJECTDIR}/service/repository.o service/repository.c 
 	${MKDIR} -p ${OBJECTDIR}/service
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/service/repository.o`; \
@@ -291,6 +322,7 @@ ${OBJECTDIR}/type/string_nomain.o: ${OBJECTDIR}/type/string.o type/string.c
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f4 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi

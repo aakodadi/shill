@@ -28,6 +28,9 @@ extern "C" {
     };
 
     typedef struct _user user;
+    
+    user user_serialize(string user_json);
+    string user_deserialize(user u);
 
 
 #ifdef __cplusplus

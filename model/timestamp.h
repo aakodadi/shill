@@ -11,6 +11,8 @@
 #ifndef TIMESTAMP_H
 #define TIMESTAMP_H
 
+#include "time.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

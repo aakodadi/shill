@@ -32,6 +32,7 @@
       <itemPath>service/repository.c</itemPath>
       <itemPath>service/service.c</itemPath>
       <itemPath>type/string.c</itemPath>
+      <itemPath>model/user.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -54,6 +55,12 @@
                      projectFiles="true"
                      kind="TEST">
         <itemPath>tests/string_type_cunit_test.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4"
+                     displayName="User Model CUnit Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/user_model_cunit_test.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -135,6 +142,14 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f4">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f4</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/post.h" ex="false" tool="3" flavor2="0">
@@ -144,6 +159,8 @@
       <item path="model/post_collection.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="model/timestamp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="model/user.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/user.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -167,6 +184,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="tests/user_model_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/valid_config.json" ex="false" tool="3" flavor2="0">
       </item>
@@ -249,6 +268,14 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f4">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f4</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/post.h" ex="false" tool="3" flavor2="0">
@@ -258,6 +285,8 @@
       <item path="model/post_collection.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="model/timestamp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="model/user.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/user.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -281,6 +310,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="tests/user_model_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/valid_config.json" ex="false" tool="3" flavor2="0">
       </item>
