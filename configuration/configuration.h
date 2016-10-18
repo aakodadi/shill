@@ -8,6 +8,8 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
+#include "../model/user.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
