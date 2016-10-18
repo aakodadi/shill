@@ -14,6 +14,7 @@ extern "C" {
 
     struct _shill_configuration {
         const char* base_url;
+        user u;
     };
 
     typedef struct _shill_configuration shill_configuration;
