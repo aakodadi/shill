@@ -29,8 +29,8 @@ extern "C" {
 
     typedef struct _user user;
     
-    user user_serialize(string user_json);
-    string user_deserialize(user u);
+    user user_deserialize(string user_json);
+    string user_serialize(user u);
 
 
 #ifdef __cplusplus

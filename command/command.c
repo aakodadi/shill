@@ -76,6 +76,13 @@ void _command_login() {
     } else {
         u.username = string_create(arguments.username);
     }
+
+    printf("Password: ");
+    u.password = string_gets(72);
+    
+    service_login(u);
+    string_destroy(&u.username);
+    string_destroy(&u.password);
 }
 
 void _command_register() {

@@ -34,12 +34,12 @@ int _json_compare(string s1, string s2){
     return json_equal(json_root1, json_root2);
 }
 
-void test_user_serialize() {
+void test_user_deserialize() {
     const char* source = "{\"id\": \"1547\", \"username\":\"testuser\","
     "\"email\":\"testuser@email.com\", \"name\":\"Test user\","
     " \"password\": \"testpass\"}";
     string source_string = string_create(source);
-    user result = user_serialize(source_string);
+    user result = user_deserialize(source_string);
     
     CU_ASSERT_STRING_EQUAL(result.username.s, "testuser");
     CU_ASSERT_STRING_EQUAL(result.email.s, "testuser@email.com");
@@ -47,7 +47,7 @@ void test_user_serialize() {
     CU_ASSERT_STRING_EQUAL(result.password.s, "testpass");
 }
 
-void test_user_deserialize() {
+void test_user_serialize() {
     const char* expected = "{\"user\":{\"username\":\"testuser\","
     "\"email\":\"testuser@email.com\",\"name\":\"Test user\","
     "\"password\":\"testpass\"}}";
@@ -57,7 +57,7 @@ void test_user_deserialize() {
     source.email = string_create("testuser@email.com");
     source.name = string_create("Test user");
     source.password = string_create("testpass");
-    string result = user_deserialize(source);
+    string result = user_serialize(source);
     
     CU_ASSERT(_json_compare(result, expected_string));
 }

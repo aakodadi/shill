@@ -3,7 +3,7 @@
 #include "user.h"
 #include "../error/error.h"
 
-user user_serialize(string user_json) {
+user user_deserialize(string user_json) {
     user result;
     json_t *json_root, *json_id, *json_username, *json_email, *json_name,
             *json_password, *json_password_confirmation,
@@ -80,7 +80,7 @@ user user_serialize(string user_json) {
     return result;
 }
 
-string user_deserialize(user u) {
+string user_serialize(user u) {
     string result;
     
     json_t *json_root, *json_username, *json_email, *json_name,

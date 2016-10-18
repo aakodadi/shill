@@ -154,12 +154,27 @@ user service_register(user u) {
     string raw_result;
     user result;
     
-    post_data = user_deserialize(u);
+    post_data = user_serialize(u);
     
     raw_result = repository_post(TARGET_REGISTER, post_data);
     string_destroy(&post_data);
     
-    result = user_serialize(raw_result);
+    result = user_deserialize(raw_result);
+    
+    return result;
+}
+
+user service_login(user u){
+    string post_data;
+    string raw_result;
+    user result;
+    
+    post_data = user_serialize(u);
+    
+    raw_result = repository_post(TARGET_LOGIN, post_data);
+    string_destroy(&post_data);
+    
+    result = user_deserialize(raw_result);
     
     return result;
 }

@@ -19,6 +19,7 @@ extern "C" {
     post_collection service_get_posts();
     post service_get_post(unsigned long id);
     user service_register(user u);
+    user service_login(user u);
 
 
 #ifdef __cplusplus
