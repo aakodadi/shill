@@ -26,7 +26,12 @@ int clean_suite(void) {
 void test_configuration_parse_with_valid_file() {
     arguments.config = "tests/valid_config.json";
     configuration_parse();
-    CU_ASSERT_STRING_EQUAL(configuration.base_url, "http://test.valid.com:3000/");
+    CU_ASSERT_STRING_EQUAL(configuration.base_url.s,
+            "http://test.valid.com:3000/");
+    CU_ASSERT_STRING_EQUAL(configuration.u.username.s,
+            "testusername");
+    CU_ASSERT_STRING_EQUAL(configuration.u.auth_token.s,
+            "YjfTVTJvovLGq1Knix5");
 }
 
 int main() {
