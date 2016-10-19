@@ -90,3 +90,74 @@ void configuration_parse() {
     
     json_decref(json_root);
 }
+
+void configuration_save_user(){
+    string err_msg;
+    int errnum;
+    char* conf_file_path = arguments.config;
+    FILE* conf_file;
+    json_t *json_root, *json_user, *json_username, *json_auth_token;
+    json_error_t error;
+
+    conf_file = fopen(conf_file_path, "r");
+    if (conf_file == NULL) {
+        errnum = errno;
+        err_msg = string_createf("Cannot open configuration file \"%s\"", conf_file_path);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+
+    json_root = json_loadf(conf_file, 0, &error);
+
+    if (fclose(conf_file)) {
+        errnum = errno;
+        err_msg = string_createf("Cannot close configuration file \"%s\"", conf_file_path);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+    if (!json_root) {
+        err_msg = string_createf("Cannot parse json file \"%s\". Error on line %d column %d : %s",
+                conf_file_path,
+                error.line,
+                error.column,
+                error.text);
+        error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
+    }
+
+    if (!json_is_object(json_root)) {
+        json_decref(json_root);
+        err_msg = string_createf("Cannot parse json file \"%s\". Root element is not a json object", conf_file_path);
+        error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
+    }
+    
+    json_username = json_pack("s", configuration.u.username.s);
+    json_auth_token = json_pack("s", configuration.u.auth_token.s);
+    
+    json_user = json_object();
+    
+    json_object_set(json_user, "username", json_username);
+    json_object_set(json_user, "auth_token", json_auth_token);
+    
+    json_object_set(json_root, "user", json_user);
+
+    conf_file = fopen(conf_file_path, "w");
+    if (conf_file == NULL) {
+        errnum = errno;
+        err_msg = string_createf("Cannot open configuration file \"%s\"", conf_file_path);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+    
+    if(json_dumpf(json_root, conf_file, JSON_INDENT(4)) == -1){
+        errnum = errno;
+        json_decref(json_root);
+        err_msg = string_createf("Cannot write into configuration file \"%s\"", conf_file_path);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+
+    if (fclose(conf_file)) {
+        errnum = errno;
+        json_decref(json_root);
+        err_msg = string_createf("Cannot close configuration file \"%s\"", conf_file_path);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+    
+    json_decref(json_root);
+}

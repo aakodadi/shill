@@ -22,6 +22,7 @@ extern "C" {
     typedef struct _shill_configuration shill_configuration;
     
     void configuration_parse();
+    void configuration_save_user();
     
     shill_configuration configuration;
     
