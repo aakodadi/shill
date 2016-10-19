@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "../service/service.h"
 #include "../argument/argument.h"
+#include "../configuration/configuration.h"
 #include "../error/error.h"
 #include "../model/user.h"
 
@@ -70,6 +71,7 @@ void _command_post() {
 
 void _command_login() {
     user u;
+    user result;
     if (arguments.username == NULL) {
         printf("Username: ");
         u.username = string_gets(50);
@@ -80,9 +82,11 @@ void _command_login() {
     printf("Password: ");
     u.password = string_gets(72);
     
-    service_login(u);
+    result = service_login(u);
     string_destroy(&u.username);
     string_destroy(&u.password);
+    configuration.u = result;
+    configuration_save_user();
 }
 
 void _command_register() {
