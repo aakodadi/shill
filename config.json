@@ -2,10 +2,10 @@
     "configuration": {
         "server": {
             "base-url": "http://localhost:3000/"
+        },
+        "user": {
+            "username": "newuser",
+            "auth_token": "evrhOg037cZOJxAMFQM5dA"
         }
-    },
-    "user": {
-        "username": "newuser",
-        "auth_token": "PDRVkyjm4Ekne8OV5cbFIw"
     }
 }

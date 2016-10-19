@@ -96,7 +96,7 @@ void configuration_save_user(){
     int errnum;
     char* conf_file_path = arguments.config;
     FILE* conf_file;
-    json_t *json_root, *json_user, *json_username, *json_auth_token;
+    json_t *json_root, *json_configuration, *json_user, *json_username, *json_auth_token;
     json_error_t error;
 
     conf_file = fopen(conf_file_path, "r");
@@ -127,6 +127,14 @@ void configuration_save_user(){
         err_msg = string_createf("Cannot parse json file \"%s\". Root element is not a json object", conf_file_path);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
+
+    json_configuration = json_object_get(json_root, "configuration");
+
+    if (!json_is_object(json_configuration)) {
+        json_decref(json_root);
+        err_msg = string_createf("Cannot parse json file \"%s\". \"configuration\" element not found or is not a json object", conf_file_path);
+        error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
+    }
     
     json_username = json_pack("s", configuration.u.username.s);
     json_auth_token = json_pack("s", configuration.u.auth_token.s);
@@ -136,7 +144,7 @@ void configuration_save_user(){
     json_object_set(json_user, "username", json_username);
     json_object_set(json_user, "auth_token", json_auth_token);
     
-    json_object_set(json_root, "user", json_user);
+    json_object_set(json_configuration, "user", json_user);
 
     conf_file = fopen(conf_file_path, "w");
     if (conf_file == NULL) {
