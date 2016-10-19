@@ -11,7 +11,8 @@ void configuration_parse() {
     int errnum;
     char* conf_file_path = arguments.config;
     FILE* conf_file;
-    json_t *json_root, *json_configuration, *json_server, *json_base_url;
+    json_t *json_root, *json_configuration, *json_server, *json_base_url,
+            *json_user, *json_username, *json_auth_token;
     json_error_t error;
 
     conf_file = fopen(conf_file_path, "r");
@@ -52,6 +53,8 @@ void configuration_parse() {
     }
 
     json_server = json_object_get(json_configuration, "server");
+    
+    json_user = json_object_get(json_configuration, "user");
 
     if (!json_is_object(json_server)) {
         json_decref(json_root);
@@ -60,10 +63,26 @@ void configuration_parse() {
     }
 
     json_base_url = json_object_get(json_server, "base-url");
+    
     if (!json_is_string(json_base_url)) {
         json_decref(json_root);
         err_msg = string_createf("Cannot parse json file \"%s\". \"base-url\" element not found or is not a string", conf_file_path);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
+    }
+
+    if (json_is_object(json_user)) {
+        json_username = json_object_get(json_user, "username");
+        json_auth_token = json_object_get(json_user, "auth_token");
+        
+        if (json_is_string(json_username)) {
+            configuration.u.username =
+                    string_create(json_string_value(json_username));
+        }
+        
+        if (json_is_string(json_auth_token)) {
+            configuration.u.auth_token =
+                    string_create(json_string_value(json_auth_token));
+        }
     }
 
     configuration.base_url = json_string_value(json_base_url);
