@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
     struct _shill_configuration {
-        const char* base_url;
+        string base_url;
         user u;
     };
 

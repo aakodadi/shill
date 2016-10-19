@@ -97,7 +97,7 @@ void test_repository__build_path_logout() {
 
 void test_repository__build_url() {
     const char* expected = "http://localhost:3000/profile/someone";
-    configuration.base_url = "http://localhost:3000/";
+    configuration.base_url = string_create("http://localhost:3000/");
     string path = string_create("profile/someone");
     string result = _build_url(path);
     CU_ASSERT_STRING_EQUAL(result.s, expected);

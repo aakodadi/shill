@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     
     configuration_parse();
     
-    printf("base-url: %s\n\n", configuration.base_url);
+    printf("base-url: %s\n\n", configuration.base_url.s);
 
     commande_execute();
 

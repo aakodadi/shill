@@ -109,9 +109,7 @@ string _build_logout_path(){
 }
 
 string _build_url(string path) {
-    string base_url = string_create(configuration.base_url);
-    string url = string_cat(base_url, path);
-    string_destroy(&base_url);
+    string url = string_cat(configuration.base_url, path);
     return url;
 }
 

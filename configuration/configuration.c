@@ -70,6 +70,9 @@ void configuration_parse() {
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
+    configuration.base_url = 
+            string_create(json_string_value(json_base_url));
+
     if (json_is_object(json_user)) {
         json_username = json_object_get(json_user, "username");
         json_auth_token = json_object_get(json_user, "auth_token");
@@ -84,6 +87,6 @@ void configuration_parse() {
                     string_create(json_string_value(json_auth_token));
         }
     }
-
-    configuration.base_url = json_string_value(json_base_url);
+    
+    json_decref(json_root);
 }
