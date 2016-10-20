@@ -28,7 +28,7 @@ string repository_get(target t, ...) {
     return result;
 }
 
-string repository_post(target t, ...){
+string repository_post(target t, ...) {
     va_list vl;
     string path;
     long *http_code;
@@ -47,7 +47,7 @@ string repository_post(target t, ...){
     return result;
 }
 
-string repository_delete(target t, ...){
+string repository_delete(target t, ...) {
     va_list vl;
     string path;
     long *http_code;
@@ -99,17 +99,17 @@ string _build_post_path(unsigned long id) {
     return path;
 }
 
-string _build_register_path(){
+string _build_register_path() {
     string path = string_create("users/");
     return path;
 }
 
-string _build_login_path(){
+string _build_login_path() {
     string path = string_create("auth/");
     return path;
 }
 
-string _build_logout_path(){
+string _build_logout_path() {
     string path = string_create("auth/");
     return path;
 }
@@ -121,6 +121,8 @@ string _build_url(string path) {
 
 string _get(string url, long *http_code) {
     string result;
+    string auth_header;
+    struct curl_slist *headers = NULL;
 
     string err_msg;
     int errnum;
@@ -131,6 +133,15 @@ string _get(string url, long *http_code) {
     curl = curl_easy_init();
     if (curl) {
         result = string_create("");
+        if (configuration.u.auth_token.len != -1L
+                && configuration.u.username.len != -1L) {
+            auth_header = string_createf("Authorization: "
+                    "Token token=\"%s\", "
+                    "username=\"%s\"", configuration.u.auth_token.s,
+                    configuration.u.username.s);
+            headers = curl_slist_append(headers, auth_header.s);
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        }
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
@@ -152,8 +163,9 @@ string _get(string url, long *http_code) {
     return result;
 }
 
-string _delete(string url, long *http_code, string data){
+string _delete(string url, long *http_code, string data) {
     string result;
+    string auth_header;
     struct curl_slist *headers = NULL;
 
     string err_msg;
@@ -165,6 +177,15 @@ string _delete(string url, long *http_code, string data){
     curl = curl_easy_init();
     if (curl) {
         result = string_create("");
+        if (configuration.u.auth_token.len != -1L
+                && configuration.u.username.len != -1L) {
+            auth_header = string_createf("Authorization: "
+                    "Token token=\"%s\", "
+                    "username=\"%s\"", configuration.u.auth_token.s,
+                    configuration.u.username.s);
+            
+            headers = curl_slist_append(headers, auth_header.s);
+        }
         headers = curl_slist_append(headers, "Content-Type: application/json");
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.s);
@@ -191,9 +212,10 @@ string _delete(string url, long *http_code, string data){
     return result;
 }
 
-string _post(string url, long *http_code, string data){
+string _post(string url, long *http_code, string data) {
     string result;
     struct curl_slist *headers = NULL;
+    string auth_header;
 
     string err_msg;
     int errnum;
@@ -204,6 +226,15 @@ string _post(string url, long *http_code, string data){
     curl = curl_easy_init();
     if (curl) {
         result = string_create("");
+        if (configuration.u.auth_token.len != -1L
+                && configuration.u.username.len != -1L) {
+            auth_header = string_createf("Authorization: "
+                    "Token token=\"%s\", "
+                    "username=\"%s\"", configuration.u.auth_token.s,
+                    configuration.u.username.s);
+            
+            headers = curl_slist_append(headers, auth_header.s);
+        }
         headers = curl_slist_append(headers, "Content-Type: application/json");
         curl_easy_setopt(curl, CURLOPT_URL, url.s);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.s);

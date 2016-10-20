@@ -80,12 +80,19 @@ void configuration_parse() {
         if (json_is_string(json_username)) {
             configuration.u.username =
                     string_create(json_string_value(json_username));
+        } else {
+            configuration.u.username.len = -1L;
         }
         
         if (json_is_string(json_auth_token)) {
             configuration.u.auth_token =
                     string_create(json_string_value(json_auth_token));
+        } else {
+            configuration.u.auth_token.len = -1L;
         }
+    } else {
+        configuration.u.auth_token.len = -1L;
+        configuration.u.username.len = -1L;
     }
     
     json_decref(json_root);

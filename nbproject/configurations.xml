@@ -75,6 +75,7 @@
     <itemPath>shippable.yml</itemPath>
     <itemPath>tests/test_repository_sample_content</itemPath>
     <itemPath>tests/valid_config.json</itemPath>
+    <itemPath>tests/valid_config_without_user.json</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -188,6 +189,11 @@
       <item path="tests/user_model_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/valid_config.json" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/valid_config_without_user.json"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="type/string.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -314,6 +320,11 @@
       <item path="tests/user_model_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/valid_config.json" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/valid_config_without_user.json"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="type/string.c" ex="false" tool="0" flavor2="0">
       </item>

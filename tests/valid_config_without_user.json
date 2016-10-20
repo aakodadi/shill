@@ -1,0 +1,8 @@
+{
+    "configuration": {
+        "server": {
+            "base-url": "http://test.valid.com:3000/"
+        }
+    }
+}
+

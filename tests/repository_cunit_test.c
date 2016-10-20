@@ -10,6 +10,7 @@
 #include <CUnit/Basic.h>
 #include "../service/repository.h"
 #include "../configuration/configuration.h"
+#include "../argument/argument.h"
 #include <jansson.h>
 
 /*
@@ -17,6 +18,8 @@
  */
 
 int init_suite(void) {
+    arguments.config = "tests/valid_config_without_user.json";
+    configuration_parse();
     return 0;
 }
 
