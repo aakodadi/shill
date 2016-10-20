@@ -34,6 +34,15 @@ void test_configuration_parse_with_valid_file() {
             "YjfTVTJvovLGq1Knix5");
 }
 
+void test_configuration_parse_with_valid_file_without_user() {
+    arguments.config = "tests/valid_config_without_user.json";
+    configuration_parse();
+    CU_ASSERT_STRING_EQUAL(configuration.base_url.s,
+            "http://test.valid.com:3000/");
+    CU_ASSERT_EQUAL(configuration.u.username.len, -1L);
+    CU_ASSERT_EQUAL(configuration.u.auth_token.len, -1L);
+}
+
 int main() {
     CU_pSuite pSuite = NULL;
 
@@ -49,7 +58,11 @@ int main() {
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "test_configuration_parse_with_valid_file", test_configuration_parse_with_valid_file))) {
+    if (
+            (NULL == CU_add_test(pSuite, "test_configuration_parse_with_valid_file", test_configuration_parse_with_valid_file)) ||
+            (NULL == CU_add_test(pSuite, "test_configuration_parse_with_valid_file_without_user", test_configuration_parse_with_valid_file_without_user)) ||
+            (0)
+            ) {
         CU_cleanup_registry();
         return CU_get_error();
     }
