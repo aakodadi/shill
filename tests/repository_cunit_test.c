@@ -105,35 +105,41 @@ void test_repository__build_url() {
 
 void test_repository__get() {
     const char* expected = "This file is part of testing procedure it is used to test the repository by getting it form github";
+    long http_code;
     string url = string_create("https://raw.githubusercontent.com/akodakim/shill/master/tests/test_repository_sample_content");
-    string result = _get(url);
+    string result = _get(url, &http_code);
     CU_ASSERT_STRING_EQUAL(result.s, expected);
+    CU_ASSERT_EQUAL(http_code, 200);
 }
 
 void test_repository__post() {
     const char* expected = "simple post data";
+    long http_code;
     json_t *json_root, *json_data;
     json_error_t error;
     string data = string_create(expected);
     string url = string_create("http://httpbin.org/post");
-    string result = _post(url, data);
+    string result = _post(url, &http_code, data);
     json_root = json_loads(result.s, 0, &error);
     json_data = json_object_get(json_root, "data");
     CU_ASSERT(json_is_string(json_data));
     CU_ASSERT_STRING_EQUAL(json_string_value(json_data), expected);
+    CU_ASSERT_EQUAL(http_code, 200);
 }
 
 void test_repository__delete() {
     const char* expected = "simple post data";
+    long http_code;
     json_t *json_root, *json_data;
     json_error_t error;
     string data = string_create(expected);
     string url = string_create("http://httpbin.org/delete");
-    string result = _delete(url, data);
+    string result = _delete(url, &http_code, data);
     json_root = json_loads(result.s, 0, &error);
     json_data = json_object_get(json_root, "data");
     CU_ASSERT(json_is_string(json_data));
     CU_ASSERT_STRING_EQUAL(json_string_value(json_data), expected);
+    CU_ASSERT_EQUAL(http_code, 200);
 }
 
 int main() {

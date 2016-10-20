@@ -32,10 +32,18 @@ extern "C" {
 
     typedef enum _target target;
 
+    /*
+     * the last argument to repository_get must be a long pinter
+     * in order to contain the http status code
+     */
     string repository_get(target t, ...);
     /*
-     * the last argument to repository_post must be a string data
-     * containing the data to post
+     * the last argument to repository_post/repository_delete
+     * must be a string data containing the data to post/delete
+     */
+    /*
+     * the second last argument to repository_post/repository_delete
+     * must be a long pinter in order to contain the http status code
      */
     string repository_post(target t, ...);
     string repository_delete(target t, ...);
@@ -47,9 +55,9 @@ extern "C" {
     string _build_login_path();
     string _build_logout_path();
     string _build_url(string path);
-    string _get(string url);
-    string _delete(string url, string data);
-    string _post(string url, string data);
+    string _get(string url, long *http_code);
+    string _delete(string url, long *http_code, string data);
+    string _post(string url, long *http_code, string data);
     
     size_t _curl_callback(void *ptr, size_t size, size_t nmemb, string* s);
     

@@ -7,12 +7,13 @@
 
 post_collection service_get_posts() {
     string err_msg;
+    long http_code;
     string raw_result;
     post_collection result;
     unsigned long post_i;
     json_t *json_root, *json_post, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
-    raw_result = repository_get(TARGET_POSTS);
+    raw_result = repository_get(TARGET_POSTS, &http_code);
 
     json_root = json_loads(raw_result.s, 0, &error);
 
@@ -86,11 +87,12 @@ post_collection service_get_posts() {
 
 post service_get_post(unsigned long id) {
     string err_msg;
+    long http_code;
     string raw_result;
     post result;
     json_t *json_root, *json_id, *json_body, *json_created_at, *json_updated_at;
     json_error_t error;
-    raw_result = repository_get(TARGET_POST, id);
+    raw_result = repository_get(TARGET_POST, id, &http_code);
 
     json_root = json_loads(raw_result.s, 0, &error);
 
@@ -151,12 +153,13 @@ post service_get_post(unsigned long id) {
 
 user service_register(user u) {
     string post_data;
+    long http_code;
     string raw_result;
     user result;
     
     post_data = user_serialize(u);
     
-    raw_result = repository_post(TARGET_REGISTER, post_data);
+    raw_result = repository_post(TARGET_REGISTER, &http_code, post_data);
     string_destroy(&post_data);
     
     result = user_deserialize(raw_result);
@@ -166,12 +169,13 @@ user service_register(user u) {
 
 user service_login(user u){
     string post_data;
+    long http_code;
     string raw_result;
     user result;
     
     post_data = user_serialize(u);
     
-    raw_result = repository_post(TARGET_LOGIN, post_data);
+    raw_result = repository_post(TARGET_LOGIN, &http_code, post_data);
     string_destroy(&post_data);
     
     result = user_deserialize(raw_result);

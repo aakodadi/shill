@@ -13,14 +13,16 @@
 
 string repository_get(target t, ...) {
     va_list vl;
+    long *http_code;
     string path;
     string url;
     string result;
     va_start(vl, t);
     path = _build_path(t, vl);
+    http_code = va_arg(vl, long*);
     va_end(vl);
     url = _build_url(path);
-    result = _get(url);
+    result = _get(url, http_code);
     string_destroy(&path);
     string_destroy(&url);
     return result;
@@ -29,6 +31,7 @@ string repository_get(target t, ...) {
 string repository_post(target t, ...){
     va_list vl;
     string path;
+    long *http_code;
     string url;
     string result;
     string data;
@@ -36,7 +39,8 @@ string repository_post(target t, ...){
     path = _build_path(t, vl);
     url = _build_url(path);
     data = va_arg(vl, string);
-    result = _post(url, data);
+    http_code = va_arg(vl, long*);
+    result = _post(url, http_code, data);
     va_end(vl);
     string_destroy(&path);
     string_destroy(&url);
@@ -46,6 +50,7 @@ string repository_post(target t, ...){
 string repository_delete(target t, ...){
     va_list vl;
     string path;
+    long *http_code;
     string url;
     string result;
     string data;
@@ -54,7 +59,8 @@ string repository_delete(target t, ...){
     va_end(vl);
     url = _build_url(path);
     data = va_arg(vl, string);
-    result = _delete(url, data);
+    http_code = va_arg(vl, long*);
+    result = _delete(url, http_code, data);
     va_end(vl);
     string_destroy(&path);
     string_destroy(&url);
@@ -113,7 +119,7 @@ string _build_url(string path) {
     return url;
 }
 
-string _get(string url) {
+string _get(string url, long *http_code) {
     string result;
 
     string err_msg;
@@ -137,6 +143,7 @@ string _get(string url) {
             err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
             error_handle(IO_ERROR, errnum, err_msg.s);
         }
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, http_code);
 
         /* always cleanup */
         curl_easy_cleanup(curl);
@@ -145,7 +152,7 @@ string _get(string url) {
     return result;
 }
 
-string _delete(string url, string data){
+string _delete(string url, long *http_code, string data){
     string result;
     struct curl_slist *headers = NULL;
 
@@ -175,6 +182,7 @@ string _delete(string url, string data){
             err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
             error_handle(IO_ERROR, errnum, err_msg.s);
         }
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, http_code);
 
         /* always cleanup */
         curl_easy_cleanup(curl);
@@ -183,7 +191,7 @@ string _delete(string url, string data){
     return result;
 }
 
-string _post(string url, string data){
+string _post(string url, long *http_code, string data){
     string result;
     struct curl_slist *headers = NULL;
 
@@ -212,6 +220,7 @@ string _post(string url, string data){
             err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
             error_handle(IO_ERROR, errnum, err_msg.s);
         }
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, http_code);
 
         /* always cleanup */
         curl_easy_cleanup(curl);
