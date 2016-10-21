@@ -32,6 +32,7 @@ extern "C" {
     int string_cmp(string s1, string s2);
     string string_from_unsigned_long(unsigned long n);
     string string_gets(unsigned long max_size);
+    string string_getpass(unsigned long max_size);
 
 
 #ifdef __cplusplus

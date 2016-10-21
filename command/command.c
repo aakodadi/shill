@@ -80,7 +80,7 @@ void _command_login() {
     }
 
     printf("Password: ");
-    u.password = string_gets(72);
+    u.password = string_getpass(72);
     
     result = service_login(u);
     string_destroy(&u.username);
@@ -98,9 +98,9 @@ void _command_register() {
     printf("Name: ");
     u.name = string_gets(50);
     printf("Password: ");
-    u.password = string_gets(72);
+    u.password = string_getpass(72);
     printf("Password confirmation: ");
-    u.password_confirmation = string_gets(72);
+    u.password_confirmation = string_getpass(72);
     service_register(u);
     string_destroy(&u.username);
     string_destroy(&u.email);

@@ -1,9 +1,11 @@
 #include <string.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <errno.h>
+#include <termios.h>
 #include "../error/error.h"
 
 #include "string.h"
@@ -154,5 +156,48 @@ string string_gets(unsigned long max_size){
         size = STRING_CHUNK_SIZE < max_size ?
             STRING_CHUNK_SIZE : max_size;
     }
+    return destination;
+}
+
+string string_getpass(unsigned long max_size){
+    struct termios old, new;
+    int errnum;
+    string destination = string_create("");
+    char c[STRING_CHUNK_SIZE];
+    string tmp;
+    unsigned long size = STRING_CHUNK_SIZE < max_size ?
+        STRING_CHUNK_SIZE : max_size;
+    if (tcgetattr(STDIN_FILENO , &old) != 0) {
+        errnum = errno;
+        error_handle(IO_ERROR, errnum, "Unable to disable echoing while"
+                " reading a password");
+    }
+    new = old;
+    new.c_lflag &= ~ECHO;
+    if (tcsetattr(STDIN_FILENO , TCSAFLUSH, &new) != 0){
+        errnum = errno;
+        error_handle(IO_ERROR, errnum, "Unable to disable echoing while"
+                " reading a password");
+    }
+    while (fgets(c, size, stdin)){
+        if(c[strlen(c)-1] == '\n'){
+            c[strlen(c)-1] = '\0';
+            tmp = string_create(c);
+            destination = string_catd(&destination, &tmp);
+            tcsetattr(STDIN_FILENO, TCSAFLUSH, &old);
+            return destination;
+        }
+        tmp = string_create(c);
+        destination = string_catd(&destination, &tmp);
+        printf("%s\n", destination.s);
+        max_size -= destination.len;
+        if(max_size == 0){
+            tcsetattr(STDIN_FILENO, TCSAFLUSH, &old);
+            return destination;
+        }
+        size = STRING_CHUNK_SIZE < max_size ?
+            STRING_CHUNK_SIZE : max_size;
+    }
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &old);
     return destination;
 }
