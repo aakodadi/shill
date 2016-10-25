@@ -53,6 +53,7 @@ void test_user_serialize() {
     "\"password\":\"testpass\"}}";
     string expected_string = string_create(expected);
     user source;
+    user_initialize(&source);
     source.username = string_create("testuser");
     source.email = string_create("testuser@email.com");
     source.name = string_create("Test user");

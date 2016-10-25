@@ -29,6 +29,8 @@ extern "C" {
 
     typedef struct _user user;
     
+    void user_initialize(user *u);
+    void user_destroy(user *u);
     user user_deserialize(string user_json);
     string user_serialize(user u);
 
