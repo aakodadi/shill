@@ -92,6 +92,7 @@ void _command_login() {
 
 void _command_register() {
     user u;
+    user_initialize(&u);
     printf("Username: ");
     u.username = string_gets(50);
     printf("Email: ");
