@@ -28,6 +28,7 @@
       <itemPath>configuration/configuration.c</itemPath>
       <itemPath>error/error.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>model/post.c</itemPath>
       <itemPath>model/post_collection.c</itemPath>
       <itemPath>service/repository.c</itemPath>
       <itemPath>service/service.c</itemPath>
@@ -152,6 +153,8 @@
         </linkerTool>
       </folder>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="model/post.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/post.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -283,6 +286,8 @@
         </linkerTool>
       </folder>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="model/post.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/post.h" ex="false" tool="3" flavor2="0">
       </item>

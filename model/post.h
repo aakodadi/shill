@@ -25,6 +25,11 @@ extern "C" {
     };
     
     typedef struct _post post;
+    
+    void post_initialize(post *p);
+    void post_destroy(post *p);
+    post post_deserialize(string post_json);
+    string post_serialize(post p);
 
 #ifdef __cplusplus
 }
