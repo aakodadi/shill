@@ -178,6 +178,7 @@ user service_login(user u){
     raw_result = repository_post(TARGET_LOGIN, &http_code, post_data);
     string_destroy(&post_data);
     
+    user_initialize(&result);
     result = user_deserialize(raw_result);
     
     return result;

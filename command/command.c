@@ -72,6 +72,8 @@ void _command_post() {
 void _command_login() {
     user u;
     user result;
+    
+    user_initialize(&u);
     if (arguments.username == NULL) {
         printf("Username: ");
         u.username = string_gets(50);
@@ -83,8 +85,7 @@ void _command_login() {
     u.password = string_getpass(72);
     
     result = service_login(u);
-    string_destroy(&u.username);
-    string_destroy(&u.password);
+    user_destroy(&u);
     configuration.u = result;
     configuration_save_user();
 }
