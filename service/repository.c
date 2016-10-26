@@ -40,8 +40,8 @@ string repository_post(target t, ...) {
     url = _build_url(path);
     data = va_arg(vl, string);
     http_code = va_arg(vl, long*);
-    result = _post(url, http_code, data);
     va_end(vl);
+    result = _post(url, http_code, data);
     string_destroy(&path);
     string_destroy(&url);
     return result;
@@ -56,12 +56,11 @@ string repository_delete(target t, ...) {
     string data;
     va_start(vl, t);
     path = _build_path(t, vl);
-    va_end(vl);
     url = _build_url(path);
     data = va_arg(vl, string);
     http_code = va_arg(vl, long*);
-    result = _delete(url, http_code, data);
     va_end(vl);
+    result = _delete(url, http_code, data);
     string_destroy(&path);
     string_destroy(&url);
     return result;
