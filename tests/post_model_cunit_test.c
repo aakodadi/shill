@@ -36,6 +36,7 @@ void testPost_initialize() {
     post p;
     post_initialize(&p);
     CU_ASSERT_EQUAL(p.body.len, -1L);
+    CU_ASSERT_PTR_NULL(p.body.s);
     CU_ASSERT_EQUAL(p.id, -1L);
     CU_ASSERT_EQUAL(p.t.created_at, 0);
     CU_ASSERT_EQUAL(p.t.updated_at, 0);
