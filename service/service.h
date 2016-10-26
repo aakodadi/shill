@@ -20,6 +20,7 @@ extern "C" {
     post service_get_post(unsigned long id);
     user service_register(user u);
     user service_login(user u);
+    post service_post(post p);
 
 
 #ifdef __cplusplus

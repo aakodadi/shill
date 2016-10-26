@@ -31,6 +31,22 @@ post service_get_post(unsigned long id) {
     return result;
 }
 
+post service_post(post p) {
+    string post_data;
+    long http_code;
+    string raw_result;
+    post result;
+    
+    post_data = post_serialize(p);
+    
+    raw_result = repository_post(TARGET_POSTS, &http_code, post_data);
+    string_destroy(&post_data);
+    
+    result = post_deserialize(raw_result);
+    
+    return result;
+}
+
 user service_register(user u) {
     string post_data;
     long http_code;
