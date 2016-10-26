@@ -45,6 +45,12 @@
                      kind="TEST">
         <itemPath>tests/configuration_cunit_test.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="f6"
+                     displayName="Post Collection Model CUnit Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/post_collection_model_test.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="f5"
                      displayName="Post Model CUnit Test"
                      projectFiles="true"
@@ -166,6 +172,14 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f6">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f6</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/post.c" ex="false" tool="0" flavor2="0">
@@ -193,6 +207,8 @@
       <item path="shippable.yml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/configuration_cunit_test.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/post_collection_model_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/post_model_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -309,6 +325,14 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f6">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f6</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="model/post.c" ex="false" tool="0" flavor2="0">
@@ -336,6 +360,8 @@
       <item path="shippable.yml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/configuration_cunit_test.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/post_collection_model_test.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/post_model_cunit_test.c" ex="false" tool="0" flavor2="0">
       </item>
