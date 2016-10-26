@@ -66,7 +66,13 @@ void _command_queue() {
 }
 
 void _command_post() {
-
+    post p;
+    post_initialize(&p);
+    printf("Post: ");
+    p.body = string_gets(72);
+    
+    service_post(p);
+    post_destroy(&p);
 }
 
 void _command_login() {
