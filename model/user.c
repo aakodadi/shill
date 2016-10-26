@@ -6,11 +6,17 @@
 void user_initialize(user *u) {
     u->id = -1L;
     u->username.len = -1L;
+    u->username.s = NULL;
     u->email.len = -1L;
+    u->email.s = NULL;
     u->name.len = -1L;
+    u->name.s = NULL;
     u->password.len = -1L;
+    u->password.s = NULL;
     u->password_confirmation.len = -1L;
+    u->password_confirmation.s = NULL;
     u->auth_token.len = -1L;
+    u->auth_token.s = NULL;
     u->t.created_at = 0;
     u->t.updated_at = 0;
 }
