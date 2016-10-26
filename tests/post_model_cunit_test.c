@@ -32,7 +32,7 @@ int _json_compare(string s1, string s2){
     return json_equal(json_root1, json_root2);
 }
 
-void testPost_initialize() {
+void test_post_initialize() {
     post p;
     post_initialize(&p);
     CU_ASSERT_EQUAL(p.body.len, -1L);
@@ -42,7 +42,7 @@ void testPost_initialize() {
     CU_ASSERT_EQUAL(p.t.updated_at, 0);
 }
 
-void testPost_destroy() {
+void test_post_destroy() {
     post p;
     post_initialize(&p);
     p.body = string_create("This is a test post");
@@ -55,7 +55,7 @@ void testPost_destroy() {
     CU_ASSERT_PTR_NULL(p.body.s);
 }
 
-void testPost_deserialize() {
+void test_post_deserialize() {
     const char* source = "{\"id\": 1547, \"body\":\"test post\"}";
     string post_json = string_create(source);
     post result = post_deserialize(post_json);
@@ -63,7 +63,7 @@ void testPost_deserialize() {
     CU_ASSERT_EQUAL(result.id, 1547);
 }
 
-void testPost_serialize() {
+void test_post_serialize() {
     const char* expected = "{\"post\":{\"body\":\"test post\"}}";
     string expected_string = string_create(expected);
     post p;
@@ -88,10 +88,10 @@ int main() {
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testPost_initialize", testPost_initialize)) ||
-            (NULL == CU_add_test(pSuite, "testPost_destroy", testPost_destroy)) ||
-            (NULL == CU_add_test(pSuite, "testPost_deserialize", testPost_deserialize)) ||
-            (NULL == CU_add_test(pSuite, "testPost_serialize", testPost_serialize))) {
+    if ((NULL == CU_add_test(pSuite, "test_post_initialize", test_post_initialize)) ||
+            (NULL == CU_add_test(pSuite, "test_post_destroy", test_post_destroy)) ||
+            (NULL == CU_add_test(pSuite, "test_post_deserialize", test_post_deserialize)) ||
+            (NULL == CU_add_test(pSuite, "test_post_serialize", test_post_serialize))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
