@@ -6,6 +6,7 @@
 void post_initialize(post *p) {
     p->id = -1L;
     p->body.len = -1L;
+    p->body.s = NULL;
     p->t.created_at = 0;
     p->t.updated_at = 0;
 }
