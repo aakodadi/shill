@@ -35,7 +35,7 @@ int _json_compare(string s1, string s2){
 }
 
 void test_user_deserialize() {
-    const char* source = "{\"id\": \"1547\", \"username\":\"testuser\","
+    const char* source = "{\"id\": 1547, \"username\":\"testuser\","
     "\"email\":\"testuser@email.com\", \"name\":\"Test user\","
     " \"password\": \"testpass\"}";
     string source_string = string_create(source);

@@ -55,7 +55,7 @@ void testPost_destroy() {
 }
 
 void testPost_deserialize() {
-    const char* source = "{\"id\": \"1547\", \"body\":\"test post\"}";
+    const char* source = "{\"id\": 1547, \"body\":\"test post\"}";
     string post_json = string_create(source);
     post result = post_deserialize(post_json);
     CU_ASSERT_STRING_EQUAL(result.body.s, "test post");
