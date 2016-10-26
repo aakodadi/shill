@@ -45,6 +45,7 @@ void test_user_deserialize() {
     CU_ASSERT_STRING_EQUAL(result.email.s, "testuser@email.com");
     CU_ASSERT_STRING_EQUAL(result.name.s, "Test user");
     CU_ASSERT_STRING_EQUAL(result.password.s, "testpass");
+    CU_ASSERT_EQUAL(result.id, 1547);
 }
 
 void test_user_serialize() {
