@@ -53,8 +53,8 @@ post post_deserialize(string post_json) {
     json_updated_at = json_object_get(json_root, "updated_at");
 
     post_initialize(&result);
-    if (json_is_integer(json_id)) {
-        result.id = (unsigned long) json_integer_value(json_id);
+    if (json_is_string(json_id)) {
+        sscanf(json_string_value(json_id), "%lu", &result.id);
     }
 
     if (json_is_string(json_body)) {

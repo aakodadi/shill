@@ -74,7 +74,7 @@ void test_string_destroy() {
     string s = string_create("test string");
     unsigned long result = string_destroy(&s);
     CU_ASSERT_EQUAL(result, 11);
-    CU_ASSERT_EQUAL(s.len, 0);
+    CU_ASSERT_EQUAL(s.len, -1L);
     CU_ASSERT_PTR_NULL(s.s);
 }
 
@@ -82,7 +82,7 @@ void test_string_destroy_empty() {
     string s = string_create("");
     unsigned long result = string_destroy(&s);
     CU_ASSERT_EQUAL(result, 0);
-    CU_ASSERT_EQUAL(s.len, 0);
+    CU_ASSERT_EQUAL(s.len, -1L);
     CU_ASSERT_PTR_NULL(s.s);
 }
 
@@ -141,8 +141,8 @@ void test_string_catd() {
     /*
      * test if s1 and s2 was destroyed
      */
-    CU_ASSERT_EQUAL(s1.len, 0);
-    CU_ASSERT_EQUAL(s2.len, 0);
+    CU_ASSERT_EQUAL(s1.len, -1L);
+    CU_ASSERT_EQUAL(s2.len, -1L);
     CU_ASSERT_PTR_NULL(s2.s);
     CU_ASSERT_PTR_NULL(s2.s);
 }
@@ -182,7 +182,7 @@ void test_string_cpyd() {
     /*
      * test if source was destroyed
      */
-    CU_ASSERT_EQUAL(source.len, 0);
+    CU_ASSERT_EQUAL(source.len, -1L);
     CU_ASSERT_PTR_NULL(source.s);
 }
 

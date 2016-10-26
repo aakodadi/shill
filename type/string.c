@@ -76,7 +76,7 @@ string string_n_create(const char* source, unsigned long size) {
 unsigned long string_destroy(string* s) {
     unsigned long len;
     len = s->len;
-    s->len = 0;
+    s->len = -1L;
     free(s->s);
     s->s = NULL;
     return len;

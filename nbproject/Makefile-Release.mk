@@ -53,6 +53,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f3 \
+	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
 	${TESTDIR}/TestFiles/f4
@@ -60,6 +61,7 @@ TESTFILES= \
 # Test Object Files
 TESTOBJECTFILES= \
 	${TESTDIR}/tests/configuration_cunit_test.o \
+	${TESTDIR}/tests/post_model_cunit_test.o \
 	${TESTDIR}/tests/repository_cunit_test.o \
 	${TESTDIR}/tests/string_type_cunit_test.o \
 	${TESTDIR}/tests/user_model_cunit_test.o
@@ -154,6 +156,10 @@ ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/configuration_cunit_test.o ${OBJECTFIL
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lcunit 
 
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/post_model_cunit_test.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} -lcunit 
+
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/repository_cunit_test.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcunit 
@@ -171,6 +177,12 @@ ${TESTDIR}/tests/configuration_cunit_test.o: tests/configuration_cunit_test.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/configuration_cunit_test.o tests/configuration_cunit_test.c
+
+
+${TESTDIR}/tests/post_model_cunit_test.o: tests/post_model_cunit_test.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror `pkg-config --cflags libcurl` `pkg-config --cflags jansson` -std=c11  -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/post_model_cunit_test.o tests/post_model_cunit_test.c
 
 
 ${TESTDIR}/tests/repository_cunit_test.o: tests/repository_cunit_test.c 
@@ -339,6 +351,7 @@ ${OBJECTDIR}/type/string_nomain.o: ${OBJECTDIR}/type/string.o type/string.c
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f3 || true; \
+	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \
