@@ -8,17 +8,12 @@
 
 #include "configuration.h"
 
-void configuration_parse() {
+string _configuration_get_file_path(){
     string err_msg;
-    int errnum;
     string conf_file_path;
     string home_directory;
     string file_name = string_create(".shill_config.json");
     string separator = string_create("/");
-    FILE* conf_file;
-    json_t *json_root, *json_configuration, *json_server, *json_base_url,
-            *json_user, *json_username, *json_auth_token;
-    json_error_t error;
 
     if (arguments.config == NULL) {
         home_directory = string_create(getenv("HOME"));
@@ -34,6 +29,18 @@ void configuration_parse() {
     } else {
         conf_file_path = string_create(arguments.config);
     }
+}
+
+void configuration_parse() {
+    string err_msg;
+    int errnum;
+    string conf_file_path;
+    FILE* conf_file;
+    json_t *json_root, *json_configuration, *json_server, *json_base_url,
+            *json_user, *json_username, *json_auth_token;
+    json_error_t error;
+    
+    conf_file_path = _configuration_get_file_path();
 
     conf_file = fopen(conf_file_path.s, "r");
     if (conf_file == NULL) {
@@ -48,7 +55,7 @@ void configuration_parse() {
     if (fclose(conf_file)) {
         errnum = errno;
         err_msg = string_createf("Cannot close configuration file \"%s\"",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }
     if (!json_root) {
@@ -132,17 +139,19 @@ void configuration_parse() {
 void configuration_save_user() {
     string err_msg;
     int errnum;
-    char* conf_file_path = arguments.config;
+    string conf_file_path;
     FILE* conf_file;
     json_t *json_root, *json_configuration, *json_user, *json_username,
             *json_auth_token;
     json_error_t error;
+    
+    conf_file_path = _configuration_get_file_path();
 
-    conf_file = fopen(conf_file_path, "r");
+    conf_file = fopen(conf_file_path.s, "r");
     if (conf_file == NULL) {
         errnum = errno;
         err_msg = string_createf("Cannot open configuration file \"%s\"",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }
 
@@ -151,13 +160,13 @@ void configuration_save_user() {
     if (fclose(conf_file)) {
         errnum = errno;
         err_msg = string_createf("Cannot close configuration file \"%s\"",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }
     if (!json_root) {
         err_msg = string_createf("Cannot parse json file \"%s\"."
                 " Error on line %d column %d : %s",
-                conf_file_path,
+                conf_file_path.s,
                 error.line,
                 error.column,
                 error.text);
@@ -167,7 +176,7 @@ void configuration_save_user() {
     if (!json_is_object(json_root)) {
         json_decref(json_root);
         err_msg = string_createf("Cannot parse json file \"%s\"."
-                " Root element is not a json object", conf_file_path);
+                " Root element is not a json object", conf_file_path.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
@@ -177,7 +186,7 @@ void configuration_save_user() {
         json_decref(json_root);
         err_msg = string_createf("Cannot parse json file \"%s\"."
                 " \"configuration\" element not found or is not a json object",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(JSON_DECODE_ERROR, 0, err_msg.s);
     }
 
@@ -191,11 +200,11 @@ void configuration_save_user() {
 
     json_object_set(json_configuration, "user", json_user);
 
-    conf_file = fopen(conf_file_path, "w");
+    conf_file = fopen(conf_file_path.s, "w");
     if (conf_file == NULL) {
         errnum = errno;
         err_msg = string_createf("Cannot open configuration file \"%s\"",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }
 
@@ -203,7 +212,7 @@ void configuration_save_user() {
         errnum = errno;
         json_decref(json_root);
         err_msg = string_createf("Cannot write into configuration file \"%s\"",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }
 
@@ -211,7 +220,7 @@ void configuration_save_user() {
         errnum = errno;
         json_decref(json_root);
         err_msg = string_createf("Cannot close configuration file \"%s\"",
-                conf_file_path);
+                conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }
 

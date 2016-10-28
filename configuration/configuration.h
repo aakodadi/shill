@@ -23,6 +23,7 @@ extern "C" {
     
     void configuration_parse();
     void configuration_save_user();
+    string _configuration_get_file_path();
     
     shill_configuration configuration;
     
