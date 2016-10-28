@@ -22,28 +22,17 @@ void configuration_parse() {
 
     if (arguments.config == NULL) {
         home_directory = string_create(getenv("HOME"));
-    }
 
-    if (home_directory.len == 0) {
-        err_msg = string_create("Couldn't find home directory");
-        error_handle(IO_ERROR, 0, err_msg.s);
-        exit(-1);
-    }
-    
-    conf_file_path = string_catd(&home_directory, &separator);
-    conf_file_path = string_catd(&conf_file_path, &file_name);
-    
-    if(access(conf_file_path.s, F_OK) == -1){
-        fprintf(stderr, "Shill is not yet configured\n");
-        fprintf(stderr, "shill configure --base-url=<url>\n");
-        exit(-1);
-    }
-    
-    if(access(conf_file_path.s, R_OK) == -1){
-        errnum = errno;
-        fprintf(stderr, "Cannot read configuration file: %s\n",
-                conf_file_path.s);
-        exit(-1);
+        if (home_directory.len == 0) {
+            err_msg = string_create("Couldn't find home directory");
+            error_handle(IO_ERROR, 0, err_msg.s);
+            exit(-1);
+        }
+
+        conf_file_path = string_catd(&home_directory, &separator);
+        conf_file_path = string_catd(&conf_file_path, &file_name);
+    } else {
+        conf_file_path = string_create(arguments.config);
     }
 
     conf_file = fopen(conf_file_path.s, "r");

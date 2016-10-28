@@ -12,6 +12,7 @@ int main(int argc, char** argv) {
     arguments.config = NULL;
     arguments.commande = NULL;
     arguments.username = NULL;
+    arguments.base_url = NULL;
     
     /*
      * Parse our arguments; every option seen by parse_opt will be
