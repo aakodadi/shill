@@ -8,7 +8,9 @@
 
 #include "configuration.h"
 
-string _configuration_get_file_path(){
+#define DEFAULT_BASE_URL "http://shilld.herokuapp.com/"
+
+string _configuration_get_file_path() {
     string err_msg;
     string conf_file_path;
     string home_directory;
@@ -39,12 +41,16 @@ void configuration_parse() {
     json_t *json_root, *json_configuration, *json_server, *json_base_url,
             *json_user, *json_username, *json_auth_token;
     json_error_t error;
-    
+
     conf_file_path = _configuration_get_file_path();
 
     conf_file = fopen(conf_file_path.s, "r");
     if (conf_file == NULL) {
         errnum = errno;
+        if (errnum == ENOENT){
+            configuration_create();
+            return;
+        }
         err_msg = string_createf("Cannot open configuration file \"%s\"",
                 conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
@@ -144,7 +150,7 @@ void configuration_save_user() {
     json_t *json_root, *json_configuration, *json_user, *json_username,
             *json_auth_token;
     json_error_t error;
-    
+
     conf_file_path = _configuration_get_file_path();
 
     conf_file = fopen(conf_file_path.s, "r");
@@ -204,6 +210,57 @@ void configuration_save_user() {
     if (conf_file == NULL) {
         errnum = errno;
         err_msg = string_createf("Cannot open configuration file \"%s\"",
+                conf_file_path.s);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+
+    if (json_dumpf(json_root, conf_file, JSON_INDENT(4)) == -1) {
+        errnum = errno;
+        json_decref(json_root);
+        err_msg = string_createf("Cannot write into configuration file \"%s\"",
+                conf_file_path.s);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+
+    if (fclose(conf_file)) {
+        errnum = errno;
+        json_decref(json_root);
+        err_msg = string_createf("Cannot close configuration file \"%s\"",
+                conf_file_path.s);
+        error_handle(IO_ERROR, errnum, err_msg.s);
+    }
+
+    json_decref(json_root);
+}
+
+void configuration_create() {
+    string err_msg;
+    int errnum;
+    string conf_file_path;
+    FILE* conf_file;
+    json_t *json_root, *json_configuration, *json_server, *json_base_url;
+
+    conf_file_path = _configuration_get_file_path();
+
+    if (arguments.base_url == NULL) {
+        json_base_url = json_pack("s", DEFAULT_BASE_URL);
+    } else {
+        json_base_url = json_pack("s", arguments.base_url);
+    }
+    
+    json_configuration = json_object();
+    json_root = json_object();
+    json_server = json_object();
+    
+    json_object_set(json_server, "base-url", json_base_url);
+    json_object_set(json_configuration, "server", json_server);
+    json_object_set(json_root, "configuration", json_configuration);
+
+    conf_file = fopen(conf_file_path.s, "w");
+    if (conf_file == NULL) {
+        errnum = errno;
+        json_decref(json_root);
+        err_msg = string_createf("Cannot create configuration file \"%s\"",
                 conf_file_path.s);
         error_handle(IO_ERROR, errnum, err_msg.s);
     }

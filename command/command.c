@@ -25,6 +25,9 @@ void commande_execute() {
         case COMMAND_REGISTER:
             _command_register();
             break;
+        case COMMAND_CONFIGURE:
+            _command_configure();
+            break;
         default:
             error_handle(CODE_ERROR, 0, "Command unimplemented yet");
     }
@@ -41,6 +44,8 @@ command _command_get_form_argument() {
         return COMMAND_COMMENT;
     } else if (strcmp("queue", arguments.commande) == 0) {
         return COMMAND_QUEUE;
+    } else if (strcmp("configure", arguments.commande) == 0) {
+        return COMMAND_CONFIGURE;
     } else {
         error_handle(CODE_ERROR, 0, "Unexpected argument");
     }
@@ -111,4 +116,8 @@ void _command_register() {
     u.password_confirmation = string_getpass(72);
     service_register(u);
     user_destroy(&u);
+}
+
+void _command_configure(){
+    configuration_create();
 }
