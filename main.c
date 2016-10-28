@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
      * Default values.
      */
     arguments.verbose = 0;
-    arguments.config = "config.json";
+    arguments.config = NULL;
     arguments.commande = NULL;
     arguments.username = NULL;
     
