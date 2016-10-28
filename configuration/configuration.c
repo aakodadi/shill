@@ -47,13 +47,23 @@ void configuration_parse() {
     conf_file = fopen(conf_file_path.s, "r");
     if (conf_file == NULL) {
         errnum = errno;
-        if (errnum == ENOENT){
+        if (errnum == ENOENT) {
+            /*
+             * if "No such file or directory" create configuration file
+             * and retry
+             */
             configuration_create();
-            return;
+            conf_file = fopen(conf_file_path.s, "r");
+            if (conf_file == NULL) {
+                err_msg = string_createf("Cannot open configuration file \"%s\"",
+                        conf_file_path.s);
+                error_handle(IO_ERROR, errnum, err_msg.s);
+            }
+        } else {
+            err_msg = string_createf("Cannot open configuration file \"%s\"",
+                    conf_file_path.s);
+            error_handle(IO_ERROR, errnum, err_msg.s);
         }
-        err_msg = string_createf("Cannot open configuration file \"%s\"",
-                conf_file_path.s);
-        error_handle(IO_ERROR, errnum, err_msg.s);
     }
 
     json_root = json_loadf(conf_file, 0, &error);
@@ -247,11 +257,11 @@ void configuration_create() {
     } else {
         json_base_url = json_pack("s", arguments.base_url);
     }
-    
+
     json_configuration = json_object();
     json_root = json_object();
     json_server = json_object();
-    
+
     json_object_set(json_server, "base-url", json_base_url);
     json_object_set(json_configuration, "server", json_server);
     json_object_set(json_root, "configuration", json_configuration);
