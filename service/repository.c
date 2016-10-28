@@ -151,7 +151,7 @@ string _get(string url, long *http_code) {
         if (res != CURLE_OK) {
             errnum = errno;
             err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
-            error_handle(IO_ERROR, errnum, err_msg.s);
+            error_handle(SERVER_ERROR, errnum, err_msg.s);
         }
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, http_code);
 
@@ -200,7 +200,7 @@ string _delete(string url, long *http_code, string data) {
         if (res != CURLE_OK) {
             errnum = errno;
             err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
-            error_handle(IO_ERROR, errnum, err_msg.s);
+            error_handle(SERVER_ERROR, errnum, err_msg.s);
         }
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, http_code);
 
@@ -248,7 +248,7 @@ string _post(string url, long *http_code, string data) {
         if (res != CURLE_OK) {
             errnum = errno;
             err_msg = string_createf("Unable to perform a request to the server \"%s\"", curl_easy_strerror(res));
-            error_handle(IO_ERROR, errnum, err_msg.s);
+            error_handle(SERVER_ERROR, errnum, err_msg.s);
         }
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, http_code);
 

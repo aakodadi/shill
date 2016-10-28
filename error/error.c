@@ -26,6 +26,9 @@ void error_handle(error e, int errnum, const char* info) {
         case JSON_DECODE_ERROR:
             msg = json_decode_error_message;
             break;
+        case SERVER_ERROR:
+            msg = server_error_message;
+            break;
         default:
             error_handle(CODE_ERROR, 0, "Unexpected error type in error handling module, in error/error.c, error_handler(), this code block must never get executed");
             return;
