@@ -18,6 +18,9 @@ error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'u':
             arguments->username = arg;
             break;
+        case -1:
+            arguments->base_url = arg;
+            break;
         case ARGP_KEY_ARG:
             if (state->arg_num == 0) {
                 arguments->commande = arg;
