@@ -19,13 +19,7 @@ int main(int argc, char** argv) {
      * reflected in arguments.
      */
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
-    
-    printf("command: %s\n", arguments.commande);
-    
     configuration_parse();
-    
-    printf("base-url: %s\n\n", arguments.base_url);
-
     commande_execute();
 
     return (EXIT_SUCCESS);
