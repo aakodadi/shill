@@ -61,8 +61,11 @@ void _command_queue() {
     for (post_i = 0; post_i < result.len; post_i++) {
         // this is not good buffer overflow danger*****
         strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&result.p[post_i].t.created_at));
-        printf("Id: %lu\nBody: %s\nDate: %s\n\n",
+        printf("Id: %lu\nAuthor: %s <%s, %s>\nBody: %s\nDate: %s\n\n",
                 result.p[post_i].id,
+                result.p[post_i].u.name.s,
+                result.p[post_i].u.username.s,
+                result.p[post_i].u.email.s,
                 result.p[post_i].body.s,
                 date);
         string_destroy(&result.p[post_i].body);

@@ -12,6 +12,7 @@
 
 #include "timestamp.h"
 #include "../type/string.h"
+#include "user.h"
 
 
 #ifdef __cplusplus
@@ -22,6 +23,7 @@ extern "C" {
         unsigned long id;
         timestamp t;
         string body;
+        user u;
     };
     
     typedef struct _post post;

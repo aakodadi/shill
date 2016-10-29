@@ -27,7 +27,8 @@ post_collection post_collection_deserialize(string pc_json) {
     post_collection result;
     unsigned long i_post;
     json_t *json_root, *json_post, *json_id, *json_body, *json_created_at,
-            *json_updated_at;
+            *json_updated_at, *json_user, *json_username, *json_name,
+            *json_email;
     json_error_t error;
 
     json_root = json_loads(pc_json.s, 0, &error);
@@ -67,6 +68,7 @@ post_collection post_collection_deserialize(string pc_json) {
         json_body = json_object_get(json_post, "body");
         json_created_at = json_object_get(json_post, "created_at");
         json_updated_at = json_object_get(json_post, "updated_at");
+        json_user = json_object_get(json_post, "user");
 
         if (json_is_integer(json_id)) {
             result.p[i_post].id = json_integer_value(json_id);
@@ -82,6 +84,23 @@ post_collection post_collection_deserialize(string pc_json) {
 
         if (json_is_integer(json_updated_at)) {
             result.p[i_post].t.updated_at = json_integer_value(json_updated_at);
+        }
+
+        user_initialize(&result.p[i_post].u);
+        if (json_is_object(json_user)) {
+            json_username = json_object_get(json_user, "username");
+            json_email = json_object_get(json_user, "email");
+            json_name = json_object_get(json_user, "name");
+
+            if (json_is_string(json_username)) {
+                result.p[i_post].u.username = string_create(json_string_value(json_username));
+            }
+            if (json_is_string(json_email)) {
+                result.p[i_post].u.email = string_create(json_string_value(json_email));
+            }
+            if (json_is_string(json_name)) {
+                result.p[i_post].u.name = string_create(json_string_value(json_name));
+            }
         }
     }
 

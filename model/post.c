@@ -24,7 +24,8 @@ void post_destroy(post *p) {
 
 post post_deserialize(string post_json) {
     post result;
-    json_t *json_root, *json_id, *json_body, *json_created_at, *json_updated_at;
+    json_t *json_root, *json_id, *json_body, *json_created_at, *json_updated_at,
+            *json_user, *json_username, *json_name, *json_email;
     json_error_t error;
     string err_msg;
 
@@ -52,6 +53,7 @@ post post_deserialize(string post_json) {
     json_body = json_object_get(json_root, "body");
     json_created_at = json_object_get(json_root, "created_at");
     json_updated_at = json_object_get(json_root, "updated_at");
+    json_user = json_object_get(json_root, "user");
 
     post_initialize(&result);
     if (json_is_integer(json_id)) {
@@ -68,6 +70,23 @@ post post_deserialize(string post_json) {
 
     if (json_is_integer(json_updated_at)) {
         result.t.updated_at = json_integer_value(json_updated_at);
+    }
+    
+    user_initialize(&result.u);
+    if (json_is_object(json_user)) {
+        json_username = json_object_get(json_user, "username");
+        json_email = json_object_get(json_user, "email");
+        json_name = json_object_get(json_user, "name");
+
+        if (json_is_string(json_username)) {
+            result.u.username = string_create(json_string_value(json_username));
+        }
+        if (json_is_string(json_email)) {
+            result.u.email = string_create(json_string_value(json_email));
+        }
+        if (json_is_string(json_name)) {
+            result.u.name = string_create(json_string_value(json_name));
+        }
     }
 
     json_decref(json_root);
