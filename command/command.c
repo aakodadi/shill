@@ -13,8 +13,8 @@
 void commande_execute() {
     command c = _command_get_form_argument();
     switch (c) {
-        case COMMAND_QUEUE:
-            _command_queue();
+        case COMMAND_FEED:
+            _command_feed();
             break;
         case COMMAND_POST:
             _command_post();
@@ -42,8 +42,8 @@ command _command_get_form_argument() {
         return COMMAND_POST;
     } else if (strcmp("comment", arguments.commande) == 0) {
         return COMMAND_COMMENT;
-    } else if (strcmp("queue", arguments.commande) == 0) {
-        return COMMAND_QUEUE;
+    } else if (strcmp("feed", arguments.commande) == 0) {
+        return COMMAND_FEED;
     } else if (strcmp("configure", arguments.commande) == 0) {
         return COMMAND_CONFIGURE;
     } else {
@@ -51,7 +51,7 @@ command _command_get_form_argument() {
     }
 }
 
-void _command_queue() {
+void _command_feed() {
     post_collection result = service_get_posts();
     unsigned long post_i;
     char date[20];

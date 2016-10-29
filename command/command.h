@@ -13,7 +13,7 @@ extern "C" {
 #endif
     
     enum _command {
-        COMMAND_QUEUE,
+        COMMAND_FEED,
         COMMAND_POST,
         COMMAND_COMMENT,
         COMMAND_LOGIN,
@@ -26,7 +26,7 @@ extern "C" {
     void commande_execute();
     
     command _command_get_form_argument();
-    void _command_queue();
+    void _command_feed();
     void _command_post();
     void _command_login();
     void _command_register();
