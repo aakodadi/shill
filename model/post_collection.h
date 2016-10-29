@@ -12,19 +12,21 @@
 #include "../model/post.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-    struct _post_collection {
-        post* p;
-        unsigned long len;
-    };
-    
-    typedef struct _post_collection post_collection;
-    
-    void post_collection_initialize(post_collection *pc);
-    void post_collection_destroy(post_collection *pc);
-    post_collection post_collection_deserialize(string pc_json);
+  struct _post_collection
+  {
+    post* p;
+    unsigned long len;
+  };
+
+  typedef struct _post_collection post_collection;
+
+  void post_collection_initialize (post_collection *pc);
+  void post_collection_destroy (post_collection *pc);
+  post_collection post_collection_deserialize (string pc_json);
 
 
 #ifdef __cplusplus

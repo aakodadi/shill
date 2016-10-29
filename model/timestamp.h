@@ -14,16 +14,17 @@
 #include "time.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
+  struct _timestamp
+  {
+    time_t created_at;
+    time_t updated_at;
+  };
 
-    struct _timestamp {
-        time_t created_at;
-        time_t updated_at;
-    };
-    
-    typedef struct _timestamp timestamp;
+  typedef struct _timestamp timestamp;
 
 
 #ifdef __cplusplus

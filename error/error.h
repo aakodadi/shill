@@ -10,35 +10,37 @@
 #define ERROR_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-    /*
-     * errors enumeration
-     */
-    enum _error {
-        CODE_ERROR,
-        MEMORY_ERROR,
-        IO_ERROR,
-        JSON_DECODE_ERROR,
-        SERVER_ERROR
-    };
-    
-    const char* code_error_message;
-    const char* memory_error_message;
-    const char* io_error_message;
-    const char* json_decode_error_message;
-    const char* server_error_message;
+  /*
+   * errors enumeration
+   */
+  enum _error
+  {
+    CODE_ERROR,
+    MEMORY_ERROR,
+    IO_ERROR,
+    JSON_DECODE_ERROR,
+    SERVER_ERROR
+  };
 
-    typedef enum _error error;
+  const char* code_error_message;
+  const char* memory_error_message;
+  const char* io_error_message;
+  const char* json_decode_error_message;
+  const char* server_error_message;
 
-    /*
-     * error handler
-     * @param e: error type
-     * @param errnum: if system error it takes errno value, if not 0
-     * @param info: additional information about the error, if none set to NULL
-     */
-    void error_handle(error e, int errnum, const char* info);
+  typedef enum _error error;
+
+  /*
+   * error handler
+   * @param e: error type
+   * @param errnum: if system error it takes errno value, if not 0
+   * @param info: additional information about the error, if none set to NULL
+   */
+  void error_handle (error e, int errnum, const char* info);
 
 
 #ifdef __cplusplus

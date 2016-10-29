@@ -9,28 +9,30 @@
 #define COMMAND_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
-    
-    enum _command {
-        COMMAND_FEED,
-        COMMAND_POST,
-        COMMAND_COMMENT,
-        COMMAND_LOGIN,
-        COMMAND_REGISTER,
-        COMMAND_CONFIGURE
-    };
-    
-    typedef enum _command command;
-    
-    void commande_execute();
-    
-    command _command_get_form_argument();
-    void _command_feed();
-    void _command_post();
-    void _command_login();
-    void _command_register();
-    void _command_configure();
+
+  enum _command
+  {
+    COMMAND_FEED,
+    COMMAND_POST,
+    COMMAND_COMMENT,
+    COMMAND_LOGIN,
+    COMMAND_REGISTER,
+    COMMAND_CONFIGURE
+  };
+
+  typedef enum _command command;
+
+  void commande_execute ();
+
+  command _command_get_form_argument ();
+  void _command_feed ();
+  void _command_post ();
+  void _command_login ();
+  void _command_register ();
+  void _command_configure ();
 
 
 #ifdef __cplusplus

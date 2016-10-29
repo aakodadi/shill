@@ -13,14 +13,15 @@
 #include "../model/user.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-    post_collection service_get_posts();
-    post service_get_post(unsigned long id);
-    user service_register(user u);
-    user service_login(user u);
-    post service_post(post p);
+  post_collection service_get_posts ();
+  post service_get_post (unsigned long id);
+  user service_register (user u);
+  user service_login (user u);
+  post service_post (post p);
 
 
 #ifdef __cplusplus

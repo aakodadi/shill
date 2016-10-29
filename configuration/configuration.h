@@ -11,24 +11,26 @@
 #include "../model/user.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-    struct _shill_configuration {
-        string base_url;
-        user u;
-    };
+  struct _shill_configuration
+  {
+    string base_url;
+    user u;
+  };
 
-    typedef struct _shill_configuration shill_configuration;
-    
-    void configuration_parse();
-    void configuration_create();
-    void configuration_save_user();
-    string _configuration_get_file_path();
-    
-    shill_configuration configuration;
-    
-    
+  typedef struct _shill_configuration shill_configuration;
+
+  void configuration_parse ();
+  void configuration_create ();
+  void configuration_save_user ();
+  string _configuration_get_file_path ();
+
+  shill_configuration configuration;
+
+
 #ifdef __cplusplus
 }
 #endif

@@ -13,26 +13,28 @@
 
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-    struct _user{
-        unsigned long id;
-        timestamp t;
-        string username;
-        string email;
-        string name;
-        string password;
-        string password_confirmation;
-        string auth_token;
-    };
+  struct _user
+  {
+    unsigned long id;
+    timestamp t;
+    string username;
+    string email;
+    string name;
+    string password;
+    string password_confirmation;
+    string auth_token;
+  };
 
-    typedef struct _user user;
-    
-    void user_initialize(user *u);
-    void user_destroy(user *u);
-    user user_deserialize(string user_json);
-    string user_serialize(user u);
+  typedef struct _user user;
+
+  void user_initialize (user *u);
+  void user_destroy (user *u);
+  user user_deserialize (string user_json);
+  string user_serialize (user u);
 
 
 #ifdef __cplusplus
