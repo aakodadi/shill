@@ -10,4 +10,4 @@ addons:
       - libcunit1-dev
       - libcurl4-openssl-dev
       - libjansson-dev
-script: make check
+script: ./configure && make && make check
