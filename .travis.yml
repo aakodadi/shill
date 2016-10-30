@@ -3,7 +3,11 @@ language: c
 compiler:
   - gcc
   - clang
-install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq cmake libcunit1 libcunit1-dev libcurl4-openssl-dev libjansson-dev
+addons:
+  apt:
+    packages:
+      - libcunit1
+      - libcunit1-dev
+      - libcurl4-openssl-dev
+      - libjansson-dev
 script: make check
