@@ -7,7 +7,7 @@ shill is the client-side (front-end).
 ## License
 
 All source code in this project is available under the MIT License. See
-[LICENSE](LICENSE) for details.
+[COPYING](COPYING) for details.
 
 ## Dependencies
 
