@@ -24,7 +24,7 @@ stamp-h1
 /build
 /m4/*
 !/m4/NOTES
-.deps
+.deps/
 *.o
 *~
 shill
