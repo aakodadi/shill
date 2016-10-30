@@ -4,9 +4,6 @@ Shill-project is a CLI social network.
 
 shill is the client-side (front-end).
 
-[![Build Status](https://travis-ci.org/akodakim/shill.svg?branch=master)](https://travis-ci.org/akodakim/shill)
-[![Run Status](https://api.shippable.com/projects/57df69881a7d601000a75271/badge?branch=master)](https://app.shippable.com/projects/57df69881a7d601000a75271)
-
 ## License
 
 All source code in this project is available under the MIT License. See
