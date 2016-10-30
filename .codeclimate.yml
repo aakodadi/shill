@@ -1,7 +1,11 @@
 engines:
-  fixme: 
-    enabled: true 
-ratings: 
+  cppcheck:
+    enabled: true
+  config:
+    check: all
+  fixme:
+    enabled: true
+ratings:
   paths: []
 exclude_paths:
   - test/
