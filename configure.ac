@@ -3,7 +3,7 @@
 AC_INIT([shill], [0.0.1], [akodadi.abdelhakim@gmail.com])
 
 # Force autoconf to be at least this version number.
-AC_PREREQ([2.69])
+AC_PREREQ([2.68])
 
 # Safety check - list a source file that wouldn't be in other directories.
 AC_CONFIG_SRCDIR([src/main.c])
