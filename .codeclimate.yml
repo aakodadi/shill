@@ -1,8 +1,12 @@
 engines:
   cppcheck:
     enabled: true
-  config:
-    check: all
+    config:
+      check: all
+      language: c
+      stds:
+        - c11
+      platform: unix64
   fixme:
     enabled: true
 ratings:
