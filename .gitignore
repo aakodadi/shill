@@ -1,6 +1,7 @@
 # http://www.gnu.org/software/automake
 
 Makefile.in
+Makefile
 
 # http://www.gnu.org/software/autoconf
 
@@ -9,16 +10,39 @@ Makefile.in
 /autoscan-*.log
 /aclocal.m4
 /compile
-/config.h.in
 /configure
 /configure.scan
 /depcomp
 /install-sh
 /missing
-/stamp-h1
+stamp-h1
+/config.log
+/config.status
 
+# Build files
 /build-aux
 /build
-*~
 /m4/*
 !/m4/NOTES
+.deps
+*.o
+*~
+shill
+.dirstamp
+
+# Test files
+*test.trs
+*test.log
+*test
+test-suite.log
+
+# Netbeans files
+/nbproject
+
+# Congiguration headers
+/src/config.h
+/src/config.h.in
+
+# Distribution files
+shill*.tar*
+/shill*
