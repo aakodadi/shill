@@ -1,8 +1,0 @@
-language: c
-compiler:
-  - gcc
-build:
-  ci:
-    - sudo apt-get update -qq
-    - sudo apt-get install -y -qq libcunit1 libcunit1-dev libcurl4-openssl-dev libjansson-dev
-    - autoreconf -f -i && CFLAGS=-Werror ./configure && make && make check
