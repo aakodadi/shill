@@ -20,3 +20,5 @@ Makefile.in
 /build-aux
 /build
 *~
+/m4/*
+!/m4/NOTES
