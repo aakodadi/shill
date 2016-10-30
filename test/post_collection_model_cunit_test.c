@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../model/post_collection.h"
+#include "../src/model/post_collection.h"
 
 /*
  * CUnit Test Suite

@@ -10,8 +10,8 @@
 #include <CUnit/Basic.h>
 
 #include <jansson.h>
-#include "../type/string.h"
-#include "../model/user.h"
+#include "../src/type/string.h"
+#include "../src/model/user.h"
 
 /*
  * CUnit Test Suite

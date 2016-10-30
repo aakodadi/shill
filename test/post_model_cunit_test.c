@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <CUnit/Basic.h>
 #include <jansson.h>
-#include "../model/post.h"
+#include "../src/model/post.h"
 
 /*
  * CUnit Test Suite

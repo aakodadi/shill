@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../service/repository.h"
-#include "../configuration/configuration.h"
-#include "../argument/argument.h"
+#include "../src/service/repository.h"
+#include "../src/configuration/configuration.h"
+#include "../src/argument/argument.h"
 #include <jansson.h>
 
 /*
@@ -20,7 +20,7 @@
 int
 init_suite (void)
 {
-  arguments.config = "tests/valid_config_without_user.json";
+  arguments.config = "test/valid_config_without_user.json";
   configuration_parse ();
   return 0;
 }
