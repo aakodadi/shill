@@ -10,6 +10,14 @@
 
 #define DEFAULT_BASE_URL "http://shilld.herokuapp.com/"
 
+void
+configuration_initialize ()
+{
+  configuration.base_url.len = -1L;
+  configuration.base_url.s = NULL;
+  user_initialize (&configuration.u);
+}
+
 string
 _configuration_get_file_path ()
 {
@@ -59,17 +67,11 @@ configuration_parse ()
       if (errnum == ENOENT)
         {
           /*
-           * if "No such file or directory" create configuration file
-           * and retry
+           * if "No such file or directory"
+           * there is a chance we can create a new configuration and continue
+           * (don't abort yet)
            */
-          configuration_create ();
-          conf_file = fopen (conf_file_path.s, "r");
-          if (conf_file == NULL)
-            {
-              err_msg = string_createf ("Cannot open configuration file \"%s\"",
-                                        conf_file_path.s);
-              error_handle (IO_ERROR, errnum, err_msg.s);
-            }
+          return;
         }
       else
         {

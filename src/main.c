@@ -21,7 +21,21 @@ main (int argc, char** argv)
    * reflected in arguments.
    */
   argp_parse (&argp, argc, argv, 0, 0, &arguments);
+  configuration_initialize ();
   configuration_parse ();
+
+  /*
+   * Check if we successfully parsed the configuration
+   * If not, create a new configuration and retry again
+   */
+  if (configuration.base_url.s == NULL)
+    {
+      printf ("Unable to retrieve configuration.\n");
+      printf ("Trying to create a new one...\n");
+      configuration_create ();
+      configuration_parse ();
+    }
+
   commande_execute ();
 
   return (EXIT_SUCCESS);
