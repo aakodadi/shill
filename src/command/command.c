@@ -72,9 +72,12 @@ _command_get_form_argument ()
 void
 _command_feed ()
 {
-  post_collection result = service_get_posts ();
+  post_collection result;
   unsigned long post_i;
   char date[20];
+  configuration_check_user ();
+  
+  result = service_get_posts ();
   /*
    * Temporary
    */
@@ -98,6 +101,7 @@ void
 _command_post ()
 {
   post p;
+  configuration_check_user ();
   post_initialize (&p);
   printf ("Post: ");
   p.body = string_gets (72);

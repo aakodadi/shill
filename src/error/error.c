@@ -5,11 +5,19 @@
 #include <stdlib.h>
 
 
-const char* code_error_message = "\nCode error: This error must never be thrown in production, if it's the case please contact the developer\n";
-const char* memory_error_message = "\nMemory error: Error while trying to allocate memory\n";
-const char* io_error_message = "\nIO error: Error while interacting with a file\n";
-const char* json_decode_error_message = "\nJson decode error: Error while parsing json\n";
-const char* server_error_message = "\nServer error: Error while requesting a server\n";
+const char* code_error_message = 
+"\nCode error: This error must never be thrown in production,"
+" if it's the case please contact the developer\n";
+const char* memory_error_message = 
+"\nMemory error: Error while trying to allocate memory\n";
+const char* io_error_message = 
+"\nIO error: Error while interacting with a file\n";
+const char* json_decode_error_message = 
+"\nJson decode error: Error while parsing json\n";
+const char* server_error_message = 
+"\nServer error: Error while requesting a server\n";
+const char* configuration_error_message = 
+"\nConfiguration error: A required configuration parameter is missing\n";
 
 void
 error_handle (error e, int errnum, const char* info)
@@ -31,6 +39,9 @@ error_handle (error e, int errnum, const char* info)
       break;
     case SERVER_ERROR:
       msg = server_error_message;
+      break;
+    case CONFIGURATION_ERROR:
+      msg = configuration_error_message;
       break;
     default:
       error_handle (CODE_ERROR, 0, "Unexpected error type in error handling module, in error/error.c, error_handler(), this code block must never get executed");

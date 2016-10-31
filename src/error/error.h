@@ -23,7 +23,8 @@ extern "C"
     MEMORY_ERROR,
     IO_ERROR,
     JSON_DECODE_ERROR,
-    SERVER_ERROR
+    SERVER_ERROR,
+    CONFIGURATION_ERROR
   };
 
   const char* code_error_message;
@@ -31,6 +32,7 @@ extern "C"
   const char* io_error_message;
   const char* json_decode_error_message;
   const char* server_error_message;
+  const char* configuration_error_message;
 
   typedef enum _error error;
 

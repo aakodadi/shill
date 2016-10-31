@@ -158,25 +158,12 @@ configuration_parse ()
           configuration.u.username =
                   string_create (json_string_value (json_username));
         }
-      else
-        {
-          configuration.u.username.len = -1L;
-        }
 
       if (json_is_string (json_auth_token))
         {
           configuration.u.auth_token =
                   string_create (json_string_value (json_auth_token));
         }
-      else
-        {
-          configuration.u.auth_token.len = -1L;
-        }
-    }
-  else
-    {
-      configuration.u.auth_token.len = -1L;
-      configuration.u.username.len = -1L;
     }
 
   json_decref (json_root);
@@ -340,4 +327,22 @@ configuration_create ()
     }
 
   json_decref (json_root);
+}
+
+void
+configuration_check_user ()
+{
+  string err_msg;
+  if (configuration.u.username.s == NULL)
+    {
+      err_msg = string_createf (
+              "Couldn't find a valid username in configuration");
+      error_handle (CONFIGURATION_ERROR, 0, err_msg.s);
+    }
+  if (configuration.u.auth_token.s == NULL)
+    {
+      err_msg = string_createf (
+              "Couldn't find a valid auth_token in configuration");
+      error_handle (CONFIGURATION_ERROR, 0, err_msg.s);
+    }
 }

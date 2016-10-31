@@ -27,6 +27,7 @@ extern "C"
   void configuration_parse ();
   void configuration_create ();
   void configuration_save_user ();
+  void configuration_check_user();
   string _configuration_get_file_path ();
 
   shill_configuration configuration;
