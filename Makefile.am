@@ -25,12 +25,16 @@ AM_CPPFLAGS = -Ilib -I$(top_srcdir)/lib -Isrc -I$(top_srcdir)/src
 
 # Additional files to distribute.
 EXTRA_DIST = \
+  README \
+	README.md \
 	README-dev \
+	INSTALL \
+	AUTHORS \
+	COPYING \
+	NEWS \
 	ChangeLog.O \
 	m4/gnulib-cache.m4 \
-	man/shill.x \
-	contrib/de_franconian_po.txt \
-	contrib/evolution.txt
+	man/shill.x
 
 # Subdirectories to descend into.
 SUBDIRS = po lib
