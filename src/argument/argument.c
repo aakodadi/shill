@@ -1,3 +1,4 @@
+#include <config.h>
 #include"argument.h"
 
 error_t
@@ -46,7 +47,5 @@ parse_opt (int key, char *arg, struct argp_state *state)
     }
   return 0;
 }
-const char *argp_program_version =
-        "shill 1.0, Build, "__DATE__;
-const char *argp_program_bug_address =
-        "<akodadi.abdelhakim@gmail.com>";
+const char *argp_program_version = PACKAGE " (" PACKAGE_NAME ") " VERSION;
+const char *argp_program_bug_address = PACKAGE_BUGREPORT;

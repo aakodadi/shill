@@ -1,3 +1,4 @@
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "argument/argument.h"
@@ -40,4 +41,3 @@ main (int argc, char** argv)
 
   return (EXIT_SUCCESS);
 }
-
