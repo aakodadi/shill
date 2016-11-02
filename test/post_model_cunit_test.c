@@ -5,11 +5,12 @@
  * Created on Oct 26, 2016, 12:57:09 PM
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
 #include <jansson.h>
-#include "../src/model/post.h"
+#include "post.h"
 
 /*
  * CUnit Test Suite

@@ -8,8 +8,12 @@
 #ifndef REPOSITORY_H
 #define REPOSITORY_H
 
-#include "../type/string.h"
+#include <config.h>
+#include "system.h"
+#include "string_type.h"
+#include "configuration.h"
 #include <stdarg.h>
+#include <curl/curl.h>
 
 #ifdef __cplusplus
 extern "C"

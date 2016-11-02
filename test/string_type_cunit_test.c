@@ -5,10 +5,11 @@
  * Created on Sep 15, 2016, 11:09:44 AM
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../src/type/string.h"
+#include "string_type.h"
 
 /*
  * CUnit Test Suite

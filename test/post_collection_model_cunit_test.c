@@ -5,10 +5,11 @@
  * Created on Oct 26, 2016, 9:49:48 PM
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../src/model/post_collection.h"
+#include "post_collection.h"
 
 /*
  * CUnit Test Suite

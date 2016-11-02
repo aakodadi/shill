@@ -1,7 +1,3 @@
-#include <jansson.h>
-
-#include "post.h"
-#include "../error/error.h"
 #include "post_collection.h"
 
 void
@@ -31,33 +27,31 @@ post_collection_destroy (post_collection *pc)
 post_collection
 post_collection_deserialize (string pc_json)
 {
-  string err_msg;
   post_collection result;
   unsigned long i_post;
   json_t *json_root, *json_post, *json_id, *json_body, *json_created_at,
           *json_updated_at, *json_user, *json_username, *json_name,
           *json_email;
-  json_error_t error;
+  json_error_t json_error;
 
-  json_root = json_loads (pc_json.s, 0, &error);
+  json_root = json_loads (pc_json.s, 0, &json_error);
 
   if (!json_root)
     {
-      err_msg = string_createf ("Cannot parse json content \n\"%s\"."
-                                "\nError on line %d column %d : %s",
-                                pc_json.s,
-                                error.line,
-                                error.column,
-                                error.text);
-      error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("%d:%d: cannot parse json content: %s"),
+             json_error.line,
+             json_error.column,
+             json_error.text);
     }
 
   if (!json_is_array (json_root))
     {
       json_decref (json_root);
-      err_msg = string_createf ("Cannot parse json content \n\"%s\"."
-                                "\nExpected root element to be an array", pc_json.s);
-      error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("cannot parse json content: \
+expected root element to be a json array: %s"),
+             pc_json.s);
     }
 
   result.len = json_array_size (json_root);
@@ -70,10 +64,10 @@ post_collection_deserialize (string pc_json)
       if (!json_is_object (json_post))
         {
           json_decref (json_root);
-          err_msg = string_createf ("Cannot parse json content \n\"%s\"."
-                                    "\nExpected elements in root array to be objects",
-                                    pc_json.s);
-          error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("cannot parse json content: \
+expected elements in root to be json objects: %s"),
+             pc_json.s);
         }
 
       json_id = json_object_get (json_post, "id");

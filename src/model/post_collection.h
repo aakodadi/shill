@@ -8,8 +8,11 @@
 #ifndef POST_COLLECTION_H
 #define POST_COLLECTION_H
 
-#include "../type/string.h"
-#include "../model/post.h"
+#include <config.h>
+#include "system.h"
+#include "string_type.h"
+#include "post.h"
+#include <jansson.h>
 
 #ifdef __cplusplus
 extern "C"

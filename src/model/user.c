@@ -1,7 +1,4 @@
-#include <jansson.h>
-
 #include "user.h"
-#include "../error/error.h"
 
 void
 user_initialize (user *u)
@@ -64,27 +61,26 @@ user_deserialize (string user_json)
   json_t *json_root, *json_id, *json_username, *json_email, *json_name,
           *json_password, *json_password_confirmation,
           *json_created_at, *json_updated_at, *json_auth_token;
-  json_error_t error;
-  string err_msg;
+  json_error_t json_error;
 
-  json_root = json_loads (user_json.s, 0, &error);
+  json_root = json_loads (user_json.s, 0, &json_error);
 
   if (!json_root)
     {
-      err_msg = string_createf ("Cannot parse json content \n\"%s\".\nError on line %d column %d : %s",
-                                user_json.s,
-                                error.line,
-                                error.column,
-                                error.text);
-      error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("%d:%d: cannot parse json content: %s"),
+             json_error.line,
+             json_error.column,
+             json_error.text);
     }
 
   if (!json_is_object (json_root))
     {
       json_decref (json_root);
-      err_msg = string_createf ("Cannot parse json content \n\"%s\".\n"
-                                "Root element is not a json object", user_json.s);
-      error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("cannot parse json content: \
+expected root element to be a json object: %s"),
+             user_json.s);
     }
 
 

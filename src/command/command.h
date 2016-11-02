@@ -8,6 +8,13 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <config.h>
+#include "system.h"
+#include "service.h"
+#include "argument.h"
+#include "configuration.h"
+#include "user.h"
+
 #ifdef __cplusplus
 extern "C"
 {

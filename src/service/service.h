@@ -8,9 +8,12 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
-#include "../model/post.h"
-#include "../model/post_collection.h"
-#include "../model/user.h"
+#include <config.h>
+#include "system.h"
+#include "post.h"
+#include "post_collection.h"
+#include "user.h"
+#include "repository.h"
 
 #ifdef __cplusplus
 extern "C"

@@ -1,7 +1,4 @@
-#include <jansson.h>
-
 #include "post.h"
-#include "../error/error.h"
 
 void
 post_initialize (post *p)
@@ -33,28 +30,26 @@ post_deserialize (string post_json)
   post result;
   json_t *json_root, *json_id, *json_body, *json_created_at, *json_updated_at,
           *json_user, *json_username, *json_name, *json_email;
-  json_error_t error;
-  string err_msg;
+  json_error_t json_error;
 
-  json_root = json_loads (post_json.s, 0, &error);
+  json_root = json_loads (post_json.s, 0, &json_error);
 
   if (!json_root)
     {
-      err_msg = string_createf ("Cannot parse json content \n\"%s\"."
-                                "\nError on line %d column %d : %s",
-                                post_json.s,
-                                error.line,
-                                error.column,
-                                error.text);
-      error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("%d:%d: cannot parse json content: %s"),
+             json_error.line,
+             json_error.column,
+             json_error.text);
     }
 
   if (!json_is_object (json_root))
     {
       json_decref (json_root);
-      err_msg = string_createf ("Cannot parse json content \n\"%s\".\n"
-                                "Root element is not a json object", post_json.s);
-      error_handle (JSON_DECODE_ERROR, 0, err_msg.s);
+      error (EXIT_FAILURE, 0,
+             _ ("cannot parse json content: \
+expected root element to be a json object: %s"),
+             post_json.s);
     }
 
 

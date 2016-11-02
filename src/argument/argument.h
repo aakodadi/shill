@@ -1,10 +1,20 @@
-/* 
- * File:   argument.h
- * Author: Abdelhakim Akodadi <akodadi.abdelhakim@gmail.com>
- * Brief: Command line options and arguments parser.
- *
- * Created on September 15, 2016, 7:40 AM
- */
+/* argument.h: arguments parsing header.
+
+   Copyright 1996, 2005, 2006, 2007, 2008, 2013, 2014 Free Software
+   Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 #ifndef ARGUMENT_H
 #define ARGUMENT_H
@@ -14,7 +24,12 @@ extern "C"
 {
 #endif
 
-#include <argp.h>
+#include <config.h>
+#include "system.h"
+#include "progname.h"
+
+#define ARGUMENT_BASE_URL -1
+#define ARGUMENT_USAGE -2
 
   /* Program documentation. */
   static char doc[] =
@@ -23,22 +38,19 @@ extern "C"
   /* A description of the arguments we accept. */
   static char args_doc[] = "<command>";
 
-  /* Supported options. */
-  static struct argp_option options[] = {
-    {"verbose", 'v', 0, 0, "Produce verbose output (disabled by default)", 0},
-    {"config", 'c', "FILE", 0, "Set configuration file (default ~/.shill_config.json)", 1},
-    {"username", 'u', "USERNAME", 0, "Set username while logging in", 1},
-    {"base-url", -1, "BASE-URL", 0, "Set server base-url into configuration", 1},
-    /*
-        {0, 0, 0, 0, "The following options should be grouped together:", 1},
-     */
-    { 0}
+  static const struct option longopts[] = {
+    {"config-file", required_argument, NULL, 'c'},
+    {"username", required_argument, NULL, 'u'},
+    {"base-url", required_argument, NULL, ARGUMENT_BASE_URL},
+    {"help", no_argument, NULL, 'h'},
+    {"usage", no_argument, NULL, ARGUMENT_USAGE},
+    {"version", no_argument, NULL, 'v'},
+    {NULL, 0, NULL, 0}
   };
 
   /* Used by the main function to communicate with parse_opt. */
   struct _shill_arguments
   {
-    int verbose;
     char *config;
     char *commande;
     char *username;
@@ -47,12 +59,10 @@ extern "C"
 
   typedef struct _shill_arguments shill_arguments;
 
-  /* Parse a single option. */
-  error_t
-  parse_opt (int key, char *arg, struct argp_state *state);
-
-  /* Our argp parser. */
-  static struct argp argp = {options, parse_opt, args_doc, doc, NULL, NULL, NULL};
+  int argument_parse(int argc, char** argv);
+  void argument_print_help();
+  void argument_print_usage();
+  void argument_print_version();
 
 
   shill_arguments arguments;
@@ -63,4 +73,3 @@ extern "C"
 #endif
 
 #endif /* ARGUMENT_H */
-

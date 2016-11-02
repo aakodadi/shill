@@ -5,11 +5,12 @@
  * Created on Sep 18, 2016, 10:07:58 PM
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../src/configuration/configuration.h"
-#include "../src/argument/argument.h"
+#include "configuration.h"
+#include "argument.h"
 
 /*
  * CUnit Test Suite

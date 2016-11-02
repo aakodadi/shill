@@ -5,12 +5,13 @@
  * Created on Sep 15, 2016, 1:57:43 PM
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "../src/service/repository.h"
-#include "../src/configuration/configuration.h"
-#include "../src/argument/argument.h"
+#include "repository.h"
+#include "configuration.h"
+#include "argument.h"
 #include <jansson.h>
 
 /*

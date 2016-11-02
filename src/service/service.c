@@ -1,8 +1,3 @@
-#include <jansson.h>
-#include <time.h>
-#include "repository.h"
-#include "../error/error.h"
-
 #include "service.h"
 
 post_collection

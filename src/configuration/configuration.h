@@ -8,7 +8,12 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
-#include "../model/user.h"
+#include <config.h>
+#include "system.h"
+#include <jansson.h>
+#include "argument.h"
+#include "string_type.h"
+#include "user.h"
 
 #ifdef __cplusplus
 extern "C"

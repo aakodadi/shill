@@ -1,14 +1,3 @@
-#include <stddef.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <errno.h>
-#include <assert.h>
-#include <curl/curl.h>
-#include "../configuration/configuration.h"
-#include "../error/error.h"
-
 #include "repository.h"
 
 string
@@ -90,7 +79,7 @@ _build_path (target t, va_list vl)
     case TARGET_LOGOUT:
       return _build_logout_path ();
     default:
-      error_handle (CODE_ERROR, 0, "In repository, unexpected target while building path, this code block must never get executed");
+      assert(0);
       break;
     }
 }
@@ -175,9 +164,9 @@ _get (string url, long *http_code)
       /* Check for errors */
       if (res != CURLE_OK)
         {
-          errnum = errno;
-          err_msg = string_createf ("Unable to perform a request to the server \"%s\"", curl_easy_strerror (res));
-          error_handle (SERVER_ERROR, errnum, err_msg.s);
+          error (EXIT_FAILURE, errno,
+                 _ ("unable to perform a request to the server: %s"),
+                 curl_easy_strerror (res));
         }
       curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, http_code);
 
@@ -229,9 +218,9 @@ _delete (string url, long *http_code, string data)
       /* Check for errors */
       if (res != CURLE_OK)
         {
-          errnum = errno;
-          err_msg = string_createf ("Unable to perform a request to the server \"%s\"", curl_easy_strerror (res));
-          error_handle (SERVER_ERROR, errnum, err_msg.s);
+          error (EXIT_FAILURE, errno,
+                 _ ("unable to perform a request to the server: %s"),
+                 curl_easy_strerror (res));
         }
       curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, http_code);
 
@@ -282,9 +271,9 @@ _post (string url, long *http_code, string data)
       /* Check for errors */
       if (res != CURLE_OK)
         {
-          errnum = errno;
-          err_msg = string_createf ("Unable to perform a request to the server \"%s\"", curl_easy_strerror (res));
-          error_handle (SERVER_ERROR, errnum, err_msg.s);
+          error (EXIT_FAILURE, errno,
+                 _ ("unable to perform a request to the server: %s"),
+                 curl_easy_strerror (res));
         }
       curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, http_code);
 

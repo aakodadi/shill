@@ -1,17 +1,21 @@
 #include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "argument/argument.h"
-#include "configuration/configuration.h"
-#include "command/command.h"
+#include "system.h"
+#include "progname.h"
+#include "argument.h"
+#include "configuration.h"
+#include "command.h"
 
 int
 main (int argc, char** argv)
 {
+
+  set_program_name (argv[0]);
+
   /*
    * Default values.
    */
-  arguments.verbose = 0;
   arguments.config = NULL;
   arguments.commande = NULL;
   arguments.username = NULL;
@@ -21,7 +25,7 @@ main (int argc, char** argv)
    * Parse our arguments; every option seen by parse_opt will be
    * reflected in arguments.
    */
-  argp_parse (&argp, argc, argv, 0, 0, &arguments);
+  argument_parse (argc, argv);
   configuration_initialize ();
   configuration_parse ();
 

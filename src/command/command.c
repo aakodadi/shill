@@ -1,13 +1,3 @@
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
-#include <stdlib.h>
-#include "../service/service.h"
-#include "../argument/argument.h"
-#include "../configuration/configuration.h"
-#include "../error/error.h"
-#include "../model/user.h"
-
 #include "command.h"
 
 void
@@ -32,7 +22,7 @@ commande_execute ()
       _command_configure ();
       break;
     default:
-      error_handle (CODE_ERROR, 0, "Command unimplemented yet");
+      assert(0);
     }
 }
 
@@ -65,7 +55,8 @@ _command_get_form_argument ()
     }
   else
     {
-      error_handle (CODE_ERROR, 0, "Unexpected argument");
+        error (EXIT_FAILURE, errno,
+               _("unrecognized command: %s"), arguments.commande);
     }
 }
 

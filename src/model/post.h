@@ -10,9 +10,12 @@
 #ifndef POST_H
 #define POST_H
 
-#include "timestamp.h"
-#include "../type/string.h"
+#include <config.h>
+#include "system.h"
+#include "string_type.h"
 #include "user.h"
+#include "timestamp.h"
+#include <jansson.h>
 
 
 #ifdef __cplusplus

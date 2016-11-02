@@ -8,8 +8,11 @@
 #ifndef USER_H
 #define USER_H
 
+#include <config.h>
+#include "system.h"
 #include "timestamp.h"
-#include "../type/string.h"
+#include "string_type.h"
+#include <jansson.h>
 
 
 #ifdef __cplusplus

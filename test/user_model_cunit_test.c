@@ -9,9 +9,10 @@
 #include <stdlib.h>
 #include <CUnit/Basic.h>
 
+#include <config.h>
 #include <jansson.h>
-#include "../src/type/string.h"
-#include "../src/model/user.h"
+#include "string_type.h"
+#include "user.h"
 
 /*
  * CUnit Test Suite

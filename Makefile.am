@@ -21,20 +21,38 @@
 # Find gnulib headers.
 ACLOCAL_AMFLAGS = -I m4
 
-AM_CPPFLAGS = -Ilib -I$(top_srcdir)/lib -Isrc -I$(top_srcdir)/src
+AM_CPPFLAGS = \
+  -Ilib -I$(top_srcdir)/lib \
+  -Isrc -I$(top_srcdir)/src \
+  -Iargument -I$(top_srcdir)/src/argument \
+  -Icommand -I$(top_srcdir)/src/command \
+  -Iconfiguration -I$(top_srcdir)/src/configuration \
+  -Iservice -I$(top_srcdir)/src/service \
+  -Itype -I$(top_srcdir)/src/type \
+  -Imodel -I$(top_srcdir)/src/model \
+  @CUNIT_CFLAGS@ \
+  @CURL_CFLAGS@ \
+  @JANSSON_CFLAGS@
+
+LDADD = \
+  $(LIBINTL) \
+  $(top_builddir)/lib/lib$(PACKAGE).a \
+  @CUNIT_LIBS@ \
+  @CURL_LIBS@ \
+  @JANSSON_LIBS@
 
 # Additional files to distribute.
 EXTRA_DIST = \
   README \
-	README.md \
-	README-dev \
-	INSTALL \
-	AUTHORS \
-	COPYING \
-	NEWS \
-	ChangeLog.O \
-	m4/gnulib-cache.m4 \
-	man/shill.x
+  README.md \
+  README-dev \
+  INSTALL \
+  AUTHORS \
+  COPYING \
+  NEWS \
+  ChangeLog.O \
+  m4/gnulib-cache.m4 \
+  man/shill.x
 
 # Subdirectories to descend into.
 SUBDIRS = po lib
@@ -50,10 +68,8 @@ MODULES_SOURCES = \
   src/service/service.h \
   src/service/repository.c \
   src/service/repository.h \
-  src/error/error.c \
-  src/error/error.h \
-  src/type/string.c \
-  src/type/string.h \
+  src/type/string_type.c \
+  src/type/string_type.h \
   src/model/timestamp.h \
   src/model/user.c \
   src/model/user.h \
@@ -66,16 +82,8 @@ MODULES_SOURCES = \
 bin_PROGRAMS = shill
 shill_SOURCES = \
   src/main.c \
+  src/system.h \
   $(MODULES_SOURCES)
-
-shill_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@
-
-shill_LDADD = \
-	$(LIBINTL) $(top_builddir)/lib/lib$(PACKAGE).a \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@
 
 localedir = $(datadir)/locale
 DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
@@ -115,78 +123,33 @@ check_PROGRAMS = \
 
 string_type_cunit_test_SOURCES = \
   test/string_type_cunit_test.c \
+  src/system.h \
   $(MODULES_SOURCES)
 
 configuration_cunit_test_SOURCES = \
   test/configuration_cunit_test.c \
+  src/system.h \
   $(MODULES_SOURCES)
 
 repository_cunit_test_SOURCES = \
   test/repository_cunit_test.c \
+  src/system.h \
   $(MODULES_SOURCES)
 
 user_model_cunit_test_SOURCES = \
   test/user_model_cunit_test.c \
+  src/system.h \
   $(MODULES_SOURCES)
 
 post_model_cunit_test_SOURCES = \
   test/post_model_cunit_test.c \
+  src/system.h \
   $(MODULES_SOURCES)
 
 post_collection_model_cunit_test_SOURCES = \
   test/post_collection_model_cunit_test.c \
+  src/system.h \
   $(MODULES_SOURCES)
-
-string_type_cunit_test_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@ \
-  @CUNIT_CFLAGS@
-configuration_cunit_test_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@ \
-  @CUNIT_CFLAGS@
-repository_cunit_test_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@ \
-  @CUNIT_CFLAGS@
-post_model_cunit_test_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@ \
-  @CUNIT_CFLAGS@
-user_model_cunit_test_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@ \
-  @CUNIT_CFLAGS@
-post_collection_model_cunit_test_CFLAGS = \
-  @CURL_CFLAGS@ \
-  @JANSSON_CFLAGS@ \
-  @CUNIT_CFLAGS@
-
-string_type_cunit_test_LDADD = \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@ \
-  @CUNIT_LIBS@
-configuration_cunit_test_LDADD = \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@ \
-  @CUNIT_LIBS@
-repository_cunit_test_LDADD = \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@ \
-  @CUNIT_LIBS@
-post_model_cunit_test_LDADD = \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@ \
-  @CUNIT_LIBS@
-user_model_cunit_test_LDADD = \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@ \
-  @CUNIT_LIBS@
-post_collection_model_cunit_test_LDADD = \
-  @CURL_LIBS@ \
-  @JANSSON_LIBS@ \
-  @CUNIT_LIBS@
-
 
 
 # Verify that all source files using _() are listed in po/POTFILES.in.

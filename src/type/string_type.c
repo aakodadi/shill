@@ -1,21 +1,12 @@
 #include <config.h>
-#include <string.h>
-#include <assert.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <errno.h>
 #include <termios.h>
-#include "../error/error.h"
 
-#include "string.h"
+#include "string_type.h"
 
 string
 string_create (const char* source)
 {
   unsigned long len;
-  int errnum;
   string destination;
   if (source == NULL)
     {
@@ -30,8 +21,7 @@ string_create (const char* source)
   destination.s = malloc (len + 1);
   if (destination.s == NULL)
     {
-      errnum = errno;
-      error_handle (MEMORY_ERROR, errnum, "Unable to allocate memory for a string");
+      error (EXIT_FAILURE, errno, _ ("unable to allocate memory for a string"));
     }
   strncpy (destination.s, source, len + 1);
   destination.s[destination.len] = '\0';
@@ -42,7 +32,6 @@ string
 string_createf (const char* source, ...)
 {
   unsigned long len;
-  int errnum;
   string destination;
   va_list vl;
   va_start (vl, source);
@@ -51,8 +40,7 @@ string_createf (const char* source, ...)
   destination.s = malloc (len + 1);
   if (destination.s == NULL)
     {
-      errnum = errno;
-      error_handle (MEMORY_ERROR, errnum, "Unable to allocate memory for a string");
+      error (EXIT_FAILURE, errno, _ ("unable to allocate memory for a string"));
     }
   va_start (vl, source);
   vsnprintf (destination.s, len + 1, source, vl);
@@ -65,7 +53,6 @@ string
 string_n_create (const char* source, unsigned long size)
 {
   string destination;
-  int errnum;
   if (source == NULL)
     {
       destination.len = 0;
@@ -77,8 +64,7 @@ string_n_create (const char* source, unsigned long size)
   destination.s = malloc (size + 1);
   if (destination.s == NULL)
     {
-      errnum = errno;
-      error_handle (MEMORY_ERROR, errnum, "Unable to allocate memory for a string");
+      error (EXIT_FAILURE, errno, _ ("unable to allocate memory for a string"));
     }
   strncpy (destination.s, source, size + 1);
   destination.s[destination.len] = '\0';
@@ -100,13 +86,11 @@ string
 string_cat (string s1, string s2)
 {
   string destination;
-  int errnum;
   destination.len = s1.len + s2.len;
   destination.s = malloc (destination.len + 1);
   if (destination.s == NULL)
     {
-      errnum = errno;
-      error_handle (MEMORY_ERROR, errnum, "Unable to allocate memory for a string");
+      error (EXIT_FAILURE, errno, _ ("unable to allocate memory for a string"));
     }
   strncpy (destination.s, s1.s, s1.len + 1);
   strncat (destination.s, s2.s, s2.len + 1);
@@ -148,13 +132,11 @@ string
 string_from_unsigned_long (unsigned long n)
 {
   unsigned long len = snprintf (NULL, 0, "%lu", n);
-  int errnum;
   string destination;
   destination.s = malloc (len + 1);
   if (destination.s == NULL)
     {
-      errnum = errno;
-      error_handle (MEMORY_ERROR, errnum, "Unable to allocate memory for a string");
+      error (EXIT_FAILURE, errno, _ ("unable to allocate memory for a string"));
     }
   snprintf (destination.s, len + 1, "%lu", n);
   destination.len = len;
@@ -196,7 +178,6 @@ string
 string_getpass (unsigned long max_size)
 {
   struct termios old, new;
-  int errnum;
   string destination = string_create ("");
   char c[STRING_CHUNK_SIZE];
   string tmp;
@@ -204,17 +185,15 @@ string_getpass (unsigned long max_size)
           STRING_CHUNK_SIZE : max_size;
   if (tcgetattr (STDIN_FILENO, &old) != 0)
     {
-      errnum = errno;
-      error_handle (IO_ERROR, errnum, "Unable to disable echoing while"
-                    " reading a password");
+      error (EXIT_FAILURE, errno, _ ("Unable to disable echoing while \
+reading a password"));
     }
   new = old;
   new.c_lflag &= ~ECHO;
   if (tcsetattr (STDIN_FILENO, TCSAFLUSH, &new) != 0)
     {
-      errnum = errno;
-      error_handle (IO_ERROR, errnum, "Unable to disable echoing while"
-                    " reading a password");
+      error (EXIT_FAILURE, errno, _ ("Unable to disable echoing while \
+reading a password"));
     }
   while (fgets (c, size, stdin))
     {
