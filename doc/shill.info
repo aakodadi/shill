@@ -1,7 +1,7 @@
 This is shill.info, produced by makeinfo version 6.1 from shill.texi.
 
-This manual is for GNU Shill (version 0.01-dirty, 2 November 2016),
-which is a command line social network.
+This manual is for GNU Shill (version 0.01.1-5e7a-dirty, 2 November
+2016), which is a command line social network.
 
    Copyright (C) 1992, 1993, 1996, 2002, 2005-2014 Free Software
 Foundation, Inc.
@@ -23,8 +23,8 @@ File: shill.info,  Node: Top,  Next: Overview,  Up: (dir)
 GNU Shill
 *********
 
-This manual is for GNU Shill (version 0.01-dirty, 2 November 2016),
-which is a command line social network.
+This manual is for GNU Shill (version 0.01.1-5e7a-dirty, 2 November
+2016), which is a command line social network.
 
 * Menu:
 
@@ -745,12 +745,12 @@ Concept index
 
 
 Tag Table:
-Node: Top809
-Node: Overview1318
-Node: Sample output4494
-Node: Invoking hello4882
-Node: Reporting bugs6066
-Node: GNU Free Documentation License7329
-Node: Concept index32484
+Node: Top816
+Node: Overview1332
+Node: Sample output4508
+Node: Invoking hello4896
+Node: Reporting bugs6080
+Node: GNU Free Documentation License7343
+Node: Concept index32498
 
 End Tag Table

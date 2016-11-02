@@ -93,6 +93,7 @@ AM_GNU_GETTEXT([external])
 
 dnl Put automake generated files results here
 AC_CONFIG_FILES([Makefile
-           po/Makefile.in])
+           po/Makefile.in
+           lib/Makefile])
 
 AC_OUTPUT

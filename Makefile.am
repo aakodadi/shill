@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Find gnulib headers.
-ACLOCAL_AMFLAGS = -I m4 --install
+ACLOCAL_AMFLAGS = -I m4
 
 AM_CPPFLAGS = -Ilib -I$(top_srcdir)/lib -Isrc -I$(top_srcdir)/src
 
@@ -33,7 +33,7 @@ EXTRA_DIST = \
 	contrib/evolution.txt
 
 # Subdirectories to descend into.
-SUBDIRS = po
+SUBDIRS = po lib
 
 MODULES_SOURCES = \
   src/argument/argument.c \
@@ -236,7 +236,6 @@ wwwdoc:
 	ls -ltu $(www_target)/html_node | tail  # $VCS rm -f obsolete files
 # followed by $VCS add of new files and cvs commit.
 
-include $(top_srcdir)/lib/local.mk
 include $(top_srcdir)/doc/local.mk
 
 dist-hook: gen-ChangeLog

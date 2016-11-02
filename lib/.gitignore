@@ -77,3 +77,4 @@
 /xmalloc.c
 /xstrndup.c
 /xstrndup.h
+/Makefile.am
