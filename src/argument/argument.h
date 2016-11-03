@@ -28,15 +28,8 @@ extern "C"
 #include "system.h"
 #include "progname.h"
 
-#define ARGUMENT_BASE_URL -1
-#define ARGUMENT_USAGE -2
-
-  /* Program documentation. */
-  static char doc[] =
-          "\nInteract with people right form your terminal\n";
-
-  /* A description of the arguments we accept. */
-  static char args_doc[] = "<command>";
+#define ARGUMENT_BASE_URL 0
+#define ARGUMENT_USAGE 1
 
   static const struct option longopts[] = {
     {"config-file", required_argument, NULL, 'c'},

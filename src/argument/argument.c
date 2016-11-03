@@ -4,7 +4,6 @@ int
 argument_parse (int argc, char** argv)
 {
   int optc;
-  int lose = 0;
   while ((optc = getopt_long (argc, argv, "c:u:htv", longopts, NULL)) != -1)
     {
       switch (optc)
@@ -34,9 +33,27 @@ argument_parse (int argc, char** argv)
           arguments.base_url = optarg;
           break;
         default:
-          lose = 1;
           break;
         }
+    }
+
+  if (optind + 1 == argc)
+    {
+      arguments.commande = argv[optind];
+    }
+  else if (optind == argc)
+    {
+      printf (_ ("%s: too few arguments: missing command argument\n"),
+              program_name);
+      argument_print_usage ();
+      exit (EXIT_FAILURE);
+    }
+  else
+    {
+      printf (_ ("%s: too many arguments\n"),
+              program_name);
+      argument_print_usage ();
+      exit (EXIT_FAILURE);
     }
 }
 
@@ -98,9 +115,9 @@ argument_print_usage ()
   /* TRANSLATORS: --usage output 1 (synopsis)
      no-wrap */
   printf (_ ("\
-Usage: %s [-v?V] [-c FILE] [-u USERNAME] [--verbose] [--base-url=BASE-URL]\n\
+Usage: %s [-v] [-c FILE] [-u USERNAME] [--verbose] [--base-url=BASE-URL]\n\
           [--config=FILE] [--username=USERNAME] [--help] [--usage]\n\
-          [--version] <command>\n"), program_name);
+          [--version] <COMMAND>\n"), program_name);
 
 }
 
