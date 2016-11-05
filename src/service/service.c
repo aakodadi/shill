@@ -8,6 +8,11 @@ service_get_posts ()
   post_collection result;
   raw_result = repository_get (TARGET_POSTS, &http_code);
 
+  if (http_code == 401)
+    {
+      error (EXIT_FAILURE, 0, _ ("unauthorized to access posts"));
+    }
+
   post_collection_initialize (&result);
 
   result = post_collection_deserialize (raw_result);
@@ -38,6 +43,11 @@ service_post (post p)
   string raw_result;
   post result;
 
+  if (http_code == 401)
+    {
+      error (EXIT_FAILURE, 0, _ ("unauthorized to post"));
+    }
+
   post_data = post_serialize (p);
 
   raw_result = repository_post (TARGET_POSTS, &http_code, post_data);
@@ -60,6 +70,12 @@ service_register (user u)
 
   raw_result = repository_post (TARGET_REGISTER, &http_code, post_data);
   string_destroy (&post_data);
+  
+  if (http_code == 422)
+    {
+      error (EXIT_FAILURE, 0, _ ("invalid user information"));
+      // TODO: create a error model with parser and print the error here
+    }
 
   result = user_deserialize (raw_result);
 
@@ -78,6 +94,11 @@ service_login (user u)
 
   raw_result = repository_post (TARGET_LOGIN, &http_code, post_data);
   string_destroy (&post_data);
+  
+  if (http_code == 401 || http_code == 422)
+    {
+      error (EXIT_FAILURE, 0, _ ("invalid login information"));
+    }
 
   user_initialize (&result);
   result = user_deserialize (raw_result);

@@ -67,14 +67,14 @@ PKG_CHECK_MODULES([JANSSON], [jansson])
 PKG_CHECK_MODULES([CUNIT], [cunit])
 
 dnl Checks for header files.
-AC_CHECK_HEADERS([stddef.h stdlib.h string.h termios.h unistd.h])
+dnl AC_CHECK_HEADERS([stddef.h stdlib.h string.h termios.h unistd.h])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-AC_TYPE_SIZE_T
+dnl AC_TYPE_SIZE_T
 
 dnl Checks for library functions.
-AC_FUNC_MALLOC
-AC_CHECK_FUNCS([strerror])
+dnl AC_FUNC_MALLOC
+dnl AC_CHECK_FUNCS([strerror])
 
 dnl GNU help2man creates man pages from --help output; in many cases, this
 dnl is sufficient, and obviates the need to maintain man pages separately.
