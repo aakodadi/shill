@@ -120,6 +120,7 @@ _command_login ()
 
   printf ("Password: ");
   u.password = string_getpass (72);
+  puts("");
 
   result = service_login (u);
   user_destroy (&u);
@@ -140,8 +141,10 @@ _command_register ()
   u.name = string_gets (50);
   printf ("Password: ");
   u.password = string_getpass (72);
+  puts("");
   printf ("Password confirmation: ");
   u.password_confirmation = string_getpass (72);
+  puts("");
   service_register (u);
   user_destroy (&u);
 }
