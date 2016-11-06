@@ -2,6 +2,14 @@
 
 #define DEFAULT_BASE_URL "http://shilld.herokuapp.com/"
 
+#if defined(_WIN32)
+#define PATH_SEPARATOR "\\"
+#elif defined(__linux__)
+#define PATH_SEPARATOR "/"
+#else
+#error Platform not supported yet
+#endif
+
 void
 configuration_initialize ()
 {
@@ -16,24 +24,33 @@ _configuration_get_file_path ()
   string conf_file_path;
   string home_directory;
   string file_name = string_create (".shill_config.json");
-  string separator = string_create ("/");
+  string separator = string_create (PATH_SEPARATOR);
 
-  if (arguments.config == NULL)
-    {
-      home_directory = string_create (getenv ("HOME"));
-
-      if (home_directory.len == 0)
-        {
-          error (EXIT_FAILURE, errno, _ ("couldn't find home directory"));
-        }
-
-      conf_file_path = string_catd (&home_directory, &separator);
-      conf_file_path = string_catd (&conf_file_path, &file_name);
-    }
-  else
+  if (arguments.config != NULL)
     {
       conf_file_path = string_create (arguments.config);
+      return conf_file_path;
     }
+
+  home_directory = string_create (getenv ("HOME"));
+
+  if (home_directory.len > 0)
+    {
+      conf_file_path = string_catd (&home_directory, &separator);
+      conf_file_path = string_catd (&conf_file_path, &file_name);
+      return conf_file_path;
+    }
+
+  home_directory = string_create (getenv ("USERPROFILE"));
+
+  if (home_directory.len > 0)
+    {
+      conf_file_path = string_catd (&home_directory, &separator);
+      conf_file_path = string_catd (&conf_file_path, &file_name);
+      return conf_file_path;
+    }
+
+  error (EXIT_FAILURE, errno, _ ("couldn't find home directory"));
 }
 
 void
