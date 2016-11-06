@@ -1,4 +1,4 @@
 @set UPDATED 2 November 2016
 @set UPDATED-MONTH November 2016
-@set EDITION 0.01.5-6fea-dirty
-@set VERSION 0.01.5-6fea-dirty
+@set EDITION 0.01.9-3050-dirty
+@set VERSION 0.01.9-3050-dirty

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hello 2.9\n"
 "Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
-"POT-Creation-Date: 2016-11-02 10:10+0000\n"
+"POT-Creation-Date: 2016-11-06 20:15+0000\n"
 "PO-Revision-Date: 2013-10-11 19:33-0400\n"
 "Last-Translator: David Prévot <david@tilapin.org>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -18,6 +18,106 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 1.5\n"
+
+#: src/argument/argument.c:46
+#, c-format
+msgid "%s: too few arguments: missing command argument\n"
+msgstr ""
+
+#: src/argument/argument.c:53
+#, fuzzy, c-format
+msgid "%s: too many arguments\n"
+msgstr "Trop de paramètres.\n"
+
+#. TRANSLATORS: --help output 1 (synopsis)
+#. no-wrap
+#: src/argument/argument.c:65
+#, fuzzy, c-format
+msgid "Usage: %s [OPTION]... <COMMAND>\n"
+msgstr "Utilisation : %s [OPTION]...\n"
+
+#. TRANSLATORS: --help output 2 (brief description)
+#. no-wrap
+#: src/argument/argument.c:70
+msgid "Interact with people right form your terminal.\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 3: options 1/2
+#. no-wrap
+#: src/argument/argument.c:76
+#, fuzzy
+msgid ""
+"  -h, --help               display this help and exit\n"
+"      --usage              display a short usage message and exit\n"
+"  -v, --version            display version information and exit\n"
+msgstr ""
+"  -h, --help          afficher l'aide-mémoire\n"
+"  -v, --version       afficher le nom et la version du logiciel\n"
+
+#. TRANSLATORS: --help output 4: options 2/2
+#. no-wrap
+#: src/argument/argument.c:84
+msgid ""
+"  -c, --config-file=PATH    set configuration file (default ~/.shill_config."
+"json)\n"
+"  -u, --username=USERNAME   set username for login\n"
+"      --base-url=URL        change base-url in configuration\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 5+ (reports)
+#. TRANSLATORS: the placeholder indicates the bug-reporting address
+#. for this application.  Please add _another line_ with the
+#. address for translation bugs.
+#. no-wrap
+#: src/argument/argument.c:96
+#, c-format
+msgid "Report bugs to: %s\n"
+msgstr "Signalez toute anomalie à : %s\n"
+
+#: src/argument/argument.c:99
+#, c-format
+msgid "Report %s bugs to: %s\n"
+msgstr "Signalez les anomalies de %s à : %s\n"
+
+#: src/argument/argument.c:103
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "Page d'accueil de %s : <%s>\n"
+
+#: src/argument/argument.c:105
+#, c-format
+msgid "%s home page: <http://www.gnu.org/software/%s/>\n"
+msgstr "Page d'accueil de %s : <http://www.gnu.org/software/%s/>\n"
+
+#: src/argument/argument.c:108
+msgid "General help using GNU software: <http://www.gnu.org/gethelp/>\n"
+msgstr ""
+"Aide globale sur les logiciels GNU : <http://www.gnu.org/help/gethelp>\n"
+
+#. TRANSLATORS: --usage output 1 (synopsis)
+#. no-wrap
+#: src/argument/argument.c:117
+#, c-format
+msgid ""
+"Usage: %s [-v] [-c FILE] [-u USERNAME] [--verbose] [--base-url=BASE-URL]\n"
+"          [--config=FILE] [--username=USERNAME] [--help] [--usage]\n"
+"          [--version] <COMMAND>\n"
+msgstr ""
+
+#: src/argument/argument.c:134
+#, fuzzy, c-format
+msgid ""
+"  Copyright (C) %d Free Software Foundation, Inc.\n"
+"  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"  This is free software: you are free to change and redistribute it.\n"
+"  There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"Copyright © %d Free Software Foundation, Inc.\n"
+"Licence GPLv3+ : GNU GPL version 3 ou ultérieure <http://gnuorg/licenses/gpl."
+"html>\n"
+"Logiciel libre : vous êtes libre de le modifier ou de le redistribuer.\n"
+"Il n'y a AUCUNE GARANTIE, dans les limites permises par la loi.\n"
 
 #: lib/error.c:188
 msgid "Unknown system error"
@@ -129,18 +229,8 @@ msgstr "mémoire épuisée"
 #~ msgid "conversion to a multibyte string failed"
 #~ msgstr "%s : échec de conversion en chaîne multioctet\n"
 
-#~ msgid "Usage: %s [OPTION]...\n"
-#~ msgstr "Utilisation : %s [OPTION]...\n"
-
 #~ msgid "Print a friendly, customizable greeting.\n"
 #~ msgstr "Afficher un message de salutations amical et paramétrable.\n"
-
-#~ msgid ""
-#~ "  -h, --help          display this help and exit\n"
-#~ "  -v, --version       display version information and exit\n"
-#~ msgstr ""
-#~ "  -h, --help          afficher l'aide-mémoire\n"
-#~ "  -v, --version       afficher le nom et la version du logiciel\n"
 
 #, fuzzy
 #~ msgid ""
@@ -150,35 +240,6 @@ msgstr "mémoire épuisée"
 #~ "  -t, --traditional       utiliser les salutations traditionnelles\n"
 #~ "  -n, --next-generation   utiliser les nouvelles salutations\n"
 #~ "  -g, --greeting=TEXTE    utiliser le TEXTE comme message de salutations\n"
-
-#~ msgid "Report bugs to: %s\n"
-#~ msgstr "Signalez toute anomalie à : %s\n"
-
-#~ msgid "Report %s bugs to: %s\n"
-#~ msgstr "Signalez les anomalies de %s à : %s\n"
-
-#~ msgid "%s home page: <%s>\n"
-#~ msgstr "Page d'accueil de %s : <%s>\n"
-
-#~ msgid "%s home page: <http://www.gnu.org/software/%s/>\n"
-#~ msgstr "Page d'accueil de %s : <http://www.gnu.org/software/%s/>\n"
-
-#~ msgid "General help using GNU software: <http://www.gnu.org/gethelp/>\n"
-#~ msgstr ""
-#~ "Aide globale sur les logiciels GNU : <http://www.gnu.org/help/gethelp>\n"
-
-#~ msgid ""
-#~ "Copyright (C) %d Free Software Foundation, Inc.\n"
-#~ "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
-#~ "html>\n"
-#~ "This is free software: you are free to change and redistribute it.\n"
-#~ "There is NO WARRANTY, to the extent permitted by law.\n"
-#~ msgstr ""
-#~ "Copyright © %d Free Software Foundation, Inc.\n"
-#~ "Licence GPLv3+ : GNU GPL version 3 ou ultérieure <http://gnuorg/licenses/"
-#~ "gpl.html>\n"
-#~ "Logiciel libre : vous êtes libre de le modifier ou de le redistribuer.\n"
-#~ "Il n'y a AUCUNE GARANTIE, dans les limites permises par la loi.\n"
 
 #~ msgid "Try `%s --help' for more information.\n"
 #~ msgstr ""
@@ -195,9 +256,6 @@ msgstr "mémoire épuisée"
 
 #~ msgid "%s: illegal option -- %c\n"
 #~ msgstr "%s: l'option -- %c est illégale.\n"
-
-#~ msgid "Too many arguments\n"
-#~ msgstr "Trop de paramètres.\n"
 
 #~ msgid "GNU hello, THE greeting printing program.\n"
 #~ msgstr "GNU hello, LE programme de salutations et de bienvenue.\n"

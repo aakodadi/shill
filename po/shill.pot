@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GNU shill 0.01-dirty\n"
+"Project-Id-Version: GNU shill 0.01.9-3050-dirty\n"
 "Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
-"POT-Creation-Date: 2016-11-02 10:10+0000\n"
+"POT-Creation-Date: 2016-11-06 20:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,97 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/argument/argument.c:46
+#, c-format
+msgid "%s: too few arguments: missing command argument\n"
+msgstr ""
+
+#: src/argument/argument.c:53
+#, c-format
+msgid "%s: too many arguments\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 1 (synopsis)
+#. no-wrap
+#: src/argument/argument.c:65
+#, c-format
+msgid "Usage: %s [OPTION]... <COMMAND>\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 2 (brief description)
+#. no-wrap
+#: src/argument/argument.c:70
+msgid "Interact with people right form your terminal.\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 3: options 1/2
+#. no-wrap
+#: src/argument/argument.c:76
+msgid ""
+"  -h, --help               display this help and exit\n"
+"      --usage              display a short usage message and exit\n"
+"  -v, --version            display version information and exit\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 4: options 2/2
+#. no-wrap
+#: src/argument/argument.c:84
+msgid ""
+"  -c, --config-file=PATH    set configuration file (default ~/.shill_config."
+"json)\n"
+"  -u, --username=USERNAME   set username for login\n"
+"      --base-url=URL        change base-url in configuration\n"
+msgstr ""
+
+#. TRANSLATORS: --help output 5+ (reports)
+#. TRANSLATORS: the placeholder indicates the bug-reporting address
+#. for this application.  Please add _another line_ with the
+#. address for translation bugs.
+#. no-wrap
+#: src/argument/argument.c:96
+#, c-format
+msgid "Report bugs to: %s\n"
+msgstr ""
+
+#: src/argument/argument.c:99
+#, c-format
+msgid "Report %s bugs to: %s\n"
+msgstr ""
+
+#: src/argument/argument.c:103
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr ""
+
+#: src/argument/argument.c:105
+#, c-format
+msgid "%s home page: <http://www.gnu.org/software/%s/>\n"
+msgstr ""
+
+#: src/argument/argument.c:108
+msgid "General help using GNU software: <http://www.gnu.org/gethelp/>\n"
+msgstr ""
+
+#. TRANSLATORS: --usage output 1 (synopsis)
+#. no-wrap
+#: src/argument/argument.c:117
+#, c-format
+msgid ""
+"Usage: %s [-v] [-c FILE] [-u USERNAME] [--verbose] [--base-url=BASE-URL]\n"
+"          [--config=FILE] [--username=USERNAME] [--help] [--usage]\n"
+"          [--version] <COMMAND>\n"
+msgstr ""
+
+#: src/argument/argument.c:134
+#, c-format
+msgid ""
+"  Copyright (C) %d Free Software Foundation, Inc.\n"
+"  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"  This is free software: you are free to change and redistribute it.\n"
+"  There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
 
 #: lib/error.c:188
 msgid "Unknown system error"

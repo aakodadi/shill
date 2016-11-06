@@ -52,7 +52,9 @@ EXTRA_DIST = \
   NEWS \
   ChangeLog.O \
   m4/gnulib-cache.m4 \
-  man/shill.x
+  man/shill.x \
+  test/valid_config.json \
+  test/valid_config_without_user.json
 
 # Subdirectories to descend into.
 SUBDIRS = po lib
