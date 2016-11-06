@@ -22,7 +22,7 @@ main (int argc, char** argv)
   arguments.base_url = NULL;
 
   /*
-   * Parse our arguments; every option seen by parse_opt will be
+   * Parse our arguments; every option seen by argument_parse will be
    * reflected in arguments.
    */
   argument_parse (argc, argv);
