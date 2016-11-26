@@ -2,10 +2,6 @@
     "configuration": {
         "server": {
             "base-url": "http://test.valid.com:3000/"
-        },
-        "user": {
-            "username": "testusername",
-            "auth_token": "YjfTVTJvovLGq1Knix5"
         }
     }
 }

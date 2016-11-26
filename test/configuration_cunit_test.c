@@ -45,11 +45,14 @@ void
 test_configuration_parse_with_valid_file_without_user ()
 {
   arguments.config = "test/valid_config_without_user.json";
+  configuration_initialize ();
   configuration_parse ();
   CU_ASSERT_STRING_EQUAL (configuration.base_url.s,
                           "http://test.valid.com:3000/");
   CU_ASSERT_EQUAL (configuration.u.username.len, -1L);
   CU_ASSERT_EQUAL (configuration.u.auth_token.len, -1L);
+  CU_ASSERT_PTR_NULL (configuration.u.username.s);
+  CU_ASSERT_PTR_NULL (configuration.u.auth_token.s);
 }
 
 int
