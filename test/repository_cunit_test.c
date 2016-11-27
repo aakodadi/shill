@@ -143,10 +143,10 @@ test_repository__build_url ()
 void
 test_repository__get ()
 {
-  const char* expected = "This file is part of testing procedure it is "
-  "used to test the repository module by retrieving its content form github";
+  const char* expected = "This file is part of testing procedure.\n\
+ It is used to test the repository module by retrieving this content form github";
   long http_code;
-  string url = string_create ("https://raw.githubusercontent.com/akodakim/shill/master/tests/test_repository_sample_content");
+  string url = string_create ("https://raw.githubusercontent.com/akodakim/shill/master/test/test_repository_sample_content");
   string result = _get (url, &http_code);
   CU_ASSERT_STRING_EQUAL (result.s, expected);
   CU_ASSERT_EQUAL (http_code, 200);
