@@ -27,7 +27,14 @@ init_suite (void)
 int
 clean_suite (void)
 {
-  return 0;
+  if(CU_get_number_of_failures () == 0)
+    {
+      return 0;
+    }
+  else
+    {
+      exit (EXIT_FAILURE);
+    }
 }
 
 int

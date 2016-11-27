@@ -29,7 +29,14 @@ init_suite (void)
 int
 clean_suite (void)
 {
-  return 0;
+  if(CU_get_number_of_failures () == 0)
+    {
+      return 0;
+    }
+  else
+    {
+      exit (EXIT_FAILURE);
+    }
 }
 
 string
@@ -136,7 +143,8 @@ test_repository__build_url ()
 void
 test_repository__get ()
 {
-  const char* expected = "This file is part of testing procedure it is used to test the repository by getting it form github";
+  const char* expected = "This file is part of testing procedure it is "
+  "used to test the repository module by retrieving its content form github";
   long http_code;
   string url = string_create ("https://raw.githubusercontent.com/akodakim/shill/master/tests/test_repository_sample_content");
   string result = _get (url, &http_code);

@@ -30,7 +30,7 @@ shill
 # Test files
 *test.trs
 *test.log
-*test
+^test*
 test-suite.log
 
 # Netbeans files
