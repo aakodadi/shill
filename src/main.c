@@ -11,6 +11,10 @@ int
 main (int argc, char** argv)
 {
 
+  setlocale (LC_ALL, "");
+  bindtextdomain (PACKAGE, LOCALEDIR);
+  textdomain (PACKAGE);
+
   set_program_name (argv[0]);
 
   /*
@@ -35,8 +39,8 @@ main (int argc, char** argv)
    */
   if (configuration.base_url.s == NULL)
     {
-      printf ("Unable to retrieve configuration.\n");
-      printf ("Trying to create a new one...\n");
+      printf (_ ("Unable to retrieve configuration.\n"));
+      printf (_ ("Trying to create a new one...\n"));
       configuration_create ();
       configuration_parse ();
     }

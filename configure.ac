@@ -88,7 +88,7 @@ AS_IF([test $cross_compiling = no], [
 ])
 
 dnl i18n support from GNU gettext.
-AM_GNU_GETTEXT_VERSION([0.19])
+AM_GNU_GETTEXT_VERSION([0.19.7])
 AM_GNU_GETTEXT([external])
 
 dnl Put automake generated files results here

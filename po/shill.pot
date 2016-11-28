@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GNU shill 0.01.9-3050-dirty\n"
-"Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
-"POT-Creation-Date: 2016-11-06 20:15+0000\n"
+"Project-Id-Version: GNU shill 0.01.14-3b93-dirty\n"
+"Report-Msgid-Bugs-To: akodadi.abdelhakim@gmail.com\n"
+"POT-Creation-Date: 2016-11-28 01:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,147 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/main.c:42
+#, c-format
+msgid "Unable to retrieve configuration.\n"
+msgstr ""
+
+#: src/main.c:43
+#, c-format
+msgid "Trying to create a new one...\n"
+msgstr ""
+
+#: src/type/string_type.c:24 src/type/string_type.c:43
+#: src/type/string_type.c:67 src/type/string_type.c:93
+#: src/type/string_type.c:139
+#, c-format
+msgid "unable to allocate memory for a string"
+msgstr ""
+
+#: src/type/string_type.c:188 src/type/string_type.c:195
+#, c-format
+msgid "Unable to disable echoing while reading a password"
+msgstr ""
+
+#: src/service/repository.c:168 src/service/repository.c:222
+#: src/service/repository.c:275
+#, c-format
+msgid "unable to perform a request to the server: %s"
+msgstr ""
+
+#: src/service/service.c:13
+#, c-format
+msgid "unauthorized to access posts"
+msgstr ""
+
+#: src/service/service.c:48
+#, c-format
+msgid "unauthorized to post"
+msgstr ""
+
+#: src/service/service.c:76
+#, c-format
+msgid "invalid user information"
+msgstr ""
+
+#: src/service/service.c:100
+#, c-format
+msgid "invalid login information"
+msgstr ""
+
+#: src/model/user.c:71 src/model/post.c:40 src/model/post_collection.c:42
+#, c-format
+msgid "%d:%d: cannot parse json content: %s"
+msgstr ""
+
+#: src/model/user.c:81 src/model/post.c:50
+#, c-format
+msgid ""
+"cannot parse json content: expected root element to be a json object: %s"
+msgstr ""
+
+#: src/model/post_collection.c:52
+#, c-format
+msgid "cannot parse json content: expected root element to be a json array: %s"
+msgstr ""
+
+#: src/model/post_collection.c:68
+#, c-format
+msgid ""
+"cannot parse json content: expected elements in root to be json objects: %s"
+msgstr ""
+
+#: src/configuration/configuration.c:53
+#, c-format
+msgid "couldn't find home directory"
+msgstr ""
+
+#: src/configuration/configuration.c:84 src/configuration/configuration.c:190
+#: src/configuration/configuration.c:245
+#, c-format
+msgid "cannot open configuration file: %s"
+msgstr ""
+
+#: src/configuration/configuration.c:95 src/configuration/configuration.c:200
+#: src/configuration/configuration.c:261 src/configuration/configuration.c:316
+#, c-format
+msgid "cannot close configuration file: %s"
+msgstr ""
+
+#: src/configuration/configuration.c:100 src/configuration/configuration.c:205
+#, c-format
+msgid "%s:%d:%d: cannot parse json file: %s"
+msgstr ""
+
+#: src/configuration/configuration.c:110 src/configuration/configuration.c:215
+#, c-format
+msgid "%s: cannot parse json file: expected root element to be a json object"
+msgstr ""
+
+#: src/configuration/configuration.c:121 src/configuration/configuration.c:226
+#, c-format
+msgid ""
+"%s: cannot parse json file: expected \"configuration\" element to be a json "
+"object"
+msgstr ""
+
+#: src/configuration/configuration.c:134
+#, c-format
+msgid ""
+"%s: cannot parse json file: expected \"server\" element to be a json object"
+msgstr ""
+
+#: src/configuration/configuration.c:145
+#, c-format
+msgid ""
+"%s: cannot parse json file: expected \"base-url\" element to be a json string"
+msgstr ""
+
+#: src/configuration/configuration.c:253 src/configuration/configuration.c:308
+#, c-format
+msgid "cannot write into configuration file: %s"
+msgstr ""
+
+#: src/configuration/configuration.c:300
+#, c-format
+msgid "cannot create configuration file: %s"
+msgstr ""
+
+#: src/configuration/configuration.c:328
+#, c-format
+msgid "login required: cannot find a valid username in configuration"
+msgstr ""
+
+#: src/configuration/configuration.c:334
+#, c-format
+msgid "login required: cannot find a valid auth_token in configuration"
+msgstr ""
+
+#: src/command/command.c:59
+#, c-format
+msgid "unrecognized command: %s"
+msgstr ""
 
 #: src/argument/argument.c:46
 #, c-format
@@ -106,100 +247,4 @@ msgid ""
 "html>\n"
 "  This is free software: you are free to change and redistribute it.\n"
 "  There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr ""
-
-#: lib/error.c:188
-msgid "Unknown system error"
-msgstr ""
-
-#: lib/getopt.c:547 lib/getopt.c:576
-#, c-format
-msgid "%s: option '%s' is ambiguous; possibilities:"
-msgstr ""
-
-#: lib/getopt.c:624 lib/getopt.c:628
-#, c-format
-msgid "%s: option '--%s' doesn't allow an argument\n"
-msgstr ""
-
-#: lib/getopt.c:637 lib/getopt.c:642
-#, c-format
-msgid "%s: option '%c%s' doesn't allow an argument\n"
-msgstr ""
-
-#: lib/getopt.c:685 lib/getopt.c:704
-#, c-format
-msgid "%s: option '--%s' requires an argument\n"
-msgstr ""
-
-#: lib/getopt.c:742 lib/getopt.c:745
-#, c-format
-msgid "%s: unrecognized option '--%s'\n"
-msgstr ""
-
-#: lib/getopt.c:753 lib/getopt.c:756
-#, c-format
-msgid "%s: unrecognized option '%c%s'\n"
-msgstr ""
-
-#: lib/getopt.c:805 lib/getopt.c:808
-#, c-format
-msgid "%s: invalid option -- '%c'\n"
-msgstr ""
-
-#: lib/getopt.c:861 lib/getopt.c:878 lib/getopt.c:1088 lib/getopt.c:1106
-#, c-format
-msgid "%s: option requires an argument -- '%c'\n"
-msgstr ""
-
-#: lib/getopt.c:934 lib/getopt.c:950
-#, c-format
-msgid "%s: option '-W %s' is ambiguous\n"
-msgstr ""
-
-#: lib/getopt.c:974 lib/getopt.c:992
-#, c-format
-msgid "%s: option '-W %s' doesn't allow an argument\n"
-msgstr ""
-
-#: lib/getopt.c:1013 lib/getopt.c:1031
-#, c-format
-msgid "%s: option '-W %s' requires an argument\n"
-msgstr ""
-
-#: lib/closeout.c:112
-msgid "write error"
-msgstr ""
-
-#. TRANSLATORS:
-#. Get translations for open and closing quotation marks.
-#. The message catalog should translate "`" to a left
-#. quotation mark suitable for the locale, and similarly for
-#. "'".  For example, a French Unicode local should translate
-#. these to U+00AB (LEFT-POINTING DOUBLE ANGLE
-#. QUOTATION MARK), and U+00BB (RIGHT-POINTING DOUBLE ANGLE
-#. QUOTATION MARK), respectively.
-#.
-#. If the catalog has no translation, we will try to
-#. use Unicode U+2018 (LEFT SINGLE QUOTATION MARK) and
-#. Unicode U+2019 (RIGHT SINGLE QUOTATION MARK).  If the
-#. current locale is not Unicode, locale_quoting_style
-#. will quote 'like this', and clocale_quoting_style will
-#. quote "like this".  You should always include translations
-#. for "`" and "'" even if U+2018 and U+2019 are appropriate
-#. for your locale.
-#.
-#. If you don't know what to put here, please see
-#. <http://en.wikipedia.org/wiki/Quotation_marks_in_other_languages>
-#. and use glyphs suitable for your language.
-#: lib/quotearg.c:312
-msgid "`"
-msgstr ""
-
-#: lib/quotearg.c:313
-msgid "'"
-msgstr ""
-
-#: lib/xalloc-die.c:34
-msgid "memory exhausted"
 msgstr ""

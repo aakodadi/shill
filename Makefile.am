@@ -22,6 +22,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
 AM_CPPFLAGS = \
+  -DLOCALEDIR='"$(localedir)"' \
   -Ilib -I$(top_srcdir)/lib \
   -Isrc -I$(top_srcdir)/src \
   -Iargument -I$(top_srcdir)/src/argument \
@@ -57,7 +58,7 @@ EXTRA_DIST = \
   test/valid_config_without_user.json
 
 # Subdirectories to descend into.
-SUBDIRS = po lib
+SUBDIRS = po po lib
 
 MODULES_SOURCES = \
   src/argument/argument.c \

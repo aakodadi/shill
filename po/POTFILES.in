@@ -1,18 +1,11 @@
-# Copyright (C) 2005, 2006, 2014 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
-#
-# List of source files containing translatable strings.
-
-# Package source files.
+# List of source files which contain translatable strings.
 src/main.c
+src/type/string_type.c
+src/service/repository.c
+src/service/service.c
+src/model/user.c
+src/model/post.c
+src/model/post_collection.c
+src/configuration/configuration.c
+src/command/command.c
 src/argument/argument.c
-
-# Gnulib source files.
-lib/error.c
-lib/getopt.c
-lib/closeout.c
-lib/quotearg.c
-lib/xalloc-die.c

@@ -1,58 +1,197 @@
-# Messages français pour GNU concernant hello.
-# Copyright © 2004, 2012, 2013 Free Software Foundation, Inc.
-# This file is distributed under the same license as the hello package.
+# French translations for GNU shill package.
+# Copyright (C) 2016 Free Software Foundation, Inc.
+# This file is distributed under the same license as the GNU shill package.
+# user <akodadi.abdelhakim@gmail.com>, 2016.
 #
-# Michel Robitaille <robitail@IRO.UMontreal.CA>, 2004.
-# David Prévot <david@tilapin.org>, 2012, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: hello 2.9\n"
-"Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
-"POT-Creation-Date: 2016-11-06 20:15+0000\n"
-"PO-Revision-Date: 2013-10-11 19:33-0400\n"
-"Last-Translator: David Prévot <david@tilapin.org>\n"
-"Language-Team: French <traduc@traduc.org>\n"
+"Project-Id-Version: GNU shill 0.01.14-3b93-dirty\n"
+"Report-Msgid-Bugs-To: akodadi.abdelhakim@gmail.com\n"
+"POT-Creation-Date: 2016-11-28 01:08+0000\n"
+"PO-Revision-Date: 2016-11-28 01:16+0000\n"
+"Last-Translator: user <akodadi.abdelhakim@gmail.com>\n"
+"Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 1.5\n"
+
+#: src/main.c:42
+#, c-format
+msgid "Unable to retrieve configuration.\n"
+msgstr "Incapable de récupérer la configuration.\n"
+
+#: src/main.c:43
+#, c-format
+msgid "Trying to create a new one...\n"
+msgstr "Essayant de créer une nouvelle configuration...\n"
+
+#: src/type/string_type.c:24 src/type/string_type.c:43
+#: src/type/string_type.c:67 src/type/string_type.c:93
+#: src/type/string_type.c:139
+#, c-format
+msgid "unable to allocate memory for a string"
+msgstr "Incapable d'allouer de l'espace mémoire pour une chaîne de caractère"
+
+#: src/type/string_type.c:188 src/type/string_type.c:195
+#, c-format
+msgid "Unable to disable echoing while reading a password"
+msgstr "Incapable de désactiver l'écho pour lire un mot de passe"
+
+#: src/service/repository.c:168 src/service/repository.c:222
+#: src/service/repository.c:275
+#, c-format
+msgid "unable to perform a request to the server: %s"
+msgstr "Incapable d'effectuer une requette au serveur: %s"
+
+#: src/service/service.c:13
+#, c-format
+msgid "unauthorized to access posts"
+msgstr "vous n'êtes pas autorisé pour accéder aux postes"
+
+#: src/service/service.c:48
+#, c-format
+msgid "unauthorized to post"
+msgstr "vous n'êtes pas autorisé pour accéder à ce poste"
+
+#: src/service/service.c:76
+#, c-format
+msgid "invalid user information"
+msgstr "Données utilisateur non valides"
+
+#: src/service/service.c:100
+#, c-format
+msgid "invalid login information"
+msgstr "Données utilisateur non valides"
+
+#: src/model/user.c:71 src/model/post.c:40 src/model/post_collection.c:42
+#, c-format
+msgid "%d:%d: cannot parse json content: %s"
+msgstr "%d:%d: Incapable d'analyser du contenu JSON: %s"
+
+#: src/model/user.c:81 src/model/post.c:50
+#, c-format
+msgid ""
+"cannot parse json content: expected root element to be a json object: %s"
+msgstr "Incapable d'analyser du contenu JSON: L'élément racine supposé être un objet JSON: %s"
+
+#: src/model/post_collection.c:52
+#, c-format
+msgid "cannot parse json content: expected root element to be a json array: %s"
+msgstr "Incapable d'analyser du contenu JSON: élément racine supposé être un tableau JSON: %s"
+
+#: src/model/post_collection.c:68
+#, c-format
+msgid ""
+"cannot parse json content: expected elements in root to be json objects: %s"
+msgstr "Incapable d'analyser du contenu JSON: Les éléments de la racine supposés être des objets JSON: %s"
+
+#: src/configuration/configuration.c:53
+#, c-format
+msgid "couldn't find home directory"
+msgstr "Impossible de trouver le répertoire personnel"
+
+#: src/configuration/configuration.c:84 src/configuration/configuration.c:190
+#: src/configuration/configuration.c:245
+#, c-format
+msgid "cannot open configuration file: %s"
+msgstr "Impossible d'ouvrir le fichier de configuration: %s"
+
+#: src/configuration/configuration.c:95 src/configuration/configuration.c:200
+#: src/configuration/configuration.c:261 src/configuration/configuration.c:316
+#, c-format
+msgid "cannot close configuration file: %s"
+msgstr "Impossible de fermer le fichier de configuration: %s"
+
+#: src/configuration/configuration.c:100 src/configuration/configuration.c:205
+#, c-format
+msgid "%s:%d:%d: cannot parse json file: %s"
+msgstr "%s:%d:%d: Incapable d'analyser un fichier JSON: %s"
+
+#: src/configuration/configuration.c:110 src/configuration/configuration.c:215
+#, c-format
+msgid "%s: cannot parse json file: expected root element to be a json object"
+msgstr "%s: Incapable d'analyser un fichier JSON: L'élément racine supposé être un objet JSON"
+
+#: src/configuration/configuration.c:121 src/configuration/configuration.c:226
+#, c-format
+msgid ""
+"%s: cannot parse json file: expected \"configuration\" element to be a json "
+"object"
+msgstr "%s: Incapable d'analyser un fichier JSON: L'élément \"configuration\" supposé être un objet JSON"
+
+#: src/configuration/configuration.c:134
+#, c-format
+msgid ""
+"%s: cannot parse json file: expected \"server\" element to be a json object"
+msgstr "%s: Incapable d'analyser un fichier JSON: L'élément \"server\" supposé être un objet JSON"
+
+#: src/configuration/configuration.c:145
+#, c-format
+msgid ""
+"%s: cannot parse json file: expected \"base-url\" element to be a json string"
+msgstr "%s: Incapable d'analyser un fichier JSON: L'élément \"base-url\" supposé être une chaîne de caractère JSON"
+
+#: src/configuration/configuration.c:253 src/configuration/configuration.c:308
+#, c-format
+msgid "cannot write into configuration file: %s"
+msgstr "Impossible d'écrire dans le fichier de configuration: %s"
+
+#: src/configuration/configuration.c:300
+#, c-format
+msgid "cannot create configuration file: %s"
+msgstr "Incapable de créer le fichier de configuration: %s"
+
+#: src/configuration/configuration.c:328
+#, c-format
+msgid "login required: cannot find a valid username in configuration"
+msgstr "login requis: Impossible de trouver un nom d'utilisateur valide dans la configuration"
+
+#: src/configuration/configuration.c:334
+#, c-format
+msgid "login required: cannot find a valid auth_token in configuration"
+msgstr "login requis: Impossible de trouver un auth_token valide dans la configuration"
+
+#: src/command/command.c:59
+#, c-format
+msgid "unrecognized command: %s"
+msgstr "commande non reconnu: %s"
 
 #: src/argument/argument.c:46
 #, c-format
 msgid "%s: too few arguments: missing command argument\n"
-msgstr ""
+msgstr "%s: trop peu d'arguments: Argument <commande> manquant\n"
 
 #: src/argument/argument.c:53
-#, fuzzy, c-format
+#, c-format
 msgid "%s: too many arguments\n"
-msgstr "Trop de paramètres.\n"
+msgstr "%s: trop d'arguments\n"
 
 #. TRANSLATORS: --help output 1 (synopsis)
 #. no-wrap
 #: src/argument/argument.c:65
-#, fuzzy, c-format
+#, c-format
 msgid "Usage: %s [OPTION]... <COMMAND>\n"
-msgstr "Utilisation : %s [OPTION]...\n"
+msgstr "Utilisation: %s [OPTION]... <COMMANDE>\n"
 
 #. TRANSLATORS: --help output 2 (brief description)
 #. no-wrap
 #: src/argument/argument.c:70
 msgid "Interact with people right form your terminal.\n"
-msgstr ""
+msgstr "Interagissez avec les gens depuis votre terminal.\n"
 
 #. TRANSLATORS: --help output 3: options 1/2
 #. no-wrap
 #: src/argument/argument.c:76
-#, fuzzy
 msgid ""
 "  -h, --help               display this help and exit\n"
 "      --usage              display a short usage message and exit\n"
 "  -v, --version            display version information and exit\n"
 msgstr ""
-"  -h, --help          afficher l'aide-mémoire\n"
-"  -v, --version       afficher le nom et la version du logiciel\n"
+"  -h, --help               afficher l'aide-mémoire\n"
+"      --usage              afficher un court message d'utilisation et quitter\n"
+"  -v, --version            afficher le nom et la version du logiciel\n"
 
 #. TRANSLATORS: --help output 4: options 2/2
 #. no-wrap
@@ -63,6 +202,10 @@ msgid ""
 "  -u, --username=USERNAME   set username for login\n"
 "      --base-url=URL        change base-url in configuration\n"
 msgstr ""
+"  -c, --config-file=PATH    définir le fichier de configuration (par défaut ~/.shill_config."
+"json)\n"
+"  -u, --username=USERNAME   définir le nom d'utilisateur pour le login\n"
+"      --base-url=URL        modifier base-url dans la configuration\n"
 
 #. TRANSLATORS: --help output 5+ (reports)
 #. TRANSLATORS: the placeholder indicates the bug-reporting address
@@ -72,27 +215,26 @@ msgstr ""
 #: src/argument/argument.c:96
 #, c-format
 msgid "Report bugs to: %s\n"
-msgstr "Signalez toute anomalie à : %s\n"
+msgstr "Rapporter toutes anomalies à: %s\n"
 
 #: src/argument/argument.c:99
 #, c-format
 msgid "Report %s bugs to: %s\n"
-msgstr "Signalez les anomalies de %s à : %s\n"
+msgstr "Rapporter toutes anomalies de %s à: %s\n"
 
 #: src/argument/argument.c:103
 #, c-format
 msgid "%s home page: <%s>\n"
-msgstr "Page d'accueil de %s : <%s>\n"
+msgstr "Page d'accueil de %s: <%s>\n"
 
 #: src/argument/argument.c:105
 #, c-format
 msgid "%s home page: <http://www.gnu.org/software/%s/>\n"
-msgstr "Page d'accueil de %s : <http://www.gnu.org/software/%s/>\n"
+msgstr "Page d'accueil de %s: <http://www.gnu.org/software/%s/>\n"
 
 #: src/argument/argument.c:108
 msgid "General help using GNU software: <http://www.gnu.org/gethelp/>\n"
-msgstr ""
-"Aide globale sur les logiciels GNU : <http://www.gnu.org/help/gethelp>\n"
+msgstr "Aide générale à l'utilisation du logiciel GNU: <http://www.gnu.org/gethelp/>\n"
 
 #. TRANSLATORS: --usage output 1 (synopsis)
 #. no-wrap
@@ -105,7 +247,7 @@ msgid ""
 msgstr ""
 
 #: src/argument/argument.c:134
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "  Copyright (C) %d Free Software Foundation, Inc.\n"
 "  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
@@ -113,211 +255,8 @@ msgid ""
 "  This is free software: you are free to change and redistribute it.\n"
 "  There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"Copyright © %d Free Software Foundation, Inc.\n"
-"Licence GPLv3+ : GNU GPL version 3 ou ultérieure <http://gnuorg/licenses/gpl."
+"  Copyright © %d Free Software Foundation, Inc.\n"
+"  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
 "html>\n"
-"Logiciel libre : vous êtes libre de le modifier ou de le redistribuer.\n"
-"Il n'y a AUCUNE GARANTIE, dans les limites permises par la loi.\n"
-
-#: lib/error.c:188
-msgid "Unknown system error"
-msgstr "Erreur système inconnue"
-
-#: lib/getopt.c:547 lib/getopt.c:576
-#, c-format
-msgid "%s: option '%s' is ambiguous; possibilities:"
-msgstr "%s : l'option « %s » est ambiguë ; possibilités :"
-
-#: lib/getopt.c:624 lib/getopt.c:628
-#, c-format
-msgid "%s: option '--%s' doesn't allow an argument\n"
-msgstr "%s : l'option « --%s » n'accepte pas d'argument\n"
-
-#: lib/getopt.c:637 lib/getopt.c:642
-#, c-format
-msgid "%s: option '%c%s' doesn't allow an argument\n"
-msgstr "%s : l'option « %c%s » n'accepte pas d'argument\n"
-
-#: lib/getopt.c:685 lib/getopt.c:704
-#, c-format
-msgid "%s: option '--%s' requires an argument\n"
-msgstr "%s : l'option « --%s » nécessite un argument\n"
-
-#: lib/getopt.c:742 lib/getopt.c:745
-#, c-format
-msgid "%s: unrecognized option '--%s'\n"
-msgstr "%s : option « --%s » non reconnue\n"
-
-#: lib/getopt.c:753 lib/getopt.c:756
-#, c-format
-msgid "%s: unrecognized option '%c%s'\n"
-msgstr "%s : option « %c%s » non reconnue\n"
-
-#: lib/getopt.c:805 lib/getopt.c:808
-#, c-format
-msgid "%s: invalid option -- '%c'\n"
-msgstr "%s : option incorrecte — « %c »\n"
-
-#: lib/getopt.c:861 lib/getopt.c:878 lib/getopt.c:1088 lib/getopt.c:1106
-#, c-format
-msgid "%s: option requires an argument -- '%c'\n"
-msgstr "%s : l'option nécessite un argument — « %c »\n"
-
-#: lib/getopt.c:934 lib/getopt.c:950
-#, c-format
-msgid "%s: option '-W %s' is ambiguous\n"
-msgstr "%s : l'option « -W %s » est ambiguë\n"
-
-#: lib/getopt.c:974 lib/getopt.c:992
-#, c-format
-msgid "%s: option '-W %s' doesn't allow an argument\n"
-msgstr "%s : l'option « -W %s » n'accepte pas d'argument\n"
-
-#: lib/getopt.c:1013 lib/getopt.c:1031
-#, c-format
-msgid "%s: option '-W %s' requires an argument\n"
-msgstr "%s : l'option « -W %s » nécessite un argument\n"
-
-#: lib/closeout.c:112
-msgid "write error"
-msgstr "erreur d'écriture"
-
-#. TRANSLATORS:
-#. Get translations for open and closing quotation marks.
-#. The message catalog should translate "`" to a left
-#. quotation mark suitable for the locale, and similarly for
-#. "'".  For example, a French Unicode local should translate
-#. these to U+00AB (LEFT-POINTING DOUBLE ANGLE
-#. QUOTATION MARK), and U+00BB (RIGHT-POINTING DOUBLE ANGLE
-#. QUOTATION MARK), respectively.
-#.
-#. If the catalog has no translation, we will try to
-#. use Unicode U+2018 (LEFT SINGLE QUOTATION MARK) and
-#. Unicode U+2019 (RIGHT SINGLE QUOTATION MARK).  If the
-#. current locale is not Unicode, locale_quoting_style
-#. will quote 'like this', and clocale_quoting_style will
-#. quote "like this".  You should always include translations
-#. for "`" and "'" even if U+2018 and U+2019 are appropriate
-#. for your locale.
-#.
-#. If you don't know what to put here, please see
-#. <http://en.wikipedia.org/wiki/Quotation_marks_in_other_languages>
-#. and use glyphs suitable for your language.
-#: lib/quotearg.c:312
-msgid "`"
-msgstr "« "
-
-#: lib/quotearg.c:313
-msgid "'"
-msgstr " »"
-
-#: lib/xalloc-die.c:34
-msgid "memory exhausted"
-msgstr "mémoire épuisée"
-
-#~ msgid "Hello, world!"
-#~ msgstr "Bonjour, le monde !"
-
-#~ msgid "hello, world"
-#~ msgstr "bonjour, le monde"
-
-#, fuzzy
-#~ msgid "extra operand"
-#~ msgstr "%s : opérateur supplémentaire : %s\n"
-
-#, fuzzy
-#~ msgid "conversion to a multibyte string failed"
-#~ msgstr "%s : échec de conversion en chaîne multioctet\n"
-
-#~ msgid "Print a friendly, customizable greeting.\n"
-#~ msgstr "Afficher un message de salutations amical et paramétrable.\n"
-
-#, fuzzy
-#~ msgid ""
-#~ "  -t, --traditional       use traditional greeting\n"
-#~ "  -g, --greeting=TEXT     use TEXT as the greeting message\n"
-#~ msgstr ""
-#~ "  -t, --traditional       utiliser les salutations traditionnelles\n"
-#~ "  -n, --next-generation   utiliser les nouvelles salutations\n"
-#~ "  -g, --greeting=TEXTE    utiliser le TEXTE comme message de salutations\n"
-
-#~ msgid "Try `%s --help' for more information.\n"
-#~ msgstr ""
-#~ "Exécutez « %s --help » pour obtenir des renseignements complémentaires.\n"
-
-#~ msgid ""
-#~ "+---------------+\n"
-#~ "| Hello, world! |\n"
-#~ "+---------------+\n"
-#~ msgstr ""
-#~ "+---------------------+\n"
-#~ "| Bonjour, le monde ! |\n"
-#~ "+---------------------+\n"
-
-#~ msgid "%s: illegal option -- %c\n"
-#~ msgstr "%s: l'option -- %c est illégale.\n"
-
-#~ msgid "GNU hello, THE greeting printing program.\n"
-#~ msgstr "GNU hello, LE programme de salutations et de bienvenue.\n"
-
-#~ msgid ""
-#~ "Copyright (C) %s Free Software Foundation, Inc.\n"
-#~ "There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A\n"
-#~ "PARTICULAR PURPOSE.  You may redistribute copies of GNU %s under the "
-#~ "terms\n"
-#~ "of the GNU General Public License.\n"
-#~ "For more information about these matters, see the file named COPYING.\n"
-#~ msgstr ""
-#~ "Copyright © %s Free Software Foundation, Inc.\n"
-#~ "AUCUNE garantie n'est donnée; tant pour des raisons COMMERCIALES que\n"
-#~ "pour RÉPONDRE À UN BESOIN PARTICULIER.  Vous pouvez redistribuer des "
-#~ "copies\n"
-#~ "du progiciel %s de GNU selon les termes de la licence\n"
-#~ "GNU General Public License.\n"
-#~ "Pour plus d'informations, consulter le fichier COPYING.\n"
-
-#~ msgid "%s: Incompatible flags: -m and -t\n"
-#~ msgstr "%s: options incompatibles: -m et -t\n"
-
-#~ msgid "%s: Who are you?\n"
-#~ msgstr "%s: Qui êtes-vous?\n"
-
-#~ msgid "%s: Cannot find your mail spool file.\n"
-#~ msgstr "%s: ne peut repérer votre fichier de boîte aux lettres.\n"
-
-#~ msgid "Nothing happens here."
-#~ msgstr "Aucune activité ne s'est produite."
-
-#~ msgid ""
-#~ "GNU hello, THE greeting printing program.\n"
-#~ "\n"
-#~ "Usage: %s [OPTION]\n"
-#~ "\n"
-#~ "  -h, --help          display this help and exit\n"
-#~ "  -v, --version       display version information and exit\n"
-#~ "  -t, --traditional   use traditional greeting format\n"
-#~ "  -m, --mail          print your mail\n"
-#~ "\n"
-#~ "Report bugs to bug-gnu-hello@prep.ai.mit.edu.\n"
-#~ msgstr ""
-#~ "Le logiciel Hello de GNU, LE programme de Bienvenue.\n"
-#~ "\n"
-#~ "Usage: %s [OPTION]\n"
-#~ "  -h, --help          afficher l'aide-mémoire\n"
-#~ "  -v, --version       afficher le nom et la version du logiciel\n"
-#~ "  -t, --traditional   utiliser le format traditionnel de salutations\n"
-#~ "  -m, --mail          afficher le courrier\n"
-#~ "\n"
-#~ "Rapporter toutes anomalies à bug-gnu-hello@gnu.ai.mit.edu.\n"
-
-#~ msgid ""
-#~ "Copyright (C) %s Free Software Foundation, Inc.\n"
-#~ "This is free software; see the source for copying conditions.  There is "
-#~ "NO\n"
-#~ "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR "
-#~ "PURPOSE.\n"
-#~ msgstr ""
-#~ "Copyright © %s Free Software Foundation, Inc.\n"
-#~ "Ce logiciel est libre; voir les sources pour les conditions de\n"
-#~ "reproduction. AUCUNE garantie n'est donnée; tant pour des raisons\n"
-#~ "COMMERCIALES que pour RÉPONDRE À UN BESOIN PARTICULIER.\n"
+"  Ce logiciel est libre: vous êtes libre de le changer et de le redistribuer.\n"
+"  AUCUNE garantie n'est donnée; dans la mesure permise par la loi.\n"
