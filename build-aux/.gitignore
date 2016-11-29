@@ -1,10 +1,2 @@
-/announce-gen
-/do-release-commit-and-tag
-/gendocs.sh
-/gitlog-to-changelog
-/gnu-web-doc-update
-/gnupload
-/prefix-gnulib-mk
-/update-copyright
-/useless-if-before-free
-/vc-list-files
+/*
+!/git-version-gen
