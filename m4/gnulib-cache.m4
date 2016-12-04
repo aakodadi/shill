@@ -27,7 +27,7 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --lib=libshill --source-base=lib --m4-base=m4 --doc-base=doc --tests-base=tests --aux-dir=build-aux --no-conditional-dependencies --no-libtool --macro-prefix=gl announce-gen closeout configmake dirname do-release-commit-and-tag error fdl gendocs getopt-gnu gettext gitlog-to-changelog gnu-web-doc-update gnupload maintainer-makefile mbsrtowcs non-recursive-gnulib-prefix-hack progname readme-release update-copyright wchar
+#   gnulib-tool --import --dir=. --lib=libshill --source-base=lib --m4-base=m4 --doc-base=doc --tests-base=tests --aux-dir=build-aux --no-conditional-dependencies --no-libtool --macro-prefix=gl announce-gen closeout configmake dirname do-release-commit-and-tag errno error fdl gendocs getopt-gnu gettext gitlog-to-changelog gnu-web-doc-update gnupload maintainer-makefile mbsrtowcs non-recursive-gnulib-prefix-hack progname readme-release update-copyright wchar
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
@@ -37,6 +37,7 @@ gl_MODULES([
   configmake
   dirname
   do-release-commit-and-tag
+  errno
   error
   fdl
   gendocs

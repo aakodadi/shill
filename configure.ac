@@ -43,7 +43,6 @@ AC_PROG_CC
 
 dnl We use gnulib
 gl_EARLY
-gl_INIT
 
 dnl We want support for unusual archivers such as Microsoft lib
 AM_PROG_AR
@@ -86,6 +85,10 @@ AS_IF([test $cross_compiling = no], [
 ], [
   HELP2MAN=:
 ])
+
+
+dnl gnulib checks
+gl_INIT
 
 dnl i18n support from GNU gettext.
 AM_GNU_GETTEXT_VERSION([0.19.7])
