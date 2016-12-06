@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   string_type.h
  * Author: Abdelhakim Akodadi <akodadi.abdelhakim@gmail.com>
  *
@@ -8,6 +8,7 @@
 #ifndef STRING_TYPE_H
 #define STRING_TYPE_H
 
+#include <config.h>
 #include "system.h"
 
 #define STRING_CHUNK_SIZE 1024
@@ -44,4 +45,3 @@ extern "C"
 #endif
 
 #endif /* STRING_TYPE_H */
-

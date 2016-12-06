@@ -1,6 +1,3 @@
-#include <config.h>
-#include <termios.h>
-
 #include "string_type.h"
 
 string

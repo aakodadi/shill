@@ -58,7 +58,7 @@ EXTRA_DIST = \
   test/valid_config_without_user.json
 
 # Subdirectories to descend into.
-SUBDIRS = po lib
+SUBDIRS = po
 
 MODULES_SOURCES = \
   src/argument/argument.c \
@@ -212,6 +212,7 @@ wwwdoc:
 # followed by $VCS add of new files and cvs commit.
 
 include $(top_srcdir)/doc/local.mk
+include $(top_srcdir)/lib/local.mk
 
 dist-hook: gen-ChangeLog
 

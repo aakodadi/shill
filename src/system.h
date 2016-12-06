@@ -20,31 +20,38 @@
 #define SYSTEM_H
 
 /* Assume ANSI C89 headers are available.  */
-# include <locale.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
+#include <locale.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 
 /* Use POSIX headers.  If they are not available, we use the substitute
    provided by gnulib.  */
-# include <getopt.h>
-# include <unistd.h>
+#include <getopt.h>
+#include <unistd.h>
+#include <termios.h>
 
 /* Unicode. */
 #include <wchar.h>
 #include <wctype.h>
 
 /* Internationalization.  */
-# include "gettext.h"
-# define _(str) gettext (str)
-# define N_(str) gettext_noop (str)
+#include "gettext.h"
+#define _(str) gettext (str)
+#define N_(str) gettext_noop (str)
 
 /* Check for errors on write.  */
-# include "closeout.h"
+#include "closeout.h"
 
 /* Errors handling*/
-# include "errno.h"
-# include "error.h"
-# include "assert.h"
+#include "error.h"
+#include "assert.h"
+
+/* Other includes  */
+#include "configmake.h"
+#include "dirname.h"
+#include "progname.h"
+
 
 #endif /* SYSTEM_H */

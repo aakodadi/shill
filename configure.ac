@@ -24,8 +24,8 @@ dnl Initialize "automake".
 AM_INIT_AUTOMAKE([
         1.11.1
         subdir-objects
-        -Wall
         -Werror
+        -Wall
 ])
 
 dnl Minimum Autoconf version required.
@@ -96,8 +96,7 @@ AM_GNU_GETTEXT([external])
 
 dnl Put automake generated files results here
 AC_CONFIG_FILES([Makefile
-           po/Makefile.in
-           lib/Makefile])
+           po/Makefile.in])
 
 dnl copy configuration testing files
 AC_CONFIG_LINKS([test/valid_config.json:test/valid_config.json])
