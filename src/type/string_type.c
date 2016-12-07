@@ -171,6 +171,54 @@ string_gets (unsigned long max_size)
   return destination;
 }
 
+
+#if defined(_WIN32)
+string
+string_getpass (unsigned long max_size)
+{
+  HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+  DWORD mode = 0;
+  string destination = string_create ("");
+  char c[STRING_CHUNK_SIZE];
+  string tmp;
+  unsigned long size = STRING_CHUNK_SIZE < max_size ?
+          STRING_CHUNK_SIZE : max_size;
+  if (GetConsoleMode (hStdin, &mode) == 0)
+    {
+      error (EXIT_FAILURE, errno, _ ("Unable to disable echoing while \
+reading a password"));
+    }
+  if (SetConsoleMode (hStdin, mode & (~ENABLE_ECHO_INPUT)) == 0)
+    {
+      error (EXIT_FAILURE, errno, _ ("Unable to disable echoing while \
+reading a password"));
+    }
+  while (fgets (c, size, stdin))
+    {
+      if (c[strlen (c) - 1] == '\n')
+        {
+          c[strlen (c) - 1] = '\0';
+          tmp = string_create (c);
+          destination = string_catd (&destination, &tmp);
+          SetConsoleMode (hStdin, mode & ENABLE_ECHO_INPUT);
+          return destination;
+        }
+      tmp = string_create (c);
+      destination = string_catd (&destination, &tmp);
+      printf ("%s\n", destination.s);
+      max_size -= destination.len;
+      if (max_size == 0)
+        {
+          SetConsoleMode (hStdin, mode & ENABLE_ECHO_INPUT);
+          return destination;
+        }
+      size = STRING_CHUNK_SIZE < max_size ?
+              STRING_CHUNK_SIZE : max_size;
+    }
+  SetConsoleMode (hStdin, mode & ENABLE_ECHO_INPUT);
+  return destination;
+}
+#elif defined(__linux__)
 string
 string_getpass (unsigned long max_size)
 {
@@ -217,3 +265,6 @@ reading a password"));
   tcsetattr (STDIN_FILENO, TCSAFLUSH, &old);
   return destination;
 }
+#else
+#error Platform not supported yet
+#endif

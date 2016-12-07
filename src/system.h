@@ -36,6 +36,11 @@
 #include <wchar.h>
 #include <wctype.h>
 
+/* Windows includes */
+#if defined(_WIN32)
+#include <windows.h>
+#endif
+
 /* Internationalization.  */
 #include "gettext.h"
 #define _(str) gettext (str)
