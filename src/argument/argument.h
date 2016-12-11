@@ -1,4 +1,6 @@
-/* argument.h: arguments parsing header.
+/*
+   File:   argument.h
+   Author: Abdelhakim Akodadi <akodadi.abdelhakim@gmail.com>
 
    Copyright 1996, 2005, 2006, 2007, 2008, 2013, 2014 Free Software
    Foundation, Inc.
