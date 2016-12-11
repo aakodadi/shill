@@ -46,6 +46,11 @@ main (int argc, char** argv)
   arguments.username = NULL;
   arguments.base_url = NULL;
 
+
+  /* If any writes failed, change the exit status.
+     This is implemented in the Gnulib module "closeout".  */
+  atexit (close_stdout);
+
   /*
    * Parse our arguments; every option seen by argument_parse will be
    * reflected in arguments.
