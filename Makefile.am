@@ -55,7 +55,8 @@ EXTRA_DIST = \
   m4/gnulib-cache.m4 \
   man/shill.x \
   test/valid_config.json \
-  test/valid_config_without_user.json
+  test/valid_config_without_user.json \
+  $(top_srcdir)/.version
 
 # Subdirectories to descend into.
 SUBDIRS = po
@@ -110,8 +111,11 @@ endif
 noinst_LIBRARIES =
 MOSTLYCLEANFILES =
 MOSTLYCLEANDIRS =
-BUILT_SOURCES =
 SUFFIXES =
+
+BUILT_SOURCES = $(top_srcdir)/.version
+$(top_srcdir)/.version:
+	echo $(VERSION) > $@-t && mv $@-t $@
 
 LOG_COMPILER = $(SHELL)
 
@@ -214,7 +218,11 @@ wwwdoc:
 include $(top_srcdir)/doc/local.mk
 include $(top_srcdir)/lib/local.mk
 
-dist-hook: gen-ChangeLog
+dist-hook: gen-ChangeLog gen-tarball-version
+
+.PHONY: gen-tarball-version
+gen-tarball-version:
+	echo $(VERSION) > $(distdir)/.tarball-version
 
 gen_start_date = 2011-12-17
 .PHONY: gen-ChangeLog
