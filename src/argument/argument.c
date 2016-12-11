@@ -107,8 +107,19 @@ Interact with people right form your terminal.\n"), stdout);
   -u, --username=USERNAME   set username for login\n\
       --base-url=URL        change base-url in configuration\n"), stdout);
 
+  puts ("");
+  /* TRANSLATORS: --help output 5: commands
+     no-wrap */
+  fputs (_ ("\
+This is the list of all Shill commands.\n\
+  register    create a new Shill account\n\
+  login       login to a Shill account\n\
+  feed        list posts queue\n\
+  post        submit a new post\n\
+  configure   perform modifications to Shill configuration\n"), stdout);
+
   printf ("\n");
-  /* TRANSLATORS: --help output 5+ (reports)
+  /* TRANSLATORS: --help output 6+ (reports)
      TRANSLATORS: the placeholder indicates the bug-reporting address
      for this application.  Please add _another line_ with the
      address for translation bugs.
