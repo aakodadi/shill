@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNU shill 0.01.14-3b93-dirty\n"
 "Report-Msgid-Bugs-To: akodadi.abdelhakim@gmail.com\n"
-"POT-Creation-Date: 2016-11-28 01:08+0000\n"
+"POT-Creation-Date: 2016-12-11 23:12+0000\n"
 "PO-Revision-Date: 2016-11-28 01:16+0000\n"
 "Last-Translator: user <akodadi.abdelhakim@gmail.com>\n"
 "Language-Team: French\n"
@@ -17,193 +17,213 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/main.c:42
+#: src/main.c:63
 #, c-format
 msgid "Unable to retrieve configuration.\n"
 msgstr "Incapable de récupérer la configuration.\n"
 
-#: src/main.c:43
+#: src/main.c:64
 #, c-format
 msgid "Trying to create a new one...\n"
 msgstr "Essayant de créer une nouvelle configuration...\n"
 
-#: src/type/string_type.c:24 src/type/string_type.c:43
-#: src/type/string_type.c:67 src/type/string_type.c:93
-#: src/type/string_type.c:139
+#: src/type/string_type.c:42 src/type/string_type.c:61
+#: src/type/string_type.c:85 src/type/string_type.c:111
+#: src/type/string_type.c:157
 #, c-format
 msgid "unable to allocate memory for a string"
 msgstr "Incapable d'allouer de l'espace mémoire pour une chaîne de caractère"
 
-#: src/type/string_type.c:188 src/type/string_type.c:195
+#: src/type/string_type.c:209 src/type/string_type.c:214
+#: src/type/string_type.c:254 src/type/string_type.c:261
 #, c-format
 msgid "Unable to disable echoing while reading a password"
 msgstr "Incapable de désactiver l'écho pour lire un mot de passe"
 
-#: src/service/repository.c:168 src/service/repository.c:222
-#: src/service/repository.c:275
+#: src/service/repository.c:189 src/service/repository.c:243
+#: src/service/repository.c:296
 #, c-format
 msgid "unable to perform a request to the server: %s"
 msgstr "Incapable d'effectuer une requette au serveur: %s"
 
-#: src/service/service.c:13
+#: src/service/service.c:34
 #, c-format
 msgid "unauthorized to access posts"
 msgstr "vous n'êtes pas autorisé pour accéder aux postes"
 
-#: src/service/service.c:48
+#: src/service/service.c:69
 #, c-format
 msgid "unauthorized to post"
 msgstr "vous n'êtes pas autorisé pour accéder à ce poste"
 
-#: src/service/service.c:76
+#: src/service/service.c:97
 #, c-format
 msgid "invalid user information"
 msgstr "Données utilisateur non valides"
 
-#: src/service/service.c:100
+#: src/service/service.c:121
 #, c-format
 msgid "invalid login information"
 msgstr "Données utilisateur non valides"
 
-#: src/model/user.c:71 src/model/post.c:40 src/model/post_collection.c:42
+#: src/model/user.c:92 src/model/post.c:61 src/model/post_collection.c:63
 #, c-format
 msgid "%d:%d: cannot parse json content: %s"
 msgstr "%d:%d: Incapable d'analyser du contenu JSON: %s"
 
-#: src/model/user.c:81 src/model/post.c:50
+#: src/model/user.c:102 src/model/post.c:71
 #, c-format
 msgid ""
 "cannot parse json content: expected root element to be a json object: %s"
-msgstr "Incapable d'analyser du contenu JSON: L'élément racine supposé être un objet JSON: %s"
+msgstr ""
+"Incapable d'analyser du contenu JSON: L'élément racine supposé être un objet "
+"JSON: %s"
 
-#: src/model/post_collection.c:52
+#: src/model/post_collection.c:73
 #, c-format
 msgid "cannot parse json content: expected root element to be a json array: %s"
-msgstr "Incapable d'analyser du contenu JSON: élément racine supposé être un tableau JSON: %s"
+msgstr ""
+"Incapable d'analyser du contenu JSON: élément racine supposé être un tableau "
+"JSON: %s"
 
-#: src/model/post_collection.c:68
+#: src/model/post_collection.c:89
 #, c-format
 msgid ""
 "cannot parse json content: expected elements in root to be json objects: %s"
-msgstr "Incapable d'analyser du contenu JSON: Les éléments de la racine supposés être des objets JSON: %s"
+msgstr ""
+"Incapable d'analyser du contenu JSON: Les éléments de la racine supposés "
+"être des objets JSON: %s"
 
-#: src/configuration/configuration.c:53
+#: src/configuration/configuration.c:74
 #, c-format
 msgid "couldn't find home directory"
 msgstr "Impossible de trouver le répertoire personnel"
 
-#: src/configuration/configuration.c:84 src/configuration/configuration.c:190
-#: src/configuration/configuration.c:245
+#: src/configuration/configuration.c:105 src/configuration/configuration.c:211
+#: src/configuration/configuration.c:266
 #, c-format
 msgid "cannot open configuration file: %s"
 msgstr "Impossible d'ouvrir le fichier de configuration: %s"
 
-#: src/configuration/configuration.c:95 src/configuration/configuration.c:200
-#: src/configuration/configuration.c:261 src/configuration/configuration.c:316
+#: src/configuration/configuration.c:116 src/configuration/configuration.c:221
+#: src/configuration/configuration.c:282 src/configuration/configuration.c:337
 #, c-format
 msgid "cannot close configuration file: %s"
 msgstr "Impossible de fermer le fichier de configuration: %s"
 
-#: src/configuration/configuration.c:100 src/configuration/configuration.c:205
+#: src/configuration/configuration.c:121 src/configuration/configuration.c:226
 #, c-format
 msgid "%s:%d:%d: cannot parse json file: %s"
 msgstr "%s:%d:%d: Incapable d'analyser un fichier JSON: %s"
 
-#: src/configuration/configuration.c:110 src/configuration/configuration.c:215
+#: src/configuration/configuration.c:131 src/configuration/configuration.c:236
 #, c-format
 msgid "%s: cannot parse json file: expected root element to be a json object"
-msgstr "%s: Incapable d'analyser un fichier JSON: L'élément racine supposé être un objet JSON"
+msgstr ""
+"%s: Incapable d'analyser un fichier JSON: L'élément racine supposé être un "
+"objet JSON"
 
-#: src/configuration/configuration.c:121 src/configuration/configuration.c:226
+#: src/configuration/configuration.c:142 src/configuration/configuration.c:247
 #, c-format
 msgid ""
 "%s: cannot parse json file: expected \"configuration\" element to be a json "
 "object"
-msgstr "%s: Incapable d'analyser un fichier JSON: L'élément \"configuration\" supposé être un objet JSON"
+msgstr ""
+"%s: Incapable d'analyser un fichier JSON: L'élément \"configuration\" "
+"supposé être un objet JSON"
 
-#: src/configuration/configuration.c:134
+#: src/configuration/configuration.c:155
 #, c-format
 msgid ""
 "%s: cannot parse json file: expected \"server\" element to be a json object"
-msgstr "%s: Incapable d'analyser un fichier JSON: L'élément \"server\" supposé être un objet JSON"
+msgstr ""
+"%s: Incapable d'analyser un fichier JSON: L'élément \"server\" supposé être "
+"un objet JSON"
 
-#: src/configuration/configuration.c:145
+#: src/configuration/configuration.c:166
 #, c-format
 msgid ""
 "%s: cannot parse json file: expected \"base-url\" element to be a json string"
-msgstr "%s: Incapable d'analyser un fichier JSON: L'élément \"base-url\" supposé être une chaîne de caractère JSON"
+msgstr ""
+"%s: Incapable d'analyser un fichier JSON: L'élément \"base-url\" supposé "
+"être une chaîne de caractère JSON"
 
-#: src/configuration/configuration.c:253 src/configuration/configuration.c:308
+#: src/configuration/configuration.c:274 src/configuration/configuration.c:329
 #, c-format
 msgid "cannot write into configuration file: %s"
 msgstr "Impossible d'écrire dans le fichier de configuration: %s"
 
-#: src/configuration/configuration.c:300
+#: src/configuration/configuration.c:321
 #, c-format
 msgid "cannot create configuration file: %s"
 msgstr "Incapable de créer le fichier de configuration: %s"
 
-#: src/configuration/configuration.c:328
+#: src/configuration/configuration.c:349
 #, c-format
 msgid "login required: cannot find a valid username in configuration"
-msgstr "login requis: Impossible de trouver un nom d'utilisateur valide dans la configuration"
+msgstr ""
+"login requis: Impossible de trouver un nom d'utilisateur valide dans la "
+"configuration"
 
-#: src/configuration/configuration.c:334
+#: src/configuration/configuration.c:355
 #, c-format
 msgid "login required: cannot find a valid auth_token in configuration"
-msgstr "login requis: Impossible de trouver un auth_token valide dans la configuration"
+msgstr ""
+"login requis: Impossible de trouver un auth_token valide dans la "
+"configuration"
 
-#: src/command/command.c:59
+#: src/command/command.c:80
 #, c-format
 msgid "unrecognized command: %s"
 msgstr "commande non reconnu: %s"
 
-#: src/argument/argument.c:46
+#: src/argument/argument.c:66
 #, c-format
 msgid "%s: too few arguments: missing command argument\n"
 msgstr "%s: trop peu d'arguments: Argument <commande> manquant\n"
 
-#: src/argument/argument.c:53
+#: src/argument/argument.c:73
 #, c-format
 msgid "%s: too many arguments\n"
 msgstr "%s: trop d'arguments\n"
 
 #. TRANSLATORS: --help output 1 (synopsis)
 #. no-wrap
-#: src/argument/argument.c:65
+#: src/argument/argument.c:85
 #, c-format
 msgid "Usage: %s [OPTION]... <COMMAND>\n"
 msgstr "Utilisation: %s [OPTION]... <COMMANDE>\n"
 
 #. TRANSLATORS: --help output 2 (brief description)
 #. no-wrap
-#: src/argument/argument.c:70
+#: src/argument/argument.c:90
 msgid "Interact with people right form your terminal.\n"
 msgstr "Interagissez avec les gens depuis votre terminal.\n"
 
 #. TRANSLATORS: --help output 3: options 1/2
 #. no-wrap
-#: src/argument/argument.c:76
+#: src/argument/argument.c:96
 msgid ""
 "  -h, --help               display this help and exit\n"
 "      --usage              display a short usage message and exit\n"
 "  -v, --version            display version information and exit\n"
 msgstr ""
 "  -h, --help               afficher l'aide-mémoire\n"
-"      --usage              afficher un court message d'utilisation et quitter\n"
+"      --usage              afficher un court message d'utilisation et "
+"quitter\n"
 "  -v, --version            afficher le nom et la version du logiciel\n"
 
 #. TRANSLATORS: --help output 4: options 2/2
 #. no-wrap
-#: src/argument/argument.c:84
+#: src/argument/argument.c:104
 msgid ""
 "  -c, --config-file=PATH    set configuration file (default ~/.shill_config."
 "json)\n"
 "  -u, --username=USERNAME   set username for login\n"
 "      --base-url=URL        change base-url in configuration\n"
 msgstr ""
-"  -c, --config-file=PATH    définir le fichier de configuration (par défaut ~/.shill_config."
-"json)\n"
+"  -c, --config-file=PATH    définir le fichier de configuration (par défaut "
+"~/.shill_config.json)\n"
 "  -u, --username=USERNAME   définir le nom d'utilisateur pour le login\n"
 "      --base-url=URL        modifier base-url dans la configuration\n"
 
@@ -212,33 +232,35 @@ msgstr ""
 #. for this application.  Please add _another line_ with the
 #. address for translation bugs.
 #. no-wrap
-#: src/argument/argument.c:96
+#: src/argument/argument.c:116
 #, c-format
 msgid "Report bugs to: %s\n"
 msgstr "Rapporter toutes anomalies à: %s\n"
 
-#: src/argument/argument.c:99
+#: src/argument/argument.c:119
 #, c-format
 msgid "Report %s bugs to: %s\n"
 msgstr "Rapporter toutes anomalies de %s à: %s\n"
 
-#: src/argument/argument.c:103
+#: src/argument/argument.c:123
 #, c-format
 msgid "%s home page: <%s>\n"
 msgstr "Page d'accueil de %s: <%s>\n"
 
-#: src/argument/argument.c:105
+#: src/argument/argument.c:125
 #, c-format
 msgid "%s home page: <http://www.gnu.org/software/%s/>\n"
 msgstr "Page d'accueil de %s: <http://www.gnu.org/software/%s/>\n"
 
-#: src/argument/argument.c:108
+#: src/argument/argument.c:128
 msgid "General help using GNU software: <http://www.gnu.org/gethelp/>\n"
-msgstr "Aide générale à l'utilisation du logiciel GNU: <http://www.gnu.org/gethelp/>\n"
+msgstr ""
+"Aide générale à l'utilisation du logiciel GNU: <http://www.gnu.org/gethelp/"
+">\n"
 
 #. TRANSLATORS: --usage output 1 (synopsis)
 #. no-wrap
-#: src/argument/argument.c:117
+#: src/argument/argument.c:137
 #, c-format
 msgid ""
 "Usage: %s [-v] [-c FILE] [-u USERNAME] [--verbose] [--base-url=BASE-URL]\n"
@@ -246,7 +268,7 @@ msgid ""
 "          [--version] <COMMAND>\n"
 msgstr ""
 
-#: src/argument/argument.c:134
+#: src/argument/argument.c:154
 #, c-format
 msgid ""
 "  Copyright (C) %d Free Software Foundation, Inc.\n"
@@ -258,5 +280,6 @@ msgstr ""
 "  Copyright © %d Free Software Foundation, Inc.\n"
 "  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
 "html>\n"
-"  Ce logiciel est libre: vous êtes libre de le changer et de le redistribuer.\n"
+"  Ce logiciel est libre: vous êtes libre de le changer et de le "
+"redistribuer.\n"
 "  AUCUNE garantie n'est donnée; dans la mesure permise par la loi.\n"
