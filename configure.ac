@@ -12,7 +12,7 @@ dnl Initialize "autoconf".
 AC_INIT([GNU shill],
         [m4_esyscmd([build-aux/git-version-gen .tarball-version])],
         [akodadi.abdelhakim@gmail.com], [],
-        [http://www.gnu.org/software/shill/])
+        [https://github.com/akodakim/shill/])
 
 
 dnl Put autotools auxiliary files in a subdir, so they don't clutter top dir.
