@@ -1,5 +1,4 @@
 /Makevars.template
 /*.gmo
 /POTFILES
-/shill.pot
 /stamp-po

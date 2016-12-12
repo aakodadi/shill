@@ -135,7 +135,7 @@ argument_print_usage ()
   /* TRANSLATORS: --usage output 1 (synopsis)
      no-wrap */
   printf (_ ("\
-Usage: %s [-v] [-c FILE] [-u USERNAME] [--verbose] [--base-url=BASE-URL]\n\
+Usage: %s [-v] [-c FILE] [-u USERNAME] [--base-url=BASE-URL]\n\
           [--config=FILE] [--username=USERNAME] [--help] [--usage]\n\
           [--version] <COMMAND>\n"), program_name);
 
