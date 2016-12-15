@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNU shill 0.01.14-3b93-dirty\n"
 "Report-Msgid-Bugs-To: akodadi.abdelhakim@gmail.com\n"
-"POT-Creation-Date: 2016-12-12 00:05+0000\n"
+"POT-Creation-Date: 2016-12-15 20:13+0000\n"
 "PO-Revision-Date: 2016-11-28 01:16+0000\n"
 "Last-Translator: user <akodadi.abdelhakim@gmail.com>\n"
 "Language-Team: French\n"
@@ -227,32 +227,50 @@ msgstr ""
 "  -u, --username=USERNAME   définir le nom d'utilisateur pour le login\n"
 "      --base-url=URL        modifier base-url dans la configuration\n"
 
-#. TRANSLATORS: --help output 5+ (reports)
+#. TRANSLATORS: --help output 5: commands
+#. no-wrap
+#: src/argument/argument.c:113
+msgid ""
+"This is the list of all Shill commands.\n"
+"  register    create a new Shill account\n"
+"  login       login to a Shill account\n"
+"  feed        list posts queue\n"
+"  post        submit a new post\n"
+"  configure   perform modifications to Shill configuration\n"
+msgstr ""
+"Celle-ci est une liste de tout les commandes de Shill.\n"
+"  register    Créer un nouveau compte Shill\n"
+"  login       S'identifier a un compte Shill\n"
+"  feed        Lister les postes dans la file\n"
+"  post        Créer un nouveau poste\n"
+"  configure   Effectuer une modification de la configuration Shill\n"
+
+#. TRANSLATORS: --help output 6+ (reports)
 #. TRANSLATORS: the placeholder indicates the bug-reporting address
 #. for this application.  Please add _another line_ with the
 #. address for translation bugs.
 #. no-wrap
-#: src/argument/argument.c:116
+#: src/argument/argument.c:127
 #, c-format
 msgid "Report bugs to: %s\n"
 msgstr "Rapporter toutes anomalies à: %s\n"
 
-#: src/argument/argument.c:119
+#: src/argument/argument.c:130
 #, c-format
 msgid "Report %s bugs to: %s\n"
 msgstr "Rapporter toutes anomalies de %s à: %s\n"
 
-#: src/argument/argument.c:123
+#: src/argument/argument.c:134
 #, c-format
 msgid "%s home page: <%s>\n"
 msgstr "Page d'accueil de %s: <%s>\n"
 
-#: src/argument/argument.c:125
+#: src/argument/argument.c:136
 #, c-format
 msgid "%s home page: <http://www.gnu.org/software/%s/>\n"
 msgstr "Page d'accueil de %s: <http://www.gnu.org/software/%s/>\n"
 
-#: src/argument/argument.c:128
+#: src/argument/argument.c:139
 msgid "General help using GNU software: <http://www.gnu.org/gethelp/>\n"
 msgstr ""
 "Aide générale à l'utilisation du logiciel GNU: <http://www.gnu.org/gethelp/"
@@ -260,7 +278,7 @@ msgstr ""
 
 #. TRANSLATORS: --usage output 1 (synopsis)
 #. no-wrap
-#: src/argument/argument.c:137
+#: src/argument/argument.c:148
 #, c-format
 msgid ""
 "Usage: %s [-v] [-c FILE] [-u USERNAME] [--base-url=BASE-URL]\n"
@@ -268,7 +286,7 @@ msgid ""
 "          [--version] <COMMAND>\n"
 msgstr ""
 
-#: src/argument/argument.c:154
+#: src/argument/argument.c:165
 #, c-format
 msgid ""
 "  Copyright (C) %d Free Software Foundation, Inc.\n"
