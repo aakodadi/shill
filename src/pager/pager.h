@@ -1,5 +1,5 @@
 /*
-   File:   configuration.h
+   File:   pager.c
    Author: Abdelhakim Akodadi <akodadi.abdelhakim@gmail.com>
 
    Copyright 1996, 2005, 2006, 2007, 2008, 2013, 2014 Free Software
@@ -17,44 +17,28 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
-#ifndef CONFIGURATION_H
-#define CONFIGURATION_H
+#ifndef PAGER_H
+#define PAGER_H
+
+#ifndef DEFAULT_PAGER
+#define DEFAULT_PAGER "less"
+#endif
 
 #include <config.h>
 #include "system.h"
-#include <jansson.h>
-#include "argument.h"
-#include "string_type.h"
-#include "user.h"
+#include "progname.h"
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-  struct _shill_configuration
-  {
-    string base_url;
-    user u;
-    const char* pager;
-  };
-
-  typedef struct _shill_configuration shill_configuration;
-
-  void configuration_initialize ();
-  void configuration_parse ();
-  void configuration_create ();
-  void configuration_save_user ();
-  void configuration_check_user();
-  string _configuration_get_file_path ();
-
-  shill_configuration configuration;
-
+  const char *shill_pager();
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* CONFIGURATION_H */
+#endif /* PAGER_H */
