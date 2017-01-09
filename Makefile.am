@@ -31,6 +31,7 @@ AM_CPPFLAGS = \
   -Iservice -I$(top_srcdir)/src/service \
   -Itype -I$(top_srcdir)/src/type \
   -Imodel -I$(top_srcdir)/src/model \
+  -Ipager -I$(top_srcdir)/src/pager \
   @CUNIT_CFLAGS@ \
   @CURL_CFLAGS@ \
   @JANSSON_CFLAGS@
@@ -80,7 +81,9 @@ MODULES_SOURCES = \
   src/model/post.c \
   src/model/post.h \
   src/model/post_collection.c \
-  src/model/post_collection.h
+  src/model/post_collection.h \
+  src/pager/pager.c \
+  src/pager/pager.h
 
 
 bin_PROGRAMS = shill

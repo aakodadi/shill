@@ -37,6 +37,8 @@ configuration_initialize ()
   configuration.base_url.len = -1L;
   configuration.base_url.s = NULL;
   user_initialize (&configuration.u);
+  configuration.pager.len = -1L;
+  configuration.pager.s = NULL;
 }
 
 string
@@ -80,8 +82,9 @@ configuration_parse ()
   int errnum;
   string conf_file_path;
   FILE* conf_file;
-  json_t *json_root, *json_configuration, *json_server, *json_base_url,
-          *json_user, *json_username, *json_auth_token;
+  json_t *json_root, *json_configuration, *json_server, *json_core,
+          *json_base_url, *json_user, *json_username, *json_auth_token,
+          *json_pager;
   json_error_t json_error;
 
   conf_file_path = _configuration_get_file_path ();
@@ -146,6 +149,8 @@ expected \"configuration\" element to be a json object"),
 
   json_server = json_object_get (json_configuration, "server");
 
+  json_core = json_object_get (json_configuration, "core");
+
   json_user = json_object_get (json_configuration, "user");
 
   if (!json_is_object (json_server))
@@ -158,6 +163,17 @@ expected \"server\" element to be a json object"),
     }
 
   json_base_url = json_object_get (json_server, "base-url");
+
+  if (json_is_object (json_core))
+    {
+      json_pager = json_object_get (json_core, "pager");
+
+      if (json_is_string (json_pager))
+        {
+          configuration.pager = 
+                  string_create (json_string_value (json_pager));
+        }
+    }
 
   if (!json_is_string (json_base_url))
     {

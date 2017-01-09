@@ -31,7 +31,7 @@ shill_pager()
 
 	pager = getenv("SHILL_PAGER");
 	if (!pager)
-		pager = configuration.pager;
+		pager = configuration.pager.s;
 	if (!pager)
 		pager = getenv("PAGER");
 	if (!pager)

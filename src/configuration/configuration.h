@@ -38,7 +38,7 @@ extern "C"
   {
     string base_url;
     user u;
-    const char* pager;
+    string pager;
   };
 
   typedef struct _shill_configuration shill_configuration;
