@@ -125,7 +125,8 @@ TESTS = \
   configuration_cunit_test \
   post_model_cunit_test \
   user_model_cunit_test \
-  post_collection_model_cunit_test
+  post_collection_model_cunit_test \
+  repository_cunit_test
 
 XFAIL_TESTS = \
   repository_cunit_test
