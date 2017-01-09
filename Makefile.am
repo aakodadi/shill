@@ -120,8 +120,6 @@ BUILT_SOURCES = $(top_srcdir)/.version
 $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
 
-LOG_COMPILER = $(SHELL)
-
 TESTS = \
   string_type_cunit_test \
   configuration_cunit_test \
