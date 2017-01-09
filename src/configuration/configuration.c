@@ -170,7 +170,7 @@ expected \"server\" element to be a json object"),
 
       if (json_is_string (json_pager))
         {
-          configuration.pager = 
+          configuration.pager =
                   string_create (json_string_value (json_pager));
         }
     }

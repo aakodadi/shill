@@ -62,6 +62,27 @@ test_configuration_parse_with_valid_file_without_user ()
   CU_ASSERT_PTR_NULL (configuration.u.auth_token.s);
 }
 
+void
+test_configuration_parse_with_pager ()
+{
+  arguments.config = "test/valid_config_with_pager.json";
+  configuration_initialize ();
+  configuration_parse ();
+  CU_ASSERT_PTR_NOT_NULL (configuration.pager.s);
+  CU_ASSERT_NOT_EQUAL (configuration.pager.len, -1L);
+  CU_ASSERT_STRING_EQUAL (configuration.pager.s, "test_pager");
+}
+
+void
+test_configuration_parse_without_pager ()
+{
+  arguments.config = "test/valid_config.json";
+  configuration_initialize ();
+  configuration_parse ();
+  CU_ASSERT_PTR_NULL (configuration.pager.s);
+  CU_ASSERT_EQUAL (configuration.pager.len, -1L);
+}
+
 int
 main ()
 {
@@ -81,8 +102,17 @@ main ()
 
   /* Add the tests to the suite */
   if (
-      (NULL == CU_add_test (pSuite, "test_configuration_parse_with_valid_file", test_configuration_parse_with_valid_file)) ||
-      (NULL == CU_add_test (pSuite, "test_configuration_parse_with_valid_file_without_user", test_configuration_parse_with_valid_file_without_user)) ||
+      (NULL == CU_add_test (pSuite, "test_configuration_parse_with_valid_file",
+        test_configuration_parse_with_valid_file)) ||
+      (NULL == CU_add_test (pSuite,
+        "test_configuration_parse_with_valid_file_without_user",
+        test_configuration_parse_with_valid_file_without_user)) ||
+      (NULL == CU_add_test (pSuite,
+        "test_configuration_parse_with_pager",
+        test_configuration_parse_with_pager)) ||
+      (NULL == CU_add_test (pSuite,
+        "test_configuration_parse_without_pager",
+        test_configuration_parse_without_pager)) ||
       (0)
       )
     {

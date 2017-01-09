@@ -102,5 +102,7 @@ dnl copy configuration testing files
 AC_CONFIG_LINKS([test/valid_config.json:test/valid_config.json])
 AC_CONFIG_LINKS(
 [test/valid_config_without_user.json:test/valid_config_without_user.json])
+AC_CONFIG_LINKS(
+[test/valid_config_with_pager.json:test/valid_config_with_pager.json])
 
 AC_OUTPUT

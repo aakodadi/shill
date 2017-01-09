@@ -1,0 +1,10 @@
+{
+    "configuration": {
+        "server": {
+            "base-url": "http://test.valid.com:3000/"
+        },
+        "core": {
+            "pager": "test_pager"
+        }
+    }
+}
