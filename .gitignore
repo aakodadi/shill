@@ -40,6 +40,9 @@ test-suite.log
 /src/config.h
 /src/config.h.in
 
+# Tempo version file
+.version
+
 # Distribution files
 shill*.tar*
 /shill*
