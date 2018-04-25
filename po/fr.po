@@ -1,5 +1,5 @@
 # French translations for GNU shill package.
-# Copyright (C) 2016 Free Software Foundation, Inc.
+# Copyright (C) 2016, 2018 Free Software Foundation, Inc.
 # This file is distributed under the same license as the GNU shill package.
 # user <akodadi.abdelhakim@gmail.com>, 2016.
 #

@@ -5,8 +5,8 @@
    So lets go ahead and define them once for all. afterwards we will be
    dealing with just one timestamp field.
 
-   Copyright 1996, 2005, 2006, 2007, 2008, 2013, 2014 Free Software
-   Foundation, Inc.
+   Copyright 1996, 2005, 2006, 2007, 2008, 2013, 2014, 2018 Free
+   Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
