@@ -1,4 +1,4 @@
-# Copyright (C) 2002-2014 Free Software Foundation, Inc.
+# Copyright (C) 2002-2018 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -11,7 +11,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this file.  If not, see <http://www.gnu.org/licenses/>.
+# along with this file.  If not, see <https://www.gnu.org/licenses/>.
 #
 # As a special exception to the GNU General Public License,
 # this file may be distributed as part of a program that
@@ -27,7 +27,7 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --local-dir=gl --lib=libshill --source-base=lib --m4-base=m4 --doc-base=doc --tests-base=tests --aux-dir=build-aux --makefile-name=gnulib.mk --no-conditional-dependencies --no-libtool --macro-prefix=gl announce-gen closeout configmake dirname do-release-commit-and-tag errno error fdl gendocs getopt-gnu gettext git-version-gen gitlog-to-changelog gnu-web-doc-update gnupload maintainer-makefile mbsrtowcs non-recursive-gnulib-prefix-hack progname readme-release tcsetattr termios update-copyright wchar
+#   gnulib-tool --import --local-dir=gl --lib=libshill --source-base=lib --m4-base=m4 --doc-base=doc --tests-base=tests --aux-dir=build-aux --no-conditional-dependencies --no-libtool --macro-prefix=gl --no-vc-files announce-gen closeout configmake dirname do-release-commit-and-tag errno error fdl gendocs getopt-gnu gettext-h git-version-gen gitlog-to-changelog gnu-web-doc-update gnupload maintainer-makefile mbsrtowcs non-recursive-gnulib-prefix-hack progname readme-release termios update-copyright wchar
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([gl])
@@ -42,7 +42,7 @@ gl_MODULES([
   fdl
   gendocs
   getopt-gnu
-  gettext
+  gettext-h
   git-version-gen
   gitlog-to-changelog
   gnu-web-doc-update
@@ -52,7 +52,6 @@ gl_MODULES([
   non-recursive-gnulib-prefix-hack
   progname
   readme-release
-  tcsetattr
   termios
   update-copyright
   wchar
@@ -64,7 +63,7 @@ gl_PO_BASE([])
 gl_DOC_BASE([doc])
 gl_TESTS_BASE([tests])
 gl_LIB([libshill])
-gl_MAKEFILE_NAME([gnulib.mk])
+gl_MAKEFILE_NAME([])
 gl_MACRO_PREFIX([gl])
 gl_PO_DOMAIN([])
 gl_WITNESS_C_MACRO([])
