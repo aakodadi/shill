@@ -59,7 +59,7 @@ EXTRA_DIST = \
   $(top_srcdir)/.version
 
 # Subdirectories to descend into.
-SUBDIRS = po
+SUBDIRS = po lib
 
 MODULES_SOURCES = \
   src/argument/argument.c \
