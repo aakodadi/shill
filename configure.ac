@@ -96,7 +96,6 @@ AM_GNU_GETTEXT([external])
 
 dnl Put automake generated files results here
 AC_CONFIG_FILES([Makefile
-           lib/Makefile
            po/Makefile.in])
 
 dnl copy configuration testing files

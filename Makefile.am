@@ -59,7 +59,7 @@ EXTRA_DIST = \
   $(top_srcdir)/.version
 
 # Subdirectories to descend into.
-SUBDIRS = po lib
+SUBDIRS = po
 
 MODULES_SOURCES = \
   src/argument/argument.c \
@@ -217,6 +217,9 @@ wwwdoc:
 
 include $(top_srcdir)/doc/local.mk
 include $(top_srcdir)/lib/local.mk
+
+# include gnulib-tool generated makefile
+include $(top_srcdir)/lib/gnulib.mk
 
 dist-hook: gen-ChangeLog gen-tarball-version
 

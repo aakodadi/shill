@@ -27,7 +27,7 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --local-dir=gl --lib=libshill --source-base=lib --m4-base=m4 --doc-base=doc --tests-base=tests --aux-dir=build-aux --no-conditional-dependencies --no-libtool --macro-prefix=gl --no-vc-files announce-gen closeout configmake dirname do-release-commit-and-tag errno error fdl gendocs getopt-gnu gettext-h git-version-gen gitlog-to-changelog gnu-web-doc-update gnupload maintainer-makefile mbsrtowcs non-recursive-gnulib-prefix-hack progname readme-release termios update-copyright wchar
+#   gnulib-tool --import --local-dir=gl --lib=libshill --source-base=lib --m4-base=m4 --doc-base=doc --tests-base=tests --aux-dir=build-aux --makefile-name=gnulib.mk --no-conditional-dependencies --no-libtool --macro-prefix=gl --no-vc-files announce-gen closeout configmake dirname do-release-commit-and-tag errno error fdl gendocs getopt-gnu gettext-h git-version-gen gitlog-to-changelog gnu-web-doc-update gnupload maintainer-makefile mbsrtowcs non-recursive-gnulib-prefix-hack progname readme-release termios update-copyright wchar
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([gl])
@@ -63,7 +63,7 @@ gl_PO_BASE([])
 gl_DOC_BASE([doc])
 gl_TESTS_BASE([tests])
 gl_LIB([libshill])
-gl_MAKEFILE_NAME([])
+gl_MAKEFILE_NAME([gnulib.mk])
 gl_MACRO_PREFIX([gl])
 gl_PO_DOMAIN([])
 gl_WITNESS_C_MACRO([])
