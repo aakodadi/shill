@@ -1,4 +1,4 @@
-@set UPDATED 2 November 2016
-@set UPDATED-MONTH November 2016
-@set EDITION 0.01.14-3b93-dirty
-@set VERSION 0.01.14-3b93-dirty
+@set UPDATED 25 April 2018
+@set UPDATED-MONTH April 2018
+@set EDITION 0.1-alpha-dirty
+@set VERSION 0.1-alpha-dirty
