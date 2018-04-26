@@ -118,6 +118,7 @@ $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
 
 TESTS = \
+  repository_cunit_test \
   string_type_cunit_test \
   configuration_cunit_test \
   post_model_cunit_test \
