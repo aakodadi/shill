@@ -38,7 +38,7 @@ clean_suite (void)
 void
 test_configuration_parse_with_valid_file ()
 {
-  arguments.config = "test/valid_config.json";
+  arguments.config = "tests/valid_config.json";
   configuration_parse ();
   CU_ASSERT_STRING_EQUAL (configuration.base_url.s,
                           "http://test.valid.com:3000/");
@@ -51,7 +51,7 @@ test_configuration_parse_with_valid_file ()
 void
 test_configuration_parse_with_valid_file_without_user ()
 {
-  arguments.config = "test/valid_config_without_user.json";
+  arguments.config = "tests/valid_config_without_user.json";
   configuration_initialize ();
   configuration_parse ();
   CU_ASSERT_STRING_EQUAL (configuration.base_url.s,
