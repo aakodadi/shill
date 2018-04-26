@@ -54,8 +54,8 @@ EXTRA_DIST = \
   ChangeLog.O \
   m4/gnulib-cache.m4 \
   man/shill.x \
-  test/valid_config.json \
-  test/valid_config_without_user.json \
+  tests/valid_config.json \
+  tests/valid_config_without_user.json \
   $(top_srcdir)/.version
 
 # Subdirectories to descend into.
@@ -134,32 +134,32 @@ check_PROGRAMS = \
   $(XFAIL_TESTS)
 
 string_type_cunit_test_SOURCES = \
-  test/string_type_cunit_test.c \
+  tests/string_type_cunit_test.c \
   src/system.h \
   $(MODULES_SOURCES)
 
 configuration_cunit_test_SOURCES = \
-  test/configuration_cunit_test.c \
+  tests/configuration_cunit_test.c \
   src/system.h \
   $(MODULES_SOURCES)
 
 repository_cunit_test_SOURCES = \
-  test/repository_cunit_test.c \
+  tests/repository_cunit_test.c \
   src/system.h \
   $(MODULES_SOURCES)
 
 user_model_cunit_test_SOURCES = \
-  test/user_model_cunit_test.c \
+  tests/user_model_cunit_test.c \
   src/system.h \
   $(MODULES_SOURCES)
 
 post_model_cunit_test_SOURCES = \
-  test/post_model_cunit_test.c \
+  tests/post_model_cunit_test.c \
   src/system.h \
   $(MODULES_SOURCES)
 
 post_collection_model_cunit_test_SOURCES = \
-  test/post_collection_model_cunit_test.c \
+  tests/post_collection_model_cunit_test.c \
   src/system.h \
   $(MODULES_SOURCES)
 
